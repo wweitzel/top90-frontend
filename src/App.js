@@ -1,92 +1,86 @@
 import './App.css';
+import logo from './assets/top90logo.png';
+import useGetGoals from './hooks/useGetGoals';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {useState} from 'react';
 
-import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
-import logo from './assets/top90logo.png';
+function Feed(props = {goals: []}) {
+  return (
+    <>
+      {props.goals.map((video, i) => (
+        <div style={{width: '100%', marginBottom: '20px'}} key={video.RedditPostTitle}>
+          <h6 style={{textAlign: 'left'}}>{video.RedditPostTitle}</h6>
+          <video width={'100%'} controls controlsList="download" muted={true}>
+            <source src={video.PresignedUrl + '#t=0.1'} type="video/mp4"></source>
+          </video>
+        </div>
+      ))}
+    </>
+  );
+}
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const defaultPagination = {itemOffset: 0, itemsPerPage: 3};
+
+  const [pagination, setPagination] = useState(defaultPagination);
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageCount, setPageCount] = useState(0);
   const [searchInput, setSearchInput] = useState('');
-  const [getVideoUrlsResponse, setGetVideoUrlsResponse] = useState(null);
+  const [tempSearchInput, setTempSearchInput] = useState('');
 
-  const itemsPerPage = 3;
-  const baseUrl = 'https://api.top90.io';
+  const {isLoading, data: getGoalsResponse} = useGetGoals(pagination, searchInput);
 
-  const getGoals = useCallback(async (search = '', itemOffset = 0) => {
-    const url = `${baseUrl}/goals?skip=${itemOffset}&limit=${itemsPerPage}&search=${search}`;
-    let response = await axios.get(url);
-    setGetVideoUrlsResponse(response);
-    setPageCount(Math.ceil((response.data ? response.data.total : 0) / itemsPerPage));
-    setIsLoading(false);
-  }, []);
+  const pageCount = Math.ceil(
+    (getGoalsResponse ? getGoalsResponse.total : 0) / pagination.itemsPerPage
+  );
+  const goals = getGoalsResponse?.goals || [];
 
-  useEffect(() => {
-    setIsLoading(true);
-    getGoals();
-  }, [getGoals]);
-
-  const handlePageClick = (event) => {
-    const newOffset = event.selected * itemsPerPage;
+  function handlePageClick(event) {
+    const newOffset = event.selected * pagination.itemsPerPage;
     setCurrentPage(event.selected);
-    getGoals(searchInput, newOffset);
-  };
+    setPagination({...pagination, itemOffset: newOffset});
+  }
 
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
+    setSearchInput(tempSearchInput);
     setCurrentPage(0);
-    getGoals(searchInput, 0);
-  };
+    setPagination(defaultPagination);
+  }
 
-  const reset = () => {
+  function reset() {
+    setTempSearchInput('');
     setSearchInput('');
     setCurrentPage(0);
-    getGoals('', 0);
-  };
+    setPagination(defaultPagination);
+  }
 
   return (
     <div className="container">
-      <img
-        style={{ height: 250, cursor: 'pointer' }}
-        src={logo} onClick={reset}
-        alt="logo" />
+      <img style={{height: 250, cursor: 'pointer'}} src={logo} onClick={reset} alt="logo" />
 
-      <form style={{ width: '100%' }} onSubmit={handleSubmit}>
+      <form style={{width: '100%'}} onSubmit={handleSubmit}>
         <input
-          style={{ borderRadius: '20px' }}
+          style={{borderRadius: '20px'}}
           className="form-control"
           placeholder="Search player, team, etc."
-          value={searchInput}
-          onInput={(e) => setSearchInput(e.target.value)}
+          value={tempSearchInput}
+          onInput={(e) => setTempSearchInput(e.target.value)}
         />
         <button
-          style={{ visibility: 'hidden' }}
+          style={{visibility: 'hidden'}}
           className="btn btn-primary"
           id="searchButton"
           type="submit"
         />
       </form>
 
-      {getVideoUrlsResponse?.data?.goals?.map((video, i) => (
-        <div style={{ width: '100%', marginBottom: '20px', }}
-          key={video.RedditPostTitle}>
-          <h6 style={{ textAlign: 'left' }}>{video.RedditPostTitle}</h6>
-          <video width={'100%'} controls controlsList="download" muted={true}>
-            <source src={video.PresignedUrl + "#t=0.1"} type="video/mp4"></source>
-          </video>
-        </div>
-      ))}
+      {isLoading && <div>Loading...</div>}
 
-      <div>{isLoading && <div>Loading...</div>}</div>
-      <br></br>
-      <br></br>
-      <br></br>
+      <Feed goals={goals}></Feed>
 
-      <div className="fixed-bottom d-flex justify-content-center" style={{ width: '100%' }}>
+      <div className="fixed-bottom d-flex justify-content-center" style={{width: '100%'}}>
         <ReactPaginate
           nextLabel=">"
           onPageChange={handlePageClick}
