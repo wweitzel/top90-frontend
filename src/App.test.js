@@ -5,7 +5,11 @@ import App from './App';
 const testQueryClient = new QueryClient();
 
 test('renders loading indicator', () => {
-  render(<QueryClientProvider client={testQueryClient}><App /></QueryClientProvider>);
+  render(
+    <QueryClientProvider client={testQueryClient}>
+      <App />
+    </QueryClientProvider>
+  );
   const linkElement = screen.getByText(/Loading.../i);
   expect(linkElement).toBeInTheDocument();
 });
