@@ -1,8 +1,14 @@
 # top90-frontend
 
-Frontend repo for Top90
+Top90 is a website that populates with soccer goals in real time as they happen around the world
 
-## Getting Started
+https://top90.io
+
+# Contributing Guide
+
+Anyone is welcome to submit a PR. PRs should be tested locally first if possible.
+
+## Running Locally
 
 Install dependencies
 
@@ -10,14 +16,16 @@ Install dependencies
 $ npm install
 ```
 
-Make a .env and copy .env.sample into it
-
-```
-$ cp .env.sample .env
-```
-
 Run the app
 
 ```
 $ npm start
+```
+
+## App Configuration
+
+Copy the sample configuration into a `.env` file. This will be loaded when the app starts.
+
+```
+$ cp .env.sample .env
 ```
