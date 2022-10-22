@@ -1,8 +1,9 @@
 import './App.css';
 import logo from './assets/top90logo.png';
 import useGetGoals from './hooks/useGetGoals';
+import SingleGoal from './SingleGoal';
 
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 
 import ReactPaginate from 'react-paginate';
 
@@ -78,33 +79,39 @@ function App() {
 
       {isLoading && <div>Loading...</div>}
 
-      <Feed goals={goals}></Feed>
+      {window.location.pathname !== '/' ? (
+        <SingleGoal />
+      ) : (
+        <>
+          <Feed goals={goals}></Feed>
 
-      <div className="fixed-bottom d-flex justify-content-center" style={{width: '100%'}}>
-        <ReactPaginate
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={1}
-          marginPagesDisplayed={1}
-          pageCount={pageCount}
-          forcePage={currentPage}
-          previousLabel="<"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="pagination-back-button"
-          previousLinkClassName="page-link"
-          nextClassName="pagination-next-button"
-          nextLinkClassName="page-link"
-          breakLabel="..."
-          breakClassName="page-item"
-          breakLinkClassName="page-link"
-          containerClassName="pagination"
-          activeClassName="active"
-          renderOnZeroPageCount={null}
-        />
-      </div>
+          <div className="fixed-bottom d-flex justify-content-center" style={{width: '100%'}}>
+            <ReactPaginate
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={1}
+              marginPagesDisplayed={1}
+              pageCount={pageCount}
+              forcePage={currentPage}
+              previousLabel="<"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              previousClassName="pagination-back-button"
+              previousLinkClassName="page-link"
+              nextClassName="pagination-next-button"
+              nextLinkClassName="page-link"
+              breakLabel="..."
+              breakClassName="page-item"
+              breakLinkClassName="page-link"
+              containerClassName="pagination"
+              activeClassName="active"
+              renderOnZeroPageCount={null}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }
 
-export default App;
+export default memo(App);
