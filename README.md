@@ -10,6 +10,12 @@ Install dependencies
 $ npm install
 ```
 
+Make a .env and copy .env.sample into it
+
+```
+$ cp .env.sample .env
+```
+
 Run the app
 
 ```

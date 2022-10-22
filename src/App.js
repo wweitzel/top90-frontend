@@ -1,107 +1,214 @@
 import './App.css';
 import logo from './assets/top90logo.png';
-import useGetGoals from './hooks/useGetGoals';
+import Select from './components/Select';
+import Input from './components/Input';
+import GoalsList from './components/GoalsList';
 
-import React, {useState} from 'react';
-
+import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
-function Feed(props = {goals: []}) {
-  return (
-    <>
-      {props.goals.map((video, i) => (
-        <div style={{width: '100%', marginBottom: '20px'}} key={video.RedditPostTitle}>
-          <h6 style={{textAlign: 'left'}}>{video.RedditPostTitle}</h6>
-          <video width={'100%'} controls controlsList="download" muted={true}>
-            <source src={video.PresignedUrl + '#t=0.1'} type="video/mp4"></source>
-          </video>
-        </div>
-      ))}
-    </>
-  );
-}
+import React, {useEffect, useCallback, useState} from 'react';
 
 function App() {
-  const defaultPagination = {itemOffset: 0, itemsPerPage: 3};
+  const defaultPagination = {skip: 0, limit: 3};
+  const baseUrl = process.env.REACT_APP_TOP90_API_BASE_URL || 'https://api.top90.io';
 
   const [pagination, setPagination] = useState(defaultPagination);
   const [currentPage, setCurrentPage] = useState(0);
-  const [searchInput, setSearchInput] = useState('');
-  const [tempSearchInput, setTempSearchInput] = useState('');
 
-  const {isLoading, data: getGoalsResponse} = useGetGoals(pagination, searchInput);
+  const [selectedLeagueId, setSelectedLeagueId] = useState(0);
+  const [selectedTeamId, setSelectedTeamId] = useState();
+  const [selectedSeason, setSelectedSeason] = useState();
+  const [searchInput, setSearchInput] = useState('');
+
+  const [getGoalsResponse, setGetGoalsResponse] = useState(null);
+  const [getTeamsResponse, setGetTeamsResponse] = useState(null);
+
+  const getGoals = useCallback(
+    async (search = '', pagination = {skip: 0, limit: 3}, leagueId = 0, season = 0, teamId = 0) => {
+      const url = `${baseUrl}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${search}&leagueId=${leagueId}&season=${season}&teamId=${teamId}`;
+      return await axios.get(url);
+    },
+    [baseUrl]
+  );
+
+  const getTeams = useCallback(
+    async (leagueId = 0, season = 0) => {
+      const url = `${baseUrl}/teams?leagueId=${leagueId}&season=${season}`;
+      return await axios.get(url);
+    },
+    [baseUrl]
+  );
 
   const pageCount = Math.ceil(
-    (getGoalsResponse ? getGoalsResponse.total : 0) / pagination.itemsPerPage
+    (getGoalsResponse?.data ? getGoalsResponse.data.total : 0) / pagination.limit
   );
-  const goals = getGoalsResponse?.goals || [];
+
+  useEffect(() => {
+    let isMounted = true;
+    getGoals().then((data) => {
+      if (isMounted) setGetGoalsResponse(data);
+    });
+    getTeams().then((data) => {
+      if (isMounted) setGetTeamsResponse(data);
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [getGoals, getTeams]);
 
   function handlePageClick(event) {
-    const newOffset = event.selected * pagination.itemsPerPage;
+    const newOffset = event.selected * pagination.limit;
     setCurrentPage(event.selected);
-    setPagination({...pagination, itemOffset: newOffset});
+    getGoals(
+      searchInput,
+      {...pagination, skip: newOffset},
+      selectedLeagueId,
+      selectedSeason,
+      selectedTeamId
+    ).then((data) => setGetGoalsResponse(data));
+    setPagination({...pagination, skip: newOffset});
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    setSearchInput(tempSearchInput);
     setCurrentPage(0);
+    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, selectedTeamId).then(
+      (data) => setGetGoalsResponse(data)
+    );
     setPagination(defaultPagination);
   }
 
+  function handleSelectedLeagueChange(event) {
+    const selectedLeagueId = event.target.value;
+    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, 0).then((data) =>
+      setGetGoalsResponse(data)
+    );
+    getTeams(selectedLeagueId, selectedSeason).then((data) => setGetTeamsResponse(data));
+
+    setSelectedLeagueId(selectedLeagueId);
+    setSelectedTeamId(0);
+    setPagination(defaultPagination);
+    setCurrentPage(0);
+  }
+
+  function handleSelectedTeamChange(event) {
+    const selectedTeamId = event.target.value;
+    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, selectedTeamId).then(
+      (data) => setGetGoalsResponse(data)
+    );
+
+    setSelectedTeamId(selectedTeamId);
+    setPagination(defaultPagination);
+    setCurrentPage(0);
+  }
+
+  function handleSelectedSeasonChange(event) {
+    const selectedSeason = event.target.value;
+    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, selectedTeamId).then(
+      (data) => setGetGoalsResponse(data)
+    );
+
+    setSelectedSeason(selectedSeason);
+    setPagination(defaultPagination);
+    setCurrentPage(0);
+  }
+
   function reset() {
-    setTempSearchInput('');
+    getGoals().then((data) => setGetGoalsResponse(data));
+    getTeams().then((data) => setGetTeamsResponse(data));
+
+    setSelectedLeagueId(0);
+    setSelectedTeamId(0);
+    setSelectedSeason(0);
     setSearchInput('');
     setCurrentPage(0);
     setPagination(defaultPagination);
   }
 
   return (
-    <div className="container">
-      <img style={{height: 250, cursor: 'pointer'}} src={logo} onClick={reset} alt="logo" />
+    <div className="container d-flex justify-content-center">
+      <div className="main-container">
+        <div className="d-flex justify-content-center">
+          <img style={{height: 250, cursor: 'pointer'}} src={logo} onClick={reset} alt="logo" />
+        </div>
 
-      <form style={{width: '100%'}} onSubmit={handleSubmit}>
-        <input
-          style={{borderRadius: '20px'}}
-          className="form-control"
-          placeholder="Search player, team, etc."
-          value={tempSearchInput}
-          onInput={(e) => setTempSearchInput(e.target.value)}
-        />
-        <button
-          style={{visibility: 'hidden'}}
-          className="btn btn-primary"
-          id="searchButton"
-          type="submit"
-        />
-      </form>
+        <form style={{width: '100%'}} onSubmit={handleSubmit}>
+          <div className="d-flex">
+            <Select
+              label={'League'}
+              options={[{value: 39, displayName: 'Premier League'}]}
+              value={selectedLeagueId}
+              onChange={handleSelectedLeagueChange}
+            ></Select>
+            <Select
+              label={'Team'}
+              options={
+                getTeamsResponse &&
+                getTeamsResponse.data &&
+                getTeamsResponse.data.teams &&
+                getTeamsResponse.data.teams.map((team) => ({
+                  value: team.Id,
+                  displayName: team.Name,
+                }))
+              }
+              value={selectedTeamId}
+              onChange={handleSelectedTeamChange}
+            ></Select>
+            <Select
+              label={'Season'}
+              options={[
+                {value: '2022', displayName: '2022'},
+                {value: '2021', displayName: '2021'},
+              ]}
+              value={selectedSeason}
+              onChange={handleSelectedSeasonChange}
+            ></Select>
+          </div>
 
-      {isLoading && <div>Loading...</div>}
+          <br></br>
 
-      <Feed goals={goals}></Feed>
+          <Input
+            label={'Keyword Search'}
+            placeholder={'Search player, manager, etc.'}
+            value={searchInput}
+            onInput={setSearchInput}
+          ></Input>
 
-      <div className="fixed-bottom d-flex justify-content-center" style={{width: '100%'}}>
-        <ReactPaginate
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={1}
-          marginPagesDisplayed={1}
-          pageCount={pageCount}
-          forcePage={currentPage}
-          previousLabel="<"
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="pagination-back-button"
-          previousLinkClassName="page-link"
-          nextClassName="pagination-next-button"
-          nextLinkClassName="page-link"
-          breakLabel="..."
-          breakClassName="page-item"
-          breakLinkClassName="page-link"
-          containerClassName="pagination"
-          activeClassName="active"
-          renderOnZeroPageCount={null}
-        />
+          <button
+            style={{display: 'none'}}
+            className="btn btn-primary"
+            id="searchButton"
+            type="submit"
+          />
+          <br></br>
+        </form>
+
+        <GoalsList goals={getGoalsResponse?.data?.goals || []}></GoalsList>
+
+        <div className="fixed-bottom d-flex justify-content-center" style={{width: '100%'}}>
+          <ReactPaginate
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={1}
+            marginPagesDisplayed={1}
+            pageCount={pageCount}
+            forcePage={currentPage}
+            previousLabel="<"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="pagination-back-button"
+            previousLinkClassName="page-link"
+            nextClassName="pagination-next-button"
+            nextLinkClassName="page-link"
+            breakLabel="..."
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            containerClassName="pagination"
+            activeClassName="active"
+            renderOnZeroPageCount={null}
+          />
+        </div>
       </div>
     </div>
   );
