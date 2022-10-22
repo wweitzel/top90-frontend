@@ -1,15 +1,6 @@
-import {render, screen} from '@testing-library/react';
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {render} from '@testing-library/react';
 import App from './App';
 
-const testQueryClient = new QueryClient();
-
-test('renders loading indicator', () => {
-  render(
-    <QueryClientProvider client={testQueryClient}>
-      <App />
-    </QueryClientProvider>
-  );
-  const linkElement = screen.getByText(/Loading.../i);
-  expect(linkElement).toBeInTheDocument();
+test('renders the app with no errors', () => {
+  render(<App />);
 });
