@@ -1,6 +1,10 @@
-on: push
+name: 'React'
 
-name: 'Build and test'
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
 
 jobs:
   build-and-test:
