@@ -1,4 +1,4 @@
-name: 'react'
+name: 'React'
 
 on:
   push:
