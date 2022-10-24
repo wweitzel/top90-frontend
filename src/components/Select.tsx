@@ -1,4 +1,16 @@
-function Select({label, options, value, onChange}) {
+interface Option {
+  displayName: string;
+  value: number | string;
+}
+
+interface SelectProps {
+  label: string;
+  options?: Option[];
+  value?: number | string;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+function Select({label, options, value, onChange}: SelectProps) {
   return (
     <div className="form-group" style={{width: '100%'}}>
       <label className="form-label" htmlFor="select-league">

@@ -2,12 +2,45 @@ import '../App.css';
 import logo from '../assets/top90logo.png';
 import Select from '../components/Select';
 import Input from '../components/Input';
-import GoalsList from '../components/GoalsList';
+import {GoalsList} from '../components/GoalsList';
 
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
-import React, {useEffect, useCallback, useState} from 'react';
+import React, {useEffect, useCallback, useState, FormEvent} from 'react';
+
+export interface Goal {
+  Id: string;
+  RedditFullname: string;
+  RedditLinkUrl: string;
+  RedditPostTitle: string;
+  RedditPostCreatedAt: Date;
+  S3ObjectKey: string;
+  PresignedUrl: string;
+  CreatedAt: Date;
+  FixtureId: number;
+}
+
+interface Team {
+  Id: number;
+  Name: string;
+  Aliases?: string[];
+  Code: string;
+  Country: string;
+  Founded: number;
+  National: boolean;
+  Logo: string;
+  CreatedAt: Date;
+}
+
+interface GoalsResponse {
+  goals: Goal[];
+  total: number;
+}
+
+interface TeamsResponse {
+  teams: Team[];
+}
 
 function Goals() {
   const defaultPagination = {skip: 0, limit: 3};
@@ -17,32 +50,34 @@ function Goals() {
   const [currentPage, setCurrentPage] = useState(0);
 
   const [selectedLeagueId, setSelectedLeagueId] = useState(0);
-  const [selectedTeamId, setSelectedTeamId] = useState();
-  const [selectedSeason, setSelectedSeason] = useState();
+  const [selectedTeamId, setSelectedTeamId] = useState<number>();
+  const [selectedSeason, setSelectedSeason] = useState<number>();
   const [searchInput, setSearchInput] = useState('');
 
-  const [getGoalsResponse, setGetGoalsResponse] = useState(null);
-  const [getTeamsResponse, setGetTeamsResponse] = useState(null);
+  const [getGoalsResponse, setGetGoalsResponse] = useState<GoalsResponse>();
+  const [getTeamsResponse, setGetTeamsResponse] = useState<TeamsResponse>();
 
   const getGoals = useCallback(
     async (search = '', pagination = {skip: 0, limit: 3}, leagueId = 0, season = 0, teamId = 0) => {
-      const url = `${baseUrl}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${search}&leagueId=${leagueId}&season=${season}&teamId=${teamId}`;
-      return await axios.get(url);
+      const response = await axios.get<GoalsResponse>(
+        `${baseUrl}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${search}&leagueId=${leagueId}&season=${season}&teamId=${teamId}`
+      );
+      return response.data;
     },
     [baseUrl]
   );
 
   const getTeams = useCallback(
     async (leagueId = 0, season = 0) => {
-      const url = `${baseUrl}/teams?leagueId=${leagueId}&season=${season}`;
-      return await axios.get(url);
+      const response = await axios.get<TeamsResponse>(
+        `${baseUrl}/teams?leagueId=${leagueId}&season=${season}`
+      );
+      return response.data;
     },
     [baseUrl]
   );
 
-  const pageCount = Math.ceil(
-    (getGoalsResponse?.data ? getGoalsResponse.data.total : 0) / pagination.limit
-  );
+  const pageCount = Math.ceil((getGoalsResponse ? getGoalsResponse.total : 0) / pagination.limit);
 
   useEffect(() => {
     let isMounted = true;
@@ -57,9 +92,9 @@ function Goals() {
     };
   }, [getGoals, getTeams]);
 
-  function handlePageClick(event) {
-    const newOffset = event.selected * pagination.limit;
-    setCurrentPage(event.selected);
+  function handlePageClick(selectedItem: {selected: number}) {
+    const newOffset = selectedItem.selected * pagination.limit;
+    setCurrentPage(selectedItem.selected);
     getGoals(
       searchInput,
       {...pagination, skip: newOffset},
@@ -70,7 +105,7 @@ function Goals() {
     setPagination({...pagination, skip: newOffset});
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setCurrentPage(0);
     getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, selectedTeamId).then(
@@ -79,37 +114,45 @@ function Goals() {
     setPagination(defaultPagination);
   }
 
-  function handleSelectedLeagueChange(event) {
+  function handleSelectedLeagueChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedLeagueId = event.target.value;
-    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, 0).then((data) =>
-      setGetGoalsResponse(data)
+    getGoals(searchInput, defaultPagination, parseInt(selectedLeagueId), selectedSeason, 0).then(
+      (data) => setGetGoalsResponse(data)
     );
-    getTeams(selectedLeagueId, selectedSeason).then((data) => setGetTeamsResponse(data));
+    getTeams(parseInt(selectedLeagueId), selectedSeason).then((data) => setGetTeamsResponse(data));
 
-    setSelectedLeagueId(selectedLeagueId);
+    setSelectedLeagueId(parseInt(selectedLeagueId));
     setSelectedTeamId(0);
     setPagination(defaultPagination);
     setCurrentPage(0);
   }
 
-  function handleSelectedTeamChange(event) {
+  function handleSelectedTeamChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedTeamId = event.target.value;
-    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, selectedTeamId).then(
-      (data) => setGetGoalsResponse(data)
-    );
+    getGoals(
+      searchInput,
+      defaultPagination,
+      selectedLeagueId,
+      selectedSeason,
+      parseInt(selectedTeamId)
+    ).then((data) => setGetGoalsResponse(data));
 
-    setSelectedTeamId(selectedTeamId);
+    setSelectedTeamId(parseInt(selectedTeamId));
     setPagination(defaultPagination);
     setCurrentPage(0);
   }
 
-  function handleSelectedSeasonChange(event) {
+  function handleSelectedSeasonChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedSeason = event.target.value;
-    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, selectedTeamId).then(
-      (data) => setGetGoalsResponse(data)
-    );
+    getGoals(
+      searchInput,
+      defaultPagination,
+      selectedLeagueId,
+      parseInt(selectedSeason),
+      selectedTeamId
+    ).then((data) => setGetGoalsResponse(data));
 
-    setSelectedSeason(selectedSeason);
+    setSelectedSeason(parseInt(selectedSeason));
     setPagination(defaultPagination);
     setCurrentPage(0);
   }
@@ -145,9 +188,8 @@ function Goals() {
               label={'Team'}
               options={
                 getTeamsResponse &&
-                getTeamsResponse.data &&
-                getTeamsResponse.data.teams &&
-                getTeamsResponse.data.teams.map((team) => ({
+                getTeamsResponse.teams &&
+                getTeamsResponse.teams.map((team) => ({
                   value: team.Id,
                   displayName: team.Name,
                 }))
@@ -184,7 +226,7 @@ function Goals() {
           <br></br>
         </form>
 
-        <GoalsList goals={getGoalsResponse?.data?.goals || []}></GoalsList>
+        <GoalsList goals={getGoalsResponse?.goals}></GoalsList>
 
         <div className="fixed-bottom d-flex justify-content-center" style={{width: '100%'}}>
           <ReactPaginate
@@ -206,7 +248,6 @@ function Goals() {
             breakLinkClassName="page-link"
             containerClassName="pagination"
             activeClassName="active"
-            renderOnZeroPageCount={null}
           />
         </div>
       </div>

@@ -25,7 +25,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "npx prettier --write .",
-    "check-format": "npx prettier --check ."
+    "check-format": "npx prettier --check .",
+    "check-types": "tsc --project ./tsconfig.json --noEmit"
   },
   "eslintConfig": {
     "extends": [
