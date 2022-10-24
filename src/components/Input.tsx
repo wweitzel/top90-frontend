@@ -1,4 +1,11 @@
-function Input({label, placeholder, value, onInput}) {
+interface InputProps {
+  label: string;
+  placeholder: string;
+  value?: number | string;
+  onInput: (event: string) => void;
+}
+
+function Input({label, placeholder, value, onInput}: InputProps) {
   return (
     <div>
       <label className="form-label" htmlFor="select-league">
@@ -10,7 +17,7 @@ function Input({label, placeholder, value, onInput}) {
           className="form-control"
           placeholder={placeholder}
           value={value}
-          onInput={(e) => onInput(e.target.value)}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => onInput(e.target.value)}
         />
       </div>
     </div>
