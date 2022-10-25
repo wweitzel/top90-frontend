@@ -1,4 +1,3 @@
-import './App.css';
 import Goals from './pages/Goals';
 import Error from './pages/Error';
 

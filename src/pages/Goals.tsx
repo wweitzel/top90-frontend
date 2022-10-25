@@ -1,51 +1,31 @@
-import '../App.css';
-import logo from '../assets/top90logo.png';
+import _logo from '../assets/top90logo.png';
 import Select from '../components/Select';
 import Input from '../components/Input';
-import {GoalsList} from '../components/GoalsList';
+import Video from '../components/Video';
+import {Pagination} from '../api/core';
+import {getGoals as _getGoals, GetGoalsFilter, GoalsResponse} from '../api/goals';
+import {getTeams as _getTeams, TeamsResponse} from '../api/teams';
 
-import axios from 'axios';
 import ReactPaginate from 'react-paginate';
-
 import React, {useEffect, useCallback, useState, FormEvent} from 'react';
 
-export interface Goal {
-  Id: string;
-  RedditFullname: string;
-  RedditLinkUrl: string;
-  RedditPostTitle: string;
-  RedditPostCreatedAt: Date;
-  S3ObjectKey: string;
-  PresignedUrl: string;
-  CreatedAt: Date;
-  FixtureId: number;
-}
+const maxWidthContainer = {
+  maxWidth: '800px',
+  width: '100%',
+};
 
-interface Team {
-  Id: number;
-  Name: string;
-  Aliases?: string[];
-  Code: string;
-  Country: string;
-  Founded: number;
-  National: boolean;
-  Logo: string;
-  CreatedAt: Date;
-}
+const logo = {
+  height: 250,
+  cursor: 'pointer',
+};
 
-interface GoalsResponse {
-  goals: Goal[];
-  total: number;
-}
+const form = {
+  width: '100%',
+};
 
-interface TeamsResponse {
-  teams: Team[];
-}
+const defaultPagination: Pagination = {skip: 0, limit: 3};
 
 function Goals() {
-  const defaultPagination = {skip: 0, limit: 3};
-  const baseUrl = process.env.REACT_APP_TOP90_API_BASE_URL || 'https://api.top90.io';
-
   const [pagination, setPagination] = useState(defaultPagination);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -57,27 +37,12 @@ function Goals() {
   const [getGoalsResponse, setGetGoalsResponse] = useState<GoalsResponse>();
   const [getTeamsResponse, setGetTeamsResponse] = useState<TeamsResponse>();
 
-  const getGoals = useCallback(
-    async (search = '', pagination = {skip: 0, limit: 3}, leagueId = 0, season = 0, teamId = 0) => {
-      const response = await axios.get<GoalsResponse>(
-        `${baseUrl}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${search}&leagueId=${leagueId}&season=${season}&teamId=${teamId}`
-      );
-      return response.data;
-    },
-    [baseUrl]
-  );
+  const getGoals = useCallback(_getGoals, []);
+  const getTeams = useCallback(_getTeams, []);
 
-  const getTeams = useCallback(
-    async (leagueId = 0, season = 0) => {
-      const response = await axios.get<TeamsResponse>(
-        `${baseUrl}/teams?leagueId=${leagueId}&season=${season}`
-      );
-      return response.data;
-    },
-    [baseUrl]
+  const pageCount = Math.ceil(
+    (getGoalsResponse ? getGoalsResponse.total : 0) / (pagination.limit || defaultPagination.limit)
   );
-
-  const pageCount = Math.ceil((getGoalsResponse ? getGoalsResponse.total : 0) / pagination.limit);
 
   useEffect(() => {
     let isMounted = true;
@@ -94,31 +59,43 @@ function Goals() {
 
   function handlePageClick(selectedItem: {selected: number}) {
     const newOffset = selectedItem.selected * pagination.limit;
+    const getGoalsFilter: GetGoalsFilter = {
+      searchTerm: searchInput,
+      leagueId: selectedLeagueId,
+      season: selectedSeason,
+      teamId: selectedTeamId,
+    };
+    getGoals({...pagination, skip: newOffset}, getGoalsFilter).then((data) =>
+      setGetGoalsResponse(data)
+    );
+
     setCurrentPage(selectedItem.selected);
-    getGoals(
-      searchInput,
-      {...pagination, skip: newOffset},
-      selectedLeagueId,
-      selectedSeason,
-      selectedTeamId
-    ).then((data) => setGetGoalsResponse(data));
     setPagination({...pagination, skip: newOffset});
   }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
+    const getGoalsFilter: GetGoalsFilter = {
+      searchTerm: searchInput,
+      leagueId: selectedLeagueId,
+      season: selectedSeason,
+      teamId: selectedTeamId,
+    };
+    getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
+
     setCurrentPage(0);
-    getGoals(searchInput, defaultPagination, selectedLeagueId, selectedSeason, selectedTeamId).then(
-      (data) => setGetGoalsResponse(data)
-    );
     setPagination(defaultPagination);
   }
 
   function handleSelectedLeagueChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedLeagueId = event.target.value;
-    getGoals(searchInput, defaultPagination, parseInt(selectedLeagueId), selectedSeason, 0).then(
-      (data) => setGetGoalsResponse(data)
-    );
+    const getGoalsFilter: GetGoalsFilter = {
+      searchTerm: searchInput,
+      leagueId: parseInt(selectedLeagueId),
+      season: selectedSeason,
+      teamId: 0,
+    };
+    getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
     getTeams(parseInt(selectedLeagueId), selectedSeason).then((data) => setGetTeamsResponse(data));
 
     setSelectedLeagueId(parseInt(selectedLeagueId));
@@ -129,13 +106,13 @@ function Goals() {
 
   function handleSelectedTeamChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedTeamId = event.target.value;
-    getGoals(
-      searchInput,
-      defaultPagination,
-      selectedLeagueId,
-      selectedSeason,
-      parseInt(selectedTeamId)
-    ).then((data) => setGetGoalsResponse(data));
+    const getGoalsFilter: GetGoalsFilter = {
+      searchTerm: searchInput,
+      leagueId: selectedLeagueId,
+      season: selectedSeason,
+      teamId: parseInt(selectedTeamId),
+    };
+    getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
 
     setSelectedTeamId(parseInt(selectedTeamId));
     setPagination(defaultPagination);
@@ -144,13 +121,13 @@ function Goals() {
 
   function handleSelectedSeasonChange(event: React.ChangeEvent<HTMLSelectElement>) {
     const selectedSeason = event.target.value;
-    getGoals(
-      searchInput,
-      defaultPagination,
-      selectedLeagueId,
-      parseInt(selectedSeason),
-      selectedTeamId
-    ).then((data) => setGetGoalsResponse(data));
+    const getGoalsFilter: GetGoalsFilter = {
+      searchTerm: searchInput,
+      leagueId: selectedLeagueId,
+      season: parseInt(selectedSeason),
+      teamId: selectedTeamId,
+    };
+    getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
 
     setSelectedSeason(parseInt(selectedSeason));
     setPagination(defaultPagination);
@@ -171,12 +148,12 @@ function Goals() {
 
   return (
     <div className="container d-flex justify-content-center">
-      <div className="main-container">
+      <div style={maxWidthContainer}>
         <div className="d-flex justify-content-center">
-          <img style={{height: 250, cursor: 'pointer'}} src={logo} onClick={reset} alt="logo" />
+          <img style={logo} src={_logo} onClick={reset} alt="logo" />
         </div>
 
-        <form style={{width: '100%'}} onSubmit={handleSubmit}>
+        <form style={form} onSubmit={handleSubmit}>
           <div className="d-flex">
             <Select
               label={'League'}
@@ -226,25 +203,26 @@ function Goals() {
           <br></br>
         </form>
 
-        <GoalsList goals={getGoalsResponse?.goals}></GoalsList>
+        {getGoalsResponse?.goals?.map((goal) => (
+          <div key={goal.Id} className="mb-3">
+            <Video goal={goal}></Video>
+          </div>
+        ))}
 
-        <div className="fixed-bottom d-flex justify-content-center" style={{width: '100%'}}>
+        <div className="fixed-bottom d-flex justify-content-center">
           <ReactPaginate
-            nextLabel=">"
             onPageChange={handlePageClick}
             pageRangeDisplayed={1}
             marginPagesDisplayed={1}
             pageCount={pageCount}
             forcePage={currentPage}
-            previousLabel="<"
-            pageClassName="page-item"
-            pageLinkClassName="page-link"
-            previousClassName="pagination-back-button"
-            previousLinkClassName="page-link"
-            nextClassName="pagination-next-button"
+            nextLabel=">"
             nextLinkClassName="page-link"
-            breakLabel="..."
+            previousLabel="<"
+            previousLinkClassName="page-link"
+            pageClassName="page-item"
             breakClassName="page-item"
+            pageLinkClassName="page-link"
             breakLinkClassName="page-link"
             containerClassName="pagination"
             activeClassName="active"
