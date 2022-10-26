@@ -29,3 +29,7 @@ Copy the sample configuration into a `.env` file. This will be loaded when the a
 ```
 $ cp .env.sample .env
 ```
+
+# Attribution
+
+<a href="https://iconscout.com/icons/football" target="_blank">Football Icon</a> by <a href="https://iconscout.com/contributors/andrigraphic" target="_blank">Andri Graphic</a>

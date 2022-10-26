@@ -2,14 +2,6 @@ import {BASE_URL, Pagination} from './core';
 
 import axios from 'axios';
 
-export interface GetGoalsFilter {
-  searchTerm?: string;
-  startDate?: Date;
-  leagueId?: number;
-  season?: number;
-  teamId?: number;
-}
-
 export interface Goal {
   Id: string;
   RedditFullname: string;
@@ -22,9 +14,21 @@ export interface Goal {
   FixtureId: number;
 }
 
+export interface GetGoalsFilter {
+  searchTerm?: string;
+  startDate?: Date;
+  leagueId?: number;
+  season?: number;
+  teamId?: number;
+}
+
 export interface GoalsResponse {
   goals: Goal[];
   total: number;
+}
+
+export interface GoalResponse {
+  goal: Goal;
 }
 
 export const getGoals = async (
@@ -35,5 +39,10 @@ export const getGoals = async (
   const response = await axios.get<GoalsResponse>(
     `${BASE_URL}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${searchTerm}&leagueId=${leagueId}&season=${season}&teamId=${teamId}`
   );
+  return response.data;
+};
+
+export const getGoal = async (id: string): Promise<GoalResponse> => {
+  const response = await axios.get<GoalResponse>(`${BASE_URL}/goals/${id}`);
   return response.data;
 };

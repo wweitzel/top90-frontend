@@ -204,10 +204,13 @@ function Goals() {
         </form>
 
         {getGoalsResponse?.goals?.map((goal) => (
-          <div key={goal.Id} className="mb-3">
+          <div key={goal.Id} className="mb-4">
             <Video goal={goal}></Video>
           </div>
         ))}
+
+        <br></br>
+        <br></br>
 
         <div className="fixed-bottom d-flex justify-content-center">
           <ReactPaginate
