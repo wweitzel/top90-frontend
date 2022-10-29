@@ -48,7 +48,7 @@ export function Video({goal}: {goal: Goal}) {
         controls
         muted={true}
       >
-        <source src={goal.PresignedUrl + '#t=0.1'} type="video/mp4"></source>
+        <source src={goal.PresignedUrl} type="video/mp4"></source>
       </video>
       <button
         style={copyButton}
