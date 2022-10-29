@@ -12,6 +12,7 @@ export interface Goal {
   PresignedUrl: string;
   CreatedAt: Date;
   FixtureId: number;
+  ThumbnailPresignedUrl: string;
 }
 
 export interface GetGoalsFilter {
@@ -32,7 +33,7 @@ export interface GoalResponse {
 }
 
 export const getGoals = async (
-  pagination: Pagination = {skip: 0, limit: 3},
+  pagination: Pagination = {skip: 0, limit: 5},
   getGoalsFilter: GetGoalsFilter = {searchTerm: '', leagueId: 0, season: 0, teamId: 0}
 ): Promise<GoalsResponse> => {
   const {searchTerm, leagueId, season, teamId} = getGoalsFilter;

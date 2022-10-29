@@ -41,7 +41,13 @@ export function Video({goal}: {goal: Goal}) {
       <div className="d-flex justify-content-between align-items-center mb-1">
         <h6>{goal.RedditPostTitle}</h6>
       </div>
-      <video className="shadow-sm" width={'100%'} controls muted={true}>
+      <video
+        poster={goal.ThumbnailPresignedUrl}
+        className="shadow-sm"
+        width={'100%'}
+        controls
+        muted={true}
+      >
         <source src={goal.PresignedUrl + '#t=0.1'} type="video/mp4"></source>
       </video>
       <button
