@@ -23,7 +23,7 @@ const form = {
   width: '100%',
 };
 
-const defaultPagination: Pagination = {skip: 0, limit: 3};
+const defaultPagination: Pagination = {skip: 0, limit: 5};
 
 function Goals() {
   const [pagination, setPagination] = useState(defaultPagination);
@@ -58,6 +58,7 @@ function Goals() {
   }, [getGoals, getTeams]);
 
   function handlePageClick(selectedItem: {selected: number}) {
+    window.stop();
     const newOffset = selectedItem.selected * pagination.limit;
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
