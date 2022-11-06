@@ -10,6 +10,12 @@ Anyone is welcome to submit a PR. PRs should be tested locally first if possible
 
 ## Running Locally
 
+Make sure you are using Node version 19. It is suggested to use nvm to manage node version.
+
+```
+$ nvm use 19
+```
+
 Install dependencies
 
 ```
