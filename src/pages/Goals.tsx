@@ -66,6 +66,7 @@ function Goals() {
       season: selectedSeason,
       teamId: selectedTeamId,
     };
+    setGetGoalsResponse(undefined);
     getGoals({...pagination, skip: newOffset}, getGoalsFilter).then((data) =>
       setGetGoalsResponse(data)
     );
@@ -82,6 +83,7 @@ function Goals() {
       season: selectedSeason,
       teamId: selectedTeamId,
     };
+    setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
 
     setCurrentPage(0);
@@ -96,6 +98,7 @@ function Goals() {
       season: selectedSeason,
       teamId: 0,
     };
+    setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
     getTeams(parseInt(selectedLeagueId), selectedSeason).then((data) => setGetTeamsResponse(data));
 
@@ -113,6 +116,7 @@ function Goals() {
       season: selectedSeason,
       teamId: parseInt(selectedTeamId),
     };
+    setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
 
     setSelectedTeamId(parseInt(selectedTeamId));
@@ -128,6 +132,7 @@ function Goals() {
       season: parseInt(selectedSeason),
       teamId: selectedTeamId,
     };
+    setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
 
     setSelectedSeason(parseInt(selectedSeason));
@@ -136,6 +141,7 @@ function Goals() {
   }
 
   function reset() {
+    setGetGoalsResponse(undefined);
     getGoals().then((data) => setGetGoalsResponse(data));
     getTeams().then((data) => setGetTeamsResponse(data));
 
@@ -158,7 +164,11 @@ function Goals() {
           <div className="d-flex">
             <Select
               label={'League'}
-              options={[{value: 39, displayName: 'Premier League'}]}
+              options={[
+                {value: 39, displayName: 'Premier League'},
+                {value: 2, displayName: 'Champions League'},
+                {value: 10, displayName: 'Friendlies'},
+              ]}
               value={selectedLeagueId}
               onChange={handleSelectedLeagueChange}
             ></Select>
