@@ -5,6 +5,7 @@ import Video from '../components/Video';
 
 import {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 const logo = {
   height: 250,
@@ -37,6 +38,12 @@ function Goal() {
 
   return (
     <div className="container">
+      <Helmet>
+          <title>{getGoalResponse?.goal.RedditPostTitle}</title>
+          <meta name="description" content={getGoalResponse?.goal.RedditPostTitle} />
+          <meta property="og:title" key="og:title" content={getGoalResponse?.goal.RedditPostTitle} />
+          <meta property="og:image" key="og:image" content={getGoalResponse?.goal.ThumbnailPresignedUrl}/>
+      </Helmet>
       <div className="d-flex justify-content-center">
         <div className="w-100">
           <div className="d-flex justify-content-center">
