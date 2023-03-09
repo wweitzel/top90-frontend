@@ -167,7 +167,7 @@ function Goals() {
               options={[
                 {value: 39, displayName: 'Premier League'},
                 {value: 2, displayName: 'Champions League'},
-                {value: 10, displayName: 'Friendlies'},
+                {value: 1, displayName: 'World Cup'},
               ]}
               value={selectedLeagueId}
               onChange={handleSelectedLeagueChange}
