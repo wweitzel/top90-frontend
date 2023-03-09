@@ -1,5 +1,5 @@
 import {Goal} from '../api/goals';
-import {API_BASE_URL} from '../App';
+import {API_BASE_URL} from '../api/core';
 
 import {useEffect, useState} from 'react';
 

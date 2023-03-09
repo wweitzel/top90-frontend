@@ -1,4 +1,4 @@
-import {BASE_URL} from './core';
+import {API_BASE_URL} from './core';
 
 import axios from 'axios';
 
@@ -20,7 +20,7 @@ export interface TeamsResponse {
 
 export const getTeams = async (leagueId = 0, season = 0) => {
   const response = await axios.get<TeamsResponse>(
-    `${BASE_URL}/teams?leagueId=${leagueId}&season=${season}`
+    `${API_BASE_URL}/teams?leagueId=${leagueId}&season=${season}`
   );
   return response.data;
 };

@@ -1,4 +1,4 @@
-import {BASE_URL, Pagination} from './core';
+import {API_BASE_URL, Pagination} from './core';
 
 import axios from 'axios';
 
@@ -38,12 +38,12 @@ export const getGoals = async (
 ): Promise<GoalsResponse> => {
   const {searchTerm, leagueId, season, teamId} = getGoalsFilter;
   const response = await axios.get<GoalsResponse>(
-    `${BASE_URL}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${searchTerm}&leagueId=${leagueId}&season=${season}&teamId=${teamId}`
+    `${API_BASE_URL}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${searchTerm}&leagueId=${leagueId}&season=${season}&teamId=${teamId}`
   );
   return response.data;
 };
 
 export const getGoal = async (id: string): Promise<GoalResponse> => {
-  const response = await axios.get<GoalResponse>(`${BASE_URL}/goals/${id}`);
+  const response = await axios.get<GoalResponse>(`${API_BASE_URL}/goals/${id}`);
   return response.data;
 };
