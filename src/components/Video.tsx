@@ -7,6 +7,10 @@ const copyButton = {
   border: 'none',
 };
 
+const daysAgoTextStyle = {
+  fontSize: '14px',
+};
+
 const defaultButtonText = 'Copy Link';
 const clickedButtonText = 'Link Copied';
 
@@ -36,9 +40,27 @@ export function Video({goal}: {goal: Goal}) {
     setTimer(timeout);
   }
 
+  function numDaysAgo(date: Date) {
+    const now = new Date();
+    const timeDifference = now.getTime() - date.getTime();
+    const dayDifference = timeDifference / (1000 * 3600 * 24);
+
+    return Math.trunc(dayDifference);
+  }
+
+  function daysAgoText(num: number) {
+    if (num < 1) {
+      return '';
+    } else if (num === 1) {
+      return '1 day ago';
+    } else {
+      return num + ' days ago';
+    }
+  }
+
   return (
     <div key={goal.RedditPostTitle}>
-      <div className="d-flex justify-content-between align-items-center mb-1">
+      <div className="mb-1">
         <h6>{goal.RedditPostTitle}</h6>
       </div>
       <video
@@ -50,14 +72,19 @@ export function Video({goal}: {goal: Goal}) {
       >
         <source src={goal.PresignedUrl} type="video/mp4"></source>
       </video>
-      <button
-        style={copyButton}
-        onClick={copyShareUrl}
-        disabled={disableButton}
-        className="btn btn-outline-secondary btn-sm"
-      >
-        {buttonText}
-      </button>
+      <div className="d-flex justify-content-between align-items-center">
+        <button
+          style={copyButton}
+          onClick={copyShareUrl}
+          disabled={disableButton}
+          className="btn btn-outline-secondary btn-sm"
+        >
+          {buttonText}
+        </button>
+        <div style={daysAgoTextStyle} className="fw-light me-2">
+          {daysAgoText(numDaysAgo(new Date(goal.CreatedAt)))}
+        </div>
+      </div>
     </div>
   );
 }

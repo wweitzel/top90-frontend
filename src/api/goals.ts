@@ -10,7 +10,7 @@ export interface Goal {
   RedditPostCreatedAt: Date;
   S3ObjectKey: string;
   PresignedUrl: string;
-  CreatedAt: Date;
+  CreatedAt: string;
   FixtureId: number;
   ThumbnailPresignedUrl: string;
 }
