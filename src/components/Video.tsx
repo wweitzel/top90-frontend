@@ -3,7 +3,7 @@ import {API_BASE_URL} from '../api/core';
 
 import {useEffect, useState} from 'react';
 
-const copyButton = {
+const buttonStyle = {
   border: 'none',
 };
 
@@ -48,6 +48,14 @@ export function Video({goal}: {goal: Goal}) {
     return Math.trunc(dayDifference);
   }
 
+  function goToRedditPost(postId: string) {
+    window.open(`https://www.reddit.com/r/soccer/comments/${postId}`, '_blank');
+  }
+
+  function postId(fullName: string) {
+    return fullName.substring(3, fullName.length);
+  }
+
   function daysAgoText(num: number) {
     if (num < 1) {
       return '';
@@ -73,14 +81,23 @@ export function Video({goal}: {goal: Goal}) {
         <source src={goal.PresignedUrl} type="video/mp4"></source>
       </video>
       <div className="d-flex justify-content-between align-items-center">
-        <button
-          style={copyButton}
-          onClick={copyShareUrl}
-          disabled={disableButton}
-          className="btn btn-outline-secondary btn-sm"
-        >
-          {buttonText}
-        </button>
+        <div>
+          <button
+            style={buttonStyle}
+            onClick={() => copyShareUrl()}
+            disabled={disableButton}
+            className="btn btn-outline-secondary btn-sm"
+          >
+            {buttonText}
+          </button>
+          <button
+            style={buttonStyle}
+            onClick={() => goToRedditPost(postId(goal.RedditFullname))}
+            className="btn btn-outline-secondary btn-sm"
+          >
+            Reddit Link
+          </button>
+        </div>
         <div style={daysAgoTextStyle} className="fw-light me-2">
           {daysAgoText(numDaysAgo(new Date(goal.CreatedAt)))}
         </div>
