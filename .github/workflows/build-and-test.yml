@@ -1,4 +1,4 @@
-name: 'React'
+name: 'Build and Test'
 
 on:
   push:

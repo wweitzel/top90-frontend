@@ -2,6 +2,9 @@
 
 set -e
 
+# Prevent output text programs from opening by setting AWS_PAGER to empty
+export AWS_PAGER=
+
 npm run check-format
 npm run check-types
 npm run build

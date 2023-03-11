@@ -1,0 +1,34 @@
+name: 'Deploy'
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm i
+      - name: Check formatting
+        run: npm run check-format
+      - name: Build
+        run: npm run build
+      - name: Run unit tests
+        run: npm run test
+      - name: Set environment variables
+        run: export AWS_PAGER=
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.TOP90_AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.TOP90_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Sync files to S3
+        run: aws s3 sync build/ s3://www.top90.io
+      - name: Invalidate Caches
+        run: |
+          aws cloudfront create-invalidation --distribution-id E35J0ICF5X5SHZ --paths "/*"
+          aws cloudfront create-invalidation --distribution-id EECYMS9J1D029 --paths "/*"
