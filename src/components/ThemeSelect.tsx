@@ -20,7 +20,6 @@ function ThemeSelect({onChange}: ThemeSelectProps) {
         style={{borderRadius: '20px'}}
         className="form-select mb-4"
       >
-        <option hidden>Theme</option>
         <option value="dark">Dark</option>
         <option value="light">Light</option>
       </select>
