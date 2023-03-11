@@ -1,15 +1,11 @@
 import '../index.css';
-import _logo from '../assets/top90logo.png';
 import {getGoal as _getGoal, GoalResponse} from '../api/goals';
 import Video from '../components/Video';
 
 import {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-
-const logo = {
-  height: 250,
-  cursor: 'pointer',
-};
+import {Header} from '../components/Header';
+import {getPreferredTheme} from '../lib/utils';
 
 function Goal() {
   const {goalId} = useParams();
@@ -39,9 +35,7 @@ function Goal() {
     <div className="container">
       <div className="d-flex justify-content-center">
         <div className="w-100">
-          <div className="d-flex justify-content-center">
-            <img style={logo} src={_logo} onClick={navigateHome} alt="logo" />
-          </div>
+          <Header selectedTheme={getPreferredTheme()} onClick={navigateHome}></Header>
           {getGoalResponse?.goal && <Video goal={getGoalResponse?.goal}></Video>}
         </div>
       </div>
