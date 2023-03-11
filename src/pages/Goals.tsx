@@ -1,4 +1,3 @@
-import _logo from '../assets/top90logo.png';
 import Select from '../components/Select';
 import Input from '../components/Input';
 import Video from '../components/Video';
@@ -8,15 +7,13 @@ import {getTeams as _getTeams, TeamsResponse} from '../api/teams';
 
 import ReactPaginate from 'react-paginate';
 import React, {useEffect, useCallback, useState, FormEvent} from 'react';
+import ThemeSelect from '../components/ThemeSelect';
+import {Header} from '../components/Header';
+import {getPreferredTheme, setTheme} from '../lib/utils';
 
 const maxWidthContainer = {
   maxWidth: '800px',
   width: '100%',
-};
-
-const logo = {
-  height: 250,
-  cursor: 'pointer',
 };
 
 const form = {
@@ -36,6 +33,8 @@ function Goals() {
 
   const [getGoalsResponse, setGetGoalsResponse] = useState<GoalsResponse>();
   const [getTeamsResponse, setGetTeamsResponse] = useState<TeamsResponse>();
+
+  const [selectedTheme, setSelectedTheme] = useState(getPreferredTheme());
 
   const getGoals = useCallback(_getGoals, []);
   const getTeams = useCallback(_getTeams, []);
@@ -153,12 +152,17 @@ function Goals() {
     setPagination(defaultPagination);
   }
 
+  function changeTheme(event: React.ChangeEvent<HTMLSelectElement>) {
+    const selectedTheme = event.target.value;
+    localStorage.setItem('top90-theme', selectedTheme);
+    setTheme(selectedTheme);
+    setSelectedTheme(selectedTheme);
+  }
+
   return (
     <div className="container d-flex justify-content-center">
       <div style={maxWidthContainer}>
-        <div className="d-flex justify-content-center">
-          <img style={logo} src={_logo} onClick={reset} alt="logo" />
-        </div>
+        <Header selectedTheme={selectedTheme} onClick={reset}></Header>
 
         <form style={form} onSubmit={handleSubmit}>
           <div className="d-flex">
@@ -198,19 +202,28 @@ function Goals() {
 
           <br></br>
 
-          <Input
-            label={'Keyword Search'}
-            placeholder={'Search player, manager, etc.'}
-            value={searchInput}
-            onInput={setSearchInput}
-          ></Input>
+          <div className="d-flex">
+            <div className="flex-grow-1" style={{flexBasis: '0'}}>
+              <Input
+                label={'Keyword Search'}
+                placeholder={'Search anything'}
+                value={searchInput}
+                onInput={setSearchInput}
+              ></Input>
+            </div>
 
-          <button
-            style={{display: 'none'}}
-            className="btn btn-primary"
-            id="searchButton"
-            type="submit"
-          />
+            <div className="flex-grow-1" style={{flexBasis: '0'}}>
+              <ThemeSelect onChange={changeTheme}></ThemeSelect>
+            </div>
+
+            <button
+              style={{display: 'none'}}
+              className="btn btn-primary"
+              id="searchButton"
+              type="submit"
+            />
+          </div>
+
           <br></br>
         </form>
 

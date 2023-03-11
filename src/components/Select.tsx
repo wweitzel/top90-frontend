@@ -4,7 +4,7 @@ interface Option {
 }
 
 interface SelectProps {
-  label: string;
+  label?: string;
   options?: Option[];
   value?: number | string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -13,15 +13,15 @@ interface SelectProps {
 function Select({label, options, value, onChange}: SelectProps) {
   return (
     <div className="form-group" style={{width: '100%'}}>
-      <label className="form-label" htmlFor="select-league">
+      <label className="form-label" htmlFor="select">
         {label}
       </label>
       <div style={{borderRadius: '20px'}} className="shadow-sm">
         <select
           style={{borderRadius: '20px'}}
-          className="form-control"
-          name="select-league"
-          id="select-league"
+          className="form-select"
+          name="select"
+          id="select"
           value={value}
           onChange={onChange}
         >
