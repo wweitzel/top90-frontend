@@ -95,7 +95,7 @@ export function Video({goal}: {goal: Goal}) {
             onClick={() => goToRedditPost(postId(goal.RedditFullname))}
             className="btn btn-outline-secondary btn-sm"
           >
-            Reddit Link
+            Comments
           </button>
         </div>
         <div style={daysAgoTextStyle} className="fw-light me-2">
