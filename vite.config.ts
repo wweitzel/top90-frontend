@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import {defineConfig} from 'vite';
 import svgrPlugin from 'vite-plugin-svgr';
 import reactRefresh from '@vitejs/plugin-react';
@@ -16,4 +17,9 @@ export default defineConfig({
       },
     }),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    css: true,
+  },
 });

@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
-    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.2.0",
     "@types/node": "^18.11.3",
     "@types/react": "^18.0.21",
@@ -21,7 +18,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc --noEmit && vite build",
-    "test": "vite test",
+    "test": "vitest",
     "eject": "vite eject",
     "serve": "vite preview",
     "format": "npx prettier --write .",
@@ -47,10 +44,15 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^13.5.0",
     "@vitejs/plugin-react": "^4.0.4",
+    "jsdom": "^22.1.0",
     "prettier": "2.6.2",
     "vite": "^4.4.9",
     "vite-plugin-svgr": "^3.2.0",
-    "vite-tsconfig-paths": "^4.2.0"
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.34.3"
   }
 }
