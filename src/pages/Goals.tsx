@@ -192,6 +192,7 @@ function Goals() {
             <Select
               label={'Season'}
               options={[
+                {value: '2023', displayName: '2023'},
                 {value: '2022', displayName: '2022'},
                 {value: '2021', displayName: '2021'},
               ]}
