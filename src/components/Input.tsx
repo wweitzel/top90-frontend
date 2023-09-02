@@ -7,12 +7,11 @@ interface InputProps {
 
 function Input({label, placeholder, value, onInput}: InputProps) {
   return (
-    <div style={{width: '100%'}}>
+    <div className="w-[100%]">
       <label className="form-label">{label}</label>
-      <div style={{borderRadius: '20px'}} className="shadow-sm">
+      <div className="shadow-sm rounded-full">
         <input
-          style={{borderRadius: '20px'}}
-          className="form-control"
+          className="form-control rounded-full"
           placeholder={placeholder}
           value={value}
           onInput={(e: React.ChangeEvent<HTMLInputElement>) => onInput(e.target.value)}

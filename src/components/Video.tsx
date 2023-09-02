@@ -3,14 +3,6 @@ import {API_BASE_URL} from '../api/core';
 
 import {useEffect, useState} from 'react';
 
-const buttonStyle = {
-  border: 'none',
-};
-
-const daysAgoTextStyle = {
-  fontSize: '14px',
-};
-
 const defaultButtonText = 'Copy Link';
 const clickedButtonText = 'Link Copied';
 
@@ -83,22 +75,20 @@ export function Video({goal}: {goal: Goal}) {
       <div className="d-flex justify-content-between align-items-center">
         <div>
           <button
-            style={buttonStyle}
             onClick={() => copyShareUrl()}
             disabled={disableButton}
-            className="btn btn-outline-secondary btn-sm"
+            className="btn btn-outline-secondary btn-sm border-none"
           >
             {buttonText}
           </button>
           <button
-            style={buttonStyle}
             onClick={() => goToRedditPost(postId(goal.RedditFullname))}
-            className="btn btn-outline-secondary btn-sm"
+            className="btn btn-outline-secondary btn-sm border-none"
           >
             Comments
           </button>
         </div>
-        <div style={daysAgoTextStyle} className="fw-light me-2">
+        <div className="fw-light me-2 text-sm">
           {daysAgoText(numDaysAgo(new Date(goal.CreatedAt)))}
         </div>
       </div>

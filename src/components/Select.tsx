@@ -12,14 +12,13 @@ interface SelectProps {
 
 function Select({label, options, value, onChange}: SelectProps) {
   return (
-    <div className="form-group" style={{width: '100%'}}>
+    <div className="form-group w-[100%]">
       <label className="form-label" htmlFor="select">
         {label}
       </label>
-      <div style={{borderRadius: '20px'}} className="shadow-sm">
+      <div className="shadow-sm rounded-full">
         <select
-          style={{borderRadius: '20px'}}
-          className="form-select"
+          className="form-select rounded-full"
           name="select"
           id="select"
           value={value}

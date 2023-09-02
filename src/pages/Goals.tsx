@@ -11,15 +11,6 @@ import ThemeSelect from '../components/ThemeSelect';
 import {Header} from '../components/Header';
 import {getPreferredTheme, setTheme} from '../lib/utils';
 
-const maxWidthContainer = {
-  maxWidth: '800px',
-  width: '100%',
-};
-
-const form = {
-  width: '100%',
-};
-
 const defaultPagination: Pagination = {skip: 0, limit: 5};
 
 function Goals() {
@@ -161,10 +152,10 @@ function Goals() {
 
   return (
     <div className="container d-flex justify-content-center">
-      <div style={maxWidthContainer}>
+      <div className="w-[100%] max-w-[800px]">
         <Header selectedTheme={selectedTheme} onClick={reset}></Header>
 
-        <form style={form} onSubmit={handleSubmit}>
+        <form className="w-[100%]" onSubmit={handleSubmit}>
           <div className="d-flex">
             <Select
               label={'League'}
@@ -204,7 +195,7 @@ function Goals() {
           <br></br>
 
           <div className="d-flex">
-            <div className="flex-grow-1" style={{flexBasis: '0'}}>
+            <div className="flex-grow-1 basis-0">
               <Input
                 label={'Keyword Search'}
                 placeholder={'Search anything'}
@@ -213,16 +204,11 @@ function Goals() {
               ></Input>
             </div>
 
-            <div className="flex-grow-1" style={{flexBasis: '0'}}>
+            <div className="flex-grow-1 basis-0">
               <ThemeSelect onChange={changeTheme}></ThemeSelect>
             </div>
 
-            <button
-              style={{display: 'none'}}
-              className="btn btn-primary"
-              id="searchButton"
-              type="submit"
-            />
+            <button className="btn btn-primary hidden" id="searchButton" type="submit" />
           </div>
 
           <br></br>
