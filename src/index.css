@@ -5,7 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-[data-bs-theme=light] {
+[data-bs-theme='light'] {
   .btn-secondary {
     --bs-btn-bg: --bs-body-color;
     --bs-btn-hover-bg: unset;
@@ -16,7 +16,7 @@ body {
   }
 }
 
-[data-bs-theme=dark] {
+[data-bs-theme='dark'] {
   .btn-secondary {
     --bs-btn-bg: --bs-body-color;
     --bs-btn-bg: --bs-body-color;
