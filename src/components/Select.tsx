@@ -57,6 +57,7 @@ function Select({
                   placeholder="Search"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
+                  autoComplete="off"
                 />
               </div>
             )}
