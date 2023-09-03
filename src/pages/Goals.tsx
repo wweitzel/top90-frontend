@@ -89,8 +89,8 @@ function Goals() {
     setPagination(defaultPagination);
   }
 
-  function handleSelectedLeagueChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedLeagueId = event.target.value;
+  function handleSelectedLeagueChange(value: string) {
+    const selectedLeagueId = value;
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: parseInt(selectedLeagueId),
@@ -107,8 +107,8 @@ function Goals() {
     setCurrentPage(0);
   }
 
-  function handleSelectedTeamChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedTeamId = event.target.value;
+  function handleSelectedTeamChange(value: string) {
+    const selectedTeamId = value;
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: selectedLeagueId,
@@ -123,8 +123,8 @@ function Goals() {
     setCurrentPage(0);
   }
 
-  function handleSelectedSeasonChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedSeason = event.target.value;
+  function handleSelectedSeasonChange(value: string) {
+    const selectedSeason = value;
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: selectedLeagueId,
@@ -152,8 +152,8 @@ function Goals() {
     setPagination(defaultPagination);
   }
 
-  function changeTheme(event: React.ChangeEvent<HTMLSelectElement>) {
-    const selectedTheme = event.target.value;
+  function changeTheme(value: string) {
+    const selectedTheme = value;
     localStorage.setItem('top90-theme', selectedTheme);
     setTheme(selectedTheme);
     setSelectedTheme(selectedTheme);
@@ -188,6 +188,7 @@ function Goals() {
               }
               value={selectedTeamId}
               onChange={handleSelectedTeamChange}
+              showSearchInput
             ></Select>
             <Select
               label={'Season'}
