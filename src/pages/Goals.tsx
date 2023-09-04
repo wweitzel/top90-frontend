@@ -169,9 +169,11 @@ function Goals() {
             <Select
               label={'League'}
               options={[
-                {value: 39, displayName: 'Premier League'},
-                {value: 2, displayName: 'Champions League'},
                 {value: 1, displayName: 'World Cup'},
+                {value: 2, displayName: 'Champions League'},
+                {value: 3, displayName: 'Europa League'},
+                {value: 39, displayName: 'Premier League'},
+                {value: 253, displayName: 'Major League Soccer'},
               ]}
               value={selectedLeagueId}
               onChange={handleSelectedLeagueChange}
