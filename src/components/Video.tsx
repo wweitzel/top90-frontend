@@ -66,19 +66,23 @@ export function Video({goal}: {goal: Goal}) {
     }
   }
 
+  function cloudfrontUrl(s3Key: string) {
+    return 'https://s3-redditsoccergoals.top90.io/' + s3Key;
+  }
+
   return (
     <div key={goal.RedditPostTitle}>
       <div className="mb-1">
         <h6>{goal.RedditPostTitle}</h6>
       </div>
       <video
-        poster={goal.ThumbnailPresignedUrl}
+        poster={cloudfrontUrl(goal.ThumbnailS3Key)}
         className="shadow-sm"
         width={'100%'}
         controls
         muted={true}
       >
-        <source src={goal.PresignedUrl} type="video/mp4"></source>
+        <source src={cloudfrontUrl(goal.S3ObjectKey)} type="video/mp4"></source>
       </video>
       <div className="d-flex justify-content-between align-items-center">
         <div>
