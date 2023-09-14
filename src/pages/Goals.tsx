@@ -238,6 +238,7 @@ function Goals() {
         <br></br>
 
         <div className="fixed-bottom d-flex justify-content-center">
+          {/* @ts-expect-error */}
           <ReactPaginate
             onPageChange={handlePageClick}
             pageRangeDisplayed={1}

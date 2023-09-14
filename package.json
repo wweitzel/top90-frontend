@@ -16,8 +16,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "vite",
-    "build": "tsc --noEmit && vite build",
+    "start": "bunx --bun vite",
+    "build": "tsc --noEmit && bunx --bun vite build",
     "test": "vitest",
     "eject": "vite eject",
     "serve": "vite preview",

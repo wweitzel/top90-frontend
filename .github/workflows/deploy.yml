@@ -9,15 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.0
       - uses: actions/checkout@v3
       - name: Install dependencies
-        run: npm i
+        run: bun i
       - name: Check formatting
-        run: npm run check-format
+        run: bun run check-format
       - name: Build
-        run: npm run build
+        run: bun run build
       - name: Run unit tests
-        run: npm run test
+        run: bun run test
       - name: Set environment variables
         run: export AWS_PAGER=
       - name: Configure AWS Credentials
