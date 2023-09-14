@@ -13,6 +13,7 @@ export interface Goal {
   CreatedAt: string;
   FixtureId: number;
   ThumbnailPresignedUrl: string;
+  ThumbnailS3Key: string;
 }
 
 export interface GetGoalsFilter {
