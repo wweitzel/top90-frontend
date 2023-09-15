@@ -17,7 +17,6 @@ export default defineConfig({
       },
     }),
   ],
-  // @ts-expect-error
   test: {
     globals: true,
     environment: 'jsdom',
