@@ -44,7 +44,7 @@ function Select({
             {currentOption?.displayName || 'All'}
           </button>
           <div
-            className="dropdown-menu overflow-scroll w-100 pt-0"
+            className="dropdown-menu overflow-auto w-100 pt-0"
             style={{maxHeight: '300px'}}
             aria-labelledby="dropdown"
           >
