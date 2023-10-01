@@ -22,12 +22,3 @@ body {
     border: var(--bs-border-width) solid var(--bs-border-color);
   }
 }
-
-@media only screen and (max-width: 767px) {
-  .top-filters {
-    flex-direction: column;
-    & > *:not(:first-child) {
-      margin-top: 15px;
-    }
-  }
-}

@@ -26,7 +26,7 @@ function Select({
   const [searchText, setSearchText] = useState('');
 
   return (
-    <div className="form-group" style={{width: '100%'}}>
+    <div className="form-group text-muted" style={{minWidth: '0px', width: '100%'}}>
       <label className="form-label" htmlFor="select">
         {label}
       </label>
@@ -34,7 +34,7 @@ function Select({
         <div className="dropdown mr-1 w-100">
           <button
             type="button"
-            className="btn btn-secondary dropdown-toggle w-100 text-left shadow-sm rounded-pill border-none text-start"
+            className="btn btn-secondary dropdown-toggle w-100 text-left shadow-sm rounded-pill border-none text-start text-muted overflow-hidden"
             id="dropdown"
             data-bs-toggle="dropdown"
             aria-haspopup="true"
