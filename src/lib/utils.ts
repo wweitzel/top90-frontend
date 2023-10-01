@@ -10,3 +10,7 @@ export function getPreferredTheme() {
 export function setTheme(theme: string) {
   document.documentElement.setAttribute('data-bs-theme', theme);
 }
+
+export function cloudfrontEnabled() {
+  return import.meta.env.VITE_TOP90_CLOUDFRONT_ENABLED !== 'false';
+}
