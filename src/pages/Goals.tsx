@@ -1,9 +1,9 @@
 import Select from '../components/Select';
 import Input from '../components/Input';
 import Video from '../components/Video';
-import {Pagination} from '../api/core';
-import {getGoals as _getGoals, GetGoalsFilter, GoalsResponse} from '../api/goals';
-import {getTeams as _getTeams, TeamsResponse} from '../api/teams';
+import {Pagination} from '../lib/api/core';
+import {getGoals as _getGoals, GetGoalsFilter, GoalsResponse} from '../lib/api/goals';
+import {getTeams as _getTeams, TeamsResponse} from '../lib/api/teams';
 
 import ReactPaginate from 'react-paginate';
 import React, {useEffect, useCallback, useState, FormEvent} from 'react';
