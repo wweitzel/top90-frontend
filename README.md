@@ -10,22 +10,22 @@ Anyone is welcome to submit a PR. PRs should be tested locally first if possible
 
 ## Running Locally
 
-Make sure you are using Node version 19. It is suggested to use nvm to manage node version.
+Run commands using [Bun](https://bun.sh/)
 
 ```
-$ nvm use 19
+$ npm install -g bun
 ```
 
 Install dependencies
 
 ```
-$ npm install
+$ bun install
 ```
 
 Run the app
 
 ```
-$ npm start
+$ bun start
 ```
 
 ## App Configuration

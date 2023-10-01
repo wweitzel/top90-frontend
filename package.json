@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@types/jest": "^29.2.0",
-    "@types/node": "^18.11.3",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "axios": "^0.26.1",
@@ -12,12 +11,12 @@
     "react-dom": "^18.2.0",
     "react-paginate": "^8.1.3",
     "react-router-dom": "^6.4.2",
-    "typescript": "^4.8.4",
+    "typescript": "4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "vite",
-    "build": "tsc --noEmit && vite build",
+    "start": "bunx --bun vite",
+    "build": "tsc --noEmit && bunx --bun vite build",
     "test": "vitest",
     "eject": "vite eject",
     "serve": "vite preview",
@@ -45,7 +44,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@vitejs/plugin-react": "^4.0.4",
     "jsdom": "^22.1.0",
@@ -53,6 +52,6 @@
     "vite": "^4.4.9",
     "vite-plugin-svgr": "^3.2.0",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.34.3"
+    "vitest": "0.34.3"
   }
 }
