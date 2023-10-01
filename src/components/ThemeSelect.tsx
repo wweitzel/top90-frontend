@@ -1,29 +1,24 @@
 import {getPreferredTheme} from '../lib/utils';
+import Select from './Select';
 
 interface ThemeSelectProps {
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange: (value: string) => void;
 }
 
 function ThemeSelect({onChange}: ThemeSelectProps) {
   const preferredTheme = getPreferredTheme();
 
   return (
-    <div className="form-group">
-      <label className="form-label" htmlFor="select">
-        Theme
-      </label>
-      <select
-        value={preferredTheme}
-        onChange={onChange}
-        name="select"
-        id="select"
-        style={{borderRadius: '20px'}}
-        className="form-select mb-4"
-      >
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
-      </select>
-    </div>
+    <Select
+      label="Theme"
+      options={[
+        {value: 'dark', displayName: 'Dark'},
+        {value: 'light', displayName: 'Light'},
+      ]}
+      value={preferredTheme}
+      onChange={onChange}
+      showAllOption={false}
+    />
   );
 }
 
