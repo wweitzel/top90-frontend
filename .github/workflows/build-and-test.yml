@@ -73,6 +73,20 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ hashFiles('bun.lockb') }}
       - name: Start app
         run: bun start &
+      - name: Restore Cypress cache
+        id: cypress-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('bun.lockb') }}
+      - name: Install Cypress
+        run: bun cypress install
+      - name: Save Cypress cache
+        id: cypress-save
+        uses: actions/cache/save@v3
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('bun.lockb') }}
       - name: Run Cypress e2e
         run: bun cypress run --e2e --record
         env:
