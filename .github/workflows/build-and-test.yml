@@ -72,7 +72,7 @@ jobs:
           path: node_modules/
           key: ${{ runner.os }}-node-modules-${{ hashFiles('bun.lockb') }}
       - name: Start app
-        run: bun start
+        run: bun start &
       - name: Run Cypress e2e
         run: bun cypress run --e2e --record
         env:
