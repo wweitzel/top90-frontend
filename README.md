@@ -1,6 +1,6 @@
 # top90-frontend
 
-Top90 is a website that populates with soccer goals in real time as they happen around the world
+top90 is a website that populates with soccer goals in real time as they happen around the world
 
 https://top90.io
 

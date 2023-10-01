@@ -1,7 +1,8 @@
-import {Goal} from '../api/goals';
-import {API_BASE_URL} from '../api/core';
+import {Goal} from '../lib/api/goals';
+import {API_BASE_URL} from '../lib/api/core';
 
 import {useEffect, useState} from 'react';
+import {cloudfrontEnabled} from '../lib/utils';
 
 const buttonStyle = {
   border: 'none',
@@ -70,19 +71,29 @@ export function Video({goal}: {goal: Goal}) {
     return 'https://s3-redditsoccergoals.top90.io/' + s3Key;
   }
 
+  function thumbnailUrl(goal: Goal) {
+    if (cloudfrontEnabled()) {
+      return cloudfrontUrl(goal.ThumbnailS3Key);
+    }
+
+    return goal.ThumbnailPresignedUrl;
+  }
+
+  function videoUrl(goal: Goal) {
+    if (cloudfrontEnabled()) {
+      return cloudfrontUrl(goal.S3ObjectKey);
+    }
+
+    return goal.PresignedUrl;
+  }
+
   return (
     <div key={goal.RedditPostTitle}>
       <div className="mb-1">
         <h6>{goal.RedditPostTitle}</h6>
       </div>
-      <video
-        poster={cloudfrontUrl(goal.ThumbnailS3Key)}
-        className="shadow-sm"
-        width={'100%'}
-        controls
-        muted={true}
-      >
-        <source src={cloudfrontUrl(goal.S3ObjectKey)} type="video/mp4"></source>
+      <video poster={thumbnailUrl(goal)} className="shadow-sm" width={'100%'} controls muted={true}>
+        <source src={videoUrl(goal)} type="video/mp4"></source>
       </video>
       <div className="d-flex justify-content-between align-items-center">
         <div>
