@@ -165,7 +165,7 @@ function Goals() {
         <Header selectedTheme={selectedTheme} onClick={reset}></Header>
 
         <form style={form} onSubmit={handleSubmit}>
-          <div className="d-flex">
+          <div className="d-flex top-filters">
             <Select
               label={'League'}
               options={[
