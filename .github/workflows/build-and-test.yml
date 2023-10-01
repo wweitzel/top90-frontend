@@ -5,9 +5,9 @@ on:
     branches: ['master']
 
 jobs:
-  build-and-test:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
       - uses: oven-sh/setup-bun@v1
         with:
@@ -19,5 +19,39 @@ jobs:
         run: bun run check-format
       - name: Build
         run: bun run build
+        # Upload repo with built files and dependencies for use in subsequent jobs
+      - uses: actions/upload-artifact@v3
+        with:
+          name: workspace
+          path: /home/runner/work/top90-frontend/top90-frontend
+  jest-tests:
+    name: Jest Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: workspace
       - name: Run unit tests
         run: bun run test
+  cypress-tests:
+    name: Cypress Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: workspace
+      - name: Cypress run e2e
+        # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
+        uses: cypress-io/github-action@v6
+        with:
+          start: bun start
+          wait-on: 'http://localhost:5173/' # Waits for above
+          # Records to Cypress Cloud
+          # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
