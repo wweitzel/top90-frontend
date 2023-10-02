@@ -22,7 +22,8 @@
     "serve": "vite preview",
     "format": "npx prettier --write .",
     "check-format": "npx prettier --check .",
-    "check-types": "tsc --project ./tsconfig.json --noEmit"
+    "check-types": "tsc --project ./tsconfig.json --noEmit",
+    "test:e2e": "cypress install && cypress run --e2e"
   },
   "eslintConfig": {
     "extends": [

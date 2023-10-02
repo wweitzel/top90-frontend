@@ -57,7 +57,7 @@ jobs:
       - name: Run unit tests
         run: bun run test
   cypress-tests:
-    name: Cypress Tests
+    name: E2E Tests
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -90,5 +90,5 @@ jobs:
       - name: Run Cypress e2e
         run: bun cypress run --e2e --record
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_RECORD_KEY: ${{ secrets.TOP90_CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
