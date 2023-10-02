@@ -90,5 +90,9 @@ jobs:
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('bun.lockb') }}
-      - name: Run Cypress e2e
+      - name: Run Cypress e2e with record
+        if: ${{ env.CYPRESS_RECORD_KEY }}
         run: bun cypress run --e2e --record
+      - name: Run Cypress e2e
+        if: ${{ !env.CYPRESS_RECORD_KEY }}
+        run: bun cypress run --e2e
