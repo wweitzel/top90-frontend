@@ -27,7 +27,7 @@ export function Video({goal}: {goal: Goal}) {
   });
 
   function copyShareUrl() {
-    const goalUrl = `${API_BASE_URL}/message_preview/${goal.Id}`;
+    const goalUrl = `${API_BASE_URL}/message_preview/${goal.id}`;
     navigator.clipboard.writeText(goalUrl);
 
     setButtonText(clickedButtonText);
@@ -73,24 +73,24 @@ export function Video({goal}: {goal: Goal}) {
 
   function thumbnailUrl(goal: Goal) {
     if (cloudfrontEnabled()) {
-      return cloudfrontUrl(goal.ThumbnailS3Key);
+      return cloudfrontUrl(goal.thumbnailS3Key);
     }
 
-    return goal.ThumbnailPresignedUrl;
+    return goal.thumbnailPresignedUrl;
   }
 
   function videoUrl(goal: Goal) {
     if (cloudfrontEnabled()) {
-      return cloudfrontUrl(goal.S3ObjectKey);
+      return cloudfrontUrl(goal.s3ObjectKey);
     }
 
-    return goal.PresignedUrl;
+    return goal.presignedUrl;
   }
 
   return (
-    <div key={goal.RedditPostTitle}>
+    <div key={goal.redditPostTitle}>
       <div className="mb-1">
-        <h6>{goal.RedditPostTitle}</h6>
+        <h6>{goal.redditPostTitle}</h6>
       </div>
       <video poster={thumbnailUrl(goal)} className="shadow-sm" width={'100%'} controls muted={true}>
         <source src={videoUrl(goal)} type="video/mp4"></source>
@@ -107,14 +107,14 @@ export function Video({goal}: {goal: Goal}) {
           </button>
           <button
             style={buttonStyle}
-            onClick={() => goToRedditPost(postId(goal.RedditFullname))}
+            onClick={() => goToRedditPost(postId(goal.redditFullname))}
             className="btn btn-outline-secondary btn-sm"
           >
             Comments
           </button>
         </div>
         <div style={daysAgoTextStyle} className="fw-light me-2">
-          {daysAgoText(numDaysAgo(new Date(goal.CreatedAt)))}
+          {daysAgoText(numDaysAgo(new Date(goal.createdAt)))}
         </div>
       </div>
     </div>
