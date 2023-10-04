@@ -23,7 +23,7 @@ function Goal() {
     let isMounted = true;
     if (goalId) {
       getGoal(goalId).then((data) => {
-        if (isMounted && data.goal.Id !== '') setGetGoalResponse(data);
+        if (isMounted && data.goal.id !== '') setGetGoalResponse(data);
       });
     }
     return () => {

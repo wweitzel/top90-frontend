@@ -3,15 +3,15 @@ import {API_BASE_URL} from './core';
 import axios from 'axios';
 
 export interface Team {
-  Id: number;
-  Name: string;
-  Aliases?: string[];
-  Code: string;
-  Country: string;
-  Founded: number;
-  National: boolean;
-  Logo: string;
-  CreatedAt: Date;
+  id: number;
+  name: string;
+  aliases?: string[];
+  code: string;
+  country: string;
+  founded: number;
+  national: boolean;
+  logo: string;
+  createdAt: Date;
 }
 
 export interface TeamsResponse {

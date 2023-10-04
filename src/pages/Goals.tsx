@@ -184,8 +184,8 @@ function Goals() {
                 getTeamsResponse &&
                 getTeamsResponse.teams &&
                 getTeamsResponse.teams.map((team) => ({
-                  value: team.Id,
-                  displayName: team.Name,
+                  value: team.id,
+                  displayName: team.name,
                 }))
               }
               value={selectedTeamId}
@@ -232,7 +232,7 @@ function Goals() {
         </form>
 
         {getGoalsResponse?.goals?.map((goal) => (
-          <div key={goal.Id} className="mb-4">
+          <div key={goal.id} className="mb-4">
             <Video goal={goal}></Video>
           </div>
         ))}

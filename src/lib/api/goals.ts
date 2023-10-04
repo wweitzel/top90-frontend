@@ -3,17 +3,17 @@ import {API_BASE_URL, Pagination} from './core';
 import axios from 'axios';
 
 export interface Goal {
-  Id: string;
-  RedditFullname: string;
-  RedditLinkUrl: string;
-  RedditPostTitle: string;
-  RedditPostCreatedAt: Date;
-  S3ObjectKey: string;
-  PresignedUrl: string;
-  CreatedAt: string;
-  FixtureId: number;
-  ThumbnailPresignedUrl: string;
-  ThumbnailS3Key: string;
+  id: string;
+  redditFullname: string;
+  redditLinkUrl: string;
+  redditPostTitle: string;
+  redditPostCreatedAt: Date;
+  s3ObjectKey: string;
+  presignedUrl: string;
+  createdAt: string;
+  fixtureId: number;
+  thumbnailPresignedUrl: string;
+  thumbnailS3Key: string;
 }
 
 export interface GetGoalsFilter {
