@@ -28,6 +28,20 @@ Run the app
 $ bun start
 ```
 
+# E2E Tests
+
+# Run Mode
+
+```
+bun run test:e2e
+```
+
+# Cypress Open Mode (interactive)
+
+```
+bun cypress open
+```
+
 ## App Configuration
 
 Copy the sample configuration into a `.env` file. This will be loaded when the app starts.
