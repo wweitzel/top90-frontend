@@ -41,7 +41,12 @@ function Select({
             aria-expanded="false"
             data-offset="10,20"
           >
-            {currentOption?.displayName || 'All'}
+            <span
+              className="d-inline-block"
+              style={{maxWidth: '90%', overflowX: 'clip', textOverflow: 'ellipsis'}}
+            >
+              {currentOption?.displayName || 'All'}
+            </span>
           </button>
           <div
             className="dropdown-menu overflow-auto w-100 pt-0"
