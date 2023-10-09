@@ -43,7 +43,7 @@ function Select({
           >
             <span
               className="d-inline-block"
-              style={{maxWidth: '85%', overflowX: 'clip', textOverflow: 'ellipsis'}}
+              style={{maxWidth: '90%', overflowX: 'clip', textOverflow: 'ellipsis'}}
             >
               {currentOption?.displayName || 'All'}
             </span>
