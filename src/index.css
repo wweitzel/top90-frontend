@@ -23,3 +23,8 @@ body {
     border: var(--bs-border-width) solid var(--bs-border-color);
   }
 }
+
+.nav {
+  --bs-nav-link-color: var(--bs-secondary);
+  --bs-nav-link-hover-color: var(--bs-body-color);
+}
