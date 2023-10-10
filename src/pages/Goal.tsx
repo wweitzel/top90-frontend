@@ -1,5 +1,5 @@
 import '../index.css';
-import {getGoal as _getGoal, GoalResponse} from '../lib/api/goals';
+import {getGoal as _getGoal, GetGoalResponse} from '../lib/api/goals';
 import Video from '../components/Video';
 
 import {useCallback, useEffect, useState} from 'react';
@@ -13,7 +13,7 @@ function Goal() {
 
   const getGoal = useCallback(_getGoal, []);
 
-  const [getGoalResponse, setGetGoalResponse] = useState<GoalResponse>();
+  const [getGoalResponse, setGetGoalResponse] = useState<GetGoalResponse>();
 
   function navigateHome() {
     navigate('/');

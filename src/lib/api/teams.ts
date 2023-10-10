@@ -14,12 +14,17 @@ export interface Team {
   createdAt: Date;
 }
 
-export interface TeamsResponse {
+export interface Teams {
+  home: Team;
+  away: Team;
+}
+
+export interface GetTeamsResponse {
   teams: Team[];
 }
 
 export const getTeams = async (leagueId = 0, season = 0) => {
-  const response = await axios.get<TeamsResponse>(
+  const response = await axios.get<GetTeamsResponse>(
     `${API_BASE_URL}/teams?leagueId=${leagueId}&season=${season}`
   );
   return response.data;

@@ -19,7 +19,7 @@
     "build": "tsc --noEmit && bunx --bun vite build",
     "test": "vitest",
     "eject": "vite eject",
-    "serve": "vite preview",
+    "serve": "bun run build && vite preview",
     "format": "npx prettier --write .",
     "check-format": "npx prettier --check .",
     "check-types": "tsc --project ./tsconfig.json --noEmit",
