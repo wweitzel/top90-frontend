@@ -55,17 +55,13 @@ function Goals() {
   }, []);
 
   useEffect(() => {
-    let isMounted = true;
     getGoals().then((data) => {
-      if (isMounted) setGetGoalsResponse(data);
+      setGetGoalsResponse(data);
     });
     getTeams().then((data) => {
-      if (isMounted) setGetTeamsResponse(data);
+      setGetTeamsResponse(data);
     });
-    return () => {
-      isMounted = false;
-    };
-  }, [getGoals, getTeams]);
+  }, []);
 
   function handlePageClick(selectedItem: {selected: number}) {
     window.stop();
@@ -174,7 +170,7 @@ function Goals() {
       <div style={maxWidthContainer}>
         <Header selectedTheme={selectedTheme} onClick={reset}></Header>
 
-        <ul className="nav nav-tabs" id="myTab" role="tablist">
+        <ul className="nav nav-tabs" role="tablist">
           <li className="nav-item" role="presentation">
             <button
               className="nav-link active"
@@ -219,7 +215,7 @@ function Goals() {
           </li>
         </ul>
 
-        <div className="tab-content" id="myTabContent">
+        <div className="tab-content">
           <div
             className="tab-pane fade show active"
             id="home"
