@@ -1,8 +1,8 @@
 import '../index.css';
-import {getGoal as _getGoal, GetGoalResponse} from '../lib/api/goals';
+import {getGoal, GetGoalResponse} from '../lib/api/goals';
 import Video from '../components/Video';
 
-import {useCallback, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {Header} from '../components/Header';
 import {getPreferredTheme} from '../lib/utils';
@@ -10,8 +10,6 @@ import {getPreferredTheme} from '../lib/utils';
 function Goal() {
   const {goalId} = useParams();
   const navigate = useNavigate();
-
-  const getGoal = useCallback(_getGoal, []);
 
   const [getGoalResponse, setGetGoalResponse] = useState<GetGoalResponse>();
 

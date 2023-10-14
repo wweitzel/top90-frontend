@@ -1,8 +1,8 @@
 import {useNavigate, useParams} from 'react-router-dom';
-import {useCallback, useEffect, useState} from 'react';
-import {GetFixtureResponse, getFixture as _getFixture} from '../lib/api/fixtures';
+import {useEffect, useState} from 'react';
+import {GetFixtureResponse, getFixture} from '../lib/api/fixtures';
 import {Header} from '../components/Header';
-import {GetGoalsResponse, getGoals as _getGoals} from '../lib/api/goals';
+import {GetGoalsResponse, getGoals} from '../lib/api/goals';
 import {getPreferredTheme} from '../lib/utils';
 import Video from '../components/Video';
 import {FixtureRow} from '../components/FixturesList';
@@ -10,9 +10,6 @@ import {FixtureRow} from '../components/FixturesList';
 function Fixture() {
   const {fixtureId} = useParams();
   const navigate = useNavigate();
-
-  const getFixture = useCallback(_getFixture, []);
-  const getGoals = useCallback(_getGoals, []);
 
   const [getFixtureResponse, setGetFixtureResponse] = useState<GetFixtureResponse>();
   const [getGoalsResponse, setGetGoalsResponse] = useState<GetGoalsResponse>();
