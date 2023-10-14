@@ -13,33 +13,19 @@ Anyone is welcome to submit a PR. PRs should be tested locally first if possible
 Run commands using [Bun](https://bun.sh/)
 
 ```
-$ npm install -g bun
+npm install -g bun
 ```
 
 Install dependencies
 
 ```
-$ bun install
+bun install
 ```
 
 Run the app
 
 ```
-$ bun start
-```
-
-# E2E Tests
-
-# Run Mode
-
-```
-bun run test:e2e
-```
-
-# Cypress Open Mode (interactive)
-
-```
-bun cypress open
+bun start
 ```
 
 ## App Configuration
