@@ -28,3 +28,8 @@ body {
   --bs-nav-link-color: var(--bs-secondary);
   --bs-nav-link-hover-color: var(--bs-body-color);
 }
+
+.top90-app-container {
+  width: 100%;
+  max-width: 800px;
+}

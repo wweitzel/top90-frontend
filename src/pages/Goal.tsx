@@ -20,16 +20,12 @@ function Goal() {
   }
 
   useEffect(() => {
-    let isMounted = true;
     if (goalId) {
       getGoal(goalId).then((data) => {
-        if (isMounted && data.goal.id !== '') setGetGoalResponse(data);
+        setGetGoalResponse(data);
       });
     }
-    return () => {
-      isMounted = false;
-    };
-  }, [getGoal, goalId]);
+  }, [goalId]);
 
   return (
     <div className="container">
