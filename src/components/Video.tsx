@@ -101,7 +101,7 @@ export function Video({goal}: {goal: Goal}) {
             Comments
           </button>
         </div>
-        <div style={{fontSize: '14px'}} className="fw-light me-2">
+        <div style={{fontSize: '14px'}} className="text-muted me-2">
           {daysAgoText(numDaysAgo(new Date(goal.createdAt)))}
         </div>
       </div>
