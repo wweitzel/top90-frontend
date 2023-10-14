@@ -9,9 +9,9 @@ body {
 [data-bs-theme='light'] {
   .btn-secondary {
     --bs-btn-bg: --bs-body-color;
-    --bs-btn-hover-bg: unset;
-    --bs-btn-active-color: unset;
-    --bs-btn-active-bg: unset;
+    --bs-btn-hover-bg: var(--bs-tertiary-bg);
+    --bs-btn-active-color: var(--bs-tertiary-bg);
+    --bs-btn-active-bg: var(--bs-tertiary-bg);
     border: var(--bs-border-width) solid var(--bs-border-color);
     color: black;
   }
