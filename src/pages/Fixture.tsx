@@ -53,8 +53,7 @@ function Fixture() {
             <Header selectedTheme={getPreferredTheme()} onClick={navigateHome}></Header>
 
             <div className="mb-4">
-              <div>{new Date(getFixtureResponse.fixture.date).toLocaleString()}</div>
-              <FixtureRow fixture={getFixtureResponse.fixture} showDate={false}></FixtureRow>
+              <FixtureRow fixture={getFixtureResponse.fixture}></FixtureRow>
             </div>
 
             {getGoalsResponse?.goals?.map((goal) => (
@@ -64,12 +63,12 @@ function Fixture() {
             ))}
 
             {(!getGoalsResponse?.goals || getGoalsResponse.goals.length === 0) && (
-              <div>No goals found for this fixture.</div>
+              <div className="mb-4">No goals found for this fixture.</div>
             )}
           </div>
         </div>
 
-        <div className="d-flex justify-content-center mt-5">
+        <div className="d-flex justify-content-center mt-4 mb-5">
           <button onClick={navigateHome} className="btn btn-outline-secondary">
             Back to homepage
           </button>

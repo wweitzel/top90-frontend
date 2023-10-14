@@ -2,12 +2,12 @@ import Select from '../components/Select';
 import Input from '../components/Input';
 import Video from '../components/Video';
 import {Pagination} from '../lib/api/core';
-import {getGoals as _getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
-import {getTeams as _getTeams, GetTeamsResponse} from '../lib/api/teams';
-import {getLeagues as _getLeagues, GetLeaguesResponse} from '../lib/api/leagues';
+import {getGoals as getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
+import {getTeams as getTeams, GetTeamsResponse} from '../lib/api/teams';
+import {getLeagues as getLeagues, GetLeaguesResponse} from '../lib/api/leagues';
 
 import ReactPaginate from 'react-paginate';
-import {useEffect, useCallback, useState} from 'react';
+import {useEffect, useState} from 'react';
 import ThemeSelect from '../components/ThemeSelect';
 import {Header} from '../components/Header';
 import {getPreferredTheme, setTheme} from '../lib/utils';
@@ -29,17 +29,12 @@ function Goals() {
   const [selectedTeamId, setSelectedTeamId] = useState<number>();
   const [selectedSeason, setSelectedSeason] = useState<number>();
   const [searchInput, setSearchInput] = useState('');
+  const [selectedTheme, setSelectedTheme] = useState(getPreferredTheme());
 
   const [getGoalsResponse, setGetGoalsResponse] = useState<GetGoalsResponse>();
   const [getTeamsResponse, setGetTeamsResponse] = useState<GetTeamsResponse>();
   const [getFixturesResponse, setGetFixturesResponse] = useState<GetFixturesResponse>();
   const [getLeaguesResponse, setGetLeaguesResponse] = useState<GetLeaguesResponse>();
-
-  const [selectedTheme, setSelectedTheme] = useState(getPreferredTheme());
-
-  const getGoals = useCallback(_getGoals, []);
-  const getTeams = useCallback(_getTeams, []);
-  const getLeagues = useCallback(_getLeagues, []);
 
   const pageCount = Math.ceil(
     (getGoalsResponse ? getGoalsResponse.total : 0) / (pagination.limit || defaultPagination.limit)
@@ -52,9 +47,6 @@ function Goals() {
     getLeagues().then((data) => {
       setGetLeaguesResponse(data);
     });
-  }, []);
-
-  useEffect(() => {
     getGoals().then((data) => {
       setGetGoalsResponse(data);
     });
@@ -314,7 +306,7 @@ function Goals() {
             role="tabpanel"
             aria-labelledby="fixtures-tab"
           >
-            <div className="mt-3 mb-4">
+            <div className="mt-4 mb-4">
               <FixturesList
                 fixtures={getFixturesResponse?.fixtures}
                 leagues={getLeaguesResponse?.leagues}
