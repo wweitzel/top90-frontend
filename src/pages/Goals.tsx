@@ -306,7 +306,7 @@ function Goals() {
             role="tabpanel"
             aria-labelledby="fixtures-tab"
           >
-            <div className="mt-4 mb-4">
+            <div className="mb-4">
               <FixturesList
                 fixtures={getFixturesResponse?.fixtures}
                 leagues={getLeaguesResponse?.leagues}
