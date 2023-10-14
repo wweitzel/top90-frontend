@@ -69,14 +69,17 @@ export function FixturesList({fixtures, leagues}: FixturesListProps) {
     <div className="btn-group-vertical text-muted w-100" role="group">
       {filteredLeagues.map((league) => (
         <div key={league.id} className="w-100">
-          <div className="d-flex mb-3 align-items-start">
+          <div className="d-flex mb-3 mt-4 align-items-center">
             <img src={league.logo} className="me-2" height={25}></img>
             <div>{league.name}</div>
           </div>
           <>
-            {fixtures.map((fixture) => (
-              <FixtureRow key={fixture.id} fixture={fixture}></FixtureRow>
-            ))}
+            {fixtures.map(
+              (fixture) =>
+                fixture.leagueId === league.id && (
+                  <FixtureRow key={fixture.id} fixture={fixture}></FixtureRow>
+                )
+            )}
           </>
         </div>
       ))}
