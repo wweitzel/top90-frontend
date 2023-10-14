@@ -14,11 +14,6 @@ import {getPreferredTheme, setTheme} from '../lib/utils';
 import {getFixtures, GetFixturesResponse} from '../lib/api/fixtures';
 import {FixturesList} from '../components/FixturesList';
 
-const maxWidthContainer = {
-  maxWidth: '800px',
-  width: '100%',
-};
-
 const defaultPagination: Pagination = {skip: 0, limit: 5};
 
 function Goals() {
@@ -159,7 +154,7 @@ function Goals() {
 
   return (
     <div className="container d-flex justify-content-center">
-      <div style={maxWidthContainer}>
+      <div className="top90-app-container">
         <Header selectedTheme={selectedTheme} onClick={reset}></Header>
 
         <ul className="nav nav-tabs" role="tablist">

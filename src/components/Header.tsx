@@ -3,11 +3,6 @@ import {useEffect, useState} from 'react';
 import _logoWhite from '../assets/top90logo-white.png';
 import _logoBlack from '../assets/top90logo-black.png';
 
-const logoStyle = {
-  height: 250,
-  cursor: 'pointer',
-};
-
 interface HeaderProps {
   selectedTheme: string;
   onClick?: () => void;
@@ -29,7 +24,7 @@ export function Header({selectedTheme, onClick}: HeaderProps) {
 
   return (
     <div className="d-flex justify-content-center">
-      <img style={logoStyle} src={logo} onClick={onClick} alt="logo" />
+      <img height={250} src={logo} onClick={onClick} alt="logo" role="button" />
     </div>
   );
 }

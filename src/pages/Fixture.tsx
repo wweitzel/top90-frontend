@@ -7,11 +7,6 @@ import {getPreferredTheme} from '../lib/utils';
 import Video from '../components/Video';
 import {FixtureRow} from '../components/FixturesList';
 
-const maxWidthContainer = {
-  maxWidth: '800px',
-  width: '100%',
-};
-
 function Fixture() {
   const {fixtureId} = useParams();
   const navigate = useNavigate();
@@ -27,19 +22,15 @@ function Fixture() {
   }
 
   useEffect(() => {
-    let isMounted = true;
     if (fixtureId) {
       getFixture(fixtureId).then((data) => {
-        if (isMounted && data.fixture.id !== '') setGetFixtureResponse(data);
+        setGetFixtureResponse(data);
       });
       getGoals(undefined, {fixtureId: Number(fixtureId)}).then((data) => {
-        if (isMounted && data.goals) setGetGoalsResponse(data);
+        setGetGoalsResponse(data);
       });
     }
-    return () => {
-      isMounted = false;
-    };
-  }, [getFixture, getGoals, fixtureId]);
+  }, [fixtureId]);
 
   if (!getFixtureResponse?.fixture) {
     return null;
@@ -47,7 +38,7 @@ function Fixture() {
 
   return (
     <div className="container d-flex justify-content-center">
-      <div style={maxWidthContainer}>
+      <div className="top90-app-container">
         <div className="d-flex justify-content-center">
           <div className="w-100">
             <Header selectedTheme={getPreferredTheme()} onClick={navigateHome}></Header>
