@@ -1,14 +1,14 @@
-import Select from '../components/Select';
 import Input from '../components/Input';
+import Select from '../components/Select';
 import Video from '../components/Video';
 import {Pagination} from '../lib/api/core';
 import {getGoals as _getGoals, GetGoalsFilter, GoalsResponse} from '../lib/api/goals';
 import {getTeams as _getTeams, TeamsResponse} from '../lib/api/teams';
 
+import {FormEvent, useCallback, useEffect, useState} from 'react';
 import ReactPaginate from 'react-paginate';
-import React, {useEffect, useCallback, useState, FormEvent} from 'react';
-import ThemeSelect from '../components/ThemeSelect';
 import {Header} from '../components/Header';
+import ThemeSelect from '../components/ThemeSelect';
 import {getPreferredTheme, setTheme} from '../lib/utils';
 
 const maxWidthContainer = {

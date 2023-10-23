@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
+import reactRefresh from '@vitejs/plugin-react';
 import {defineConfig} from 'vite';
 import svgrPlugin from 'vite-plugin-svgr';
-import reactRefresh from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({

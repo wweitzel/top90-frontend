@@ -1,6 +1,6 @@
+import Video from '../components/Video';
 import '../index.css';
 import {getGoal as _getGoal, GoalResponse} from '../lib/api/goals';
-import Video from '../components/Video';
 
 import {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';

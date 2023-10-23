@@ -1,9 +1,9 @@
-import Goals from './pages/Goals';
 import Error from './pages/Error';
 import Goal from './pages/Goal';
+import Goals from './pages/Goals';
 
-import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
 import {useEffect} from 'react';
+import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
 import {getPreferredTheme, setTheme} from './lib/utils';
 
 const router = createBrowserRouter([
