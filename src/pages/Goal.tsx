@@ -1,8 +1,8 @@
 import Video from '../components/Video';
 import '../index.css';
-import {getGoal as _getGoal, GoalResponse} from '../lib/api/goals';
+import {getGoal, GetGoalResponse} from '../lib/api/goals';
 
-import {useCallback, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {Header} from '../components/Header';
 import {getPreferredTheme} from '../lib/utils';
@@ -11,25 +11,19 @@ function Goal() {
   const {goalId} = useParams();
   const navigate = useNavigate();
 
-  const getGoal = useCallback(_getGoal, []);
-
-  const [getGoalResponse, setGetGoalResponse] = useState<GoalResponse>();
+  const [getGoalResponse, setGetGoalResponse] = useState<GetGoalResponse>();
 
   function navigateHome() {
     navigate('/');
   }
 
   useEffect(() => {
-    let isMounted = true;
     if (goalId) {
       getGoal(goalId).then((data) => {
-        if (isMounted && data.goal.id !== '') setGetGoalResponse(data);
+        setGetGoalResponse(data);
       });
     }
-    return () => {
-      isMounted = false;
-    };
-  }, [getGoal, goalId]);
+  }, [goalId]);
 
   return (
     <div className="container">

@@ -1,4 +1,5 @@
 import Error from './pages/Error';
+import Fixture from './pages/Fixture';
 import Goal from './pages/Goal';
 import Goals from './pages/Goals';
 
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: '/goals/:goalId',
     element: <Goal />,
+    errorElement: <Error />,
+  },
+  {
+    path: '/fixtures/:fixtureId',
+    element: <Fixture />,
     errorElement: <Error />,
   },
 ]);
