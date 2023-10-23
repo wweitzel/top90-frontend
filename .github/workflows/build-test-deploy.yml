@@ -100,6 +100,7 @@ jobs:
         if: ${{ !env.CYPRESS_RECORD_KEY }}
         run: bun cypress run --e2e
   deploy:
+    name: Deploy
     needs: [build, jest-tests, cypress-tests]
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
