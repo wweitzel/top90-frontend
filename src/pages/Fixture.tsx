@@ -1,11 +1,11 @@
-import {useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
-import {GetFixtureResponse, getFixture} from '../lib/api/fixtures';
-import {Header} from '../components/Header';
-import {GetGoalsResponse, getGoals} from '../lib/api/goals';
-import {getPreferredTheme} from '../lib/utils';
-import Video from '../components/Video';
+import {useNavigate, useParams} from 'react-router-dom';
 import {FixtureRow} from '../components/FixturesList';
+import {Header} from '../components/Header';
+import Video from '../components/Video';
+import {getFixture, GetFixtureResponse} from '../lib/api/fixtures';
+import {getGoals, GetGoalsResponse} from '../lib/api/goals';
+import {getPreferredTheme} from '../lib/utils';
 
 function Fixture() {
   const {fixtureId} = useParams();

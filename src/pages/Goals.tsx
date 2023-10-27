@@ -1,18 +1,18 @@
-import Select from '../components/Select';
 import Input from '../components/Input';
+import Select from '../components/Select';
 import Video from '../components/Video';
 import {Pagination} from '../lib/api/core';
-import {getGoals as getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
-import {getTeams as getTeams, GetTeamsResponse} from '../lib/api/teams';
-import {getLeagues as getLeagues, GetLeaguesResponse} from '../lib/api/leagues';
+import {getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
+import {getLeagues, GetLeaguesResponse} from '../lib/api/leagues';
+import {getTeams, GetTeamsResponse} from '../lib/api/teams';
 
-import ReactPaginate from 'react-paginate';
 import {useEffect, useState} from 'react';
-import ThemeSelect from '../components/ThemeSelect';
-import {Header} from '../components/Header';
-import {getPreferredTheme, setTheme} from '../lib/utils';
-import {getFixtures, GetFixturesResponse} from '../lib/api/fixtures';
+import ReactPaginate from 'react-paginate';
 import {FixturesList} from '../components/FixturesList';
+import {Header} from '../components/Header';
+import ThemeSelect from '../components/ThemeSelect';
+import {getFixtures, GetFixturesResponse} from '../lib/api/fixtures';
+import {getPreferredTheme, setTheme} from '../lib/utils';
 
 const defaultPagination: Pagination = {skip: 0, limit: 5};
 

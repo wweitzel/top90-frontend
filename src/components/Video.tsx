@@ -1,5 +1,5 @@
-import {Goal} from '../lib/api/goals';
 import {API_BASE_URL} from '../lib/api/core';
+import {Goal} from '../lib/api/goals';
 
 import {useEffect, useState} from 'react';
 import {cloudfrontEnabled} from '../lib/utils';
