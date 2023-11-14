@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 
-import _logoBlack from '../assets/top90logo-black.png';
-import _logoWhite from '../assets/top90logo-white.png';
+import _logoBlack from '../assets/top90logo-black.avif';
+import _logoWhite from '../assets/top90logo-white.avif';
 
 interface HeaderProps {
   selectedTheme: string;
