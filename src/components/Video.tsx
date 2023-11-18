@@ -1,4 +1,4 @@
-import {API_BASE_URL} from '../lib/api/core';
+import {PUBLIC_URL} from '../lib/api/core';
 import {Goal} from '../lib/api/goals';
 
 import {useEffect, useState} from 'react';
@@ -19,7 +19,7 @@ export function Video({goal}: {goal: Goal}) {
   });
 
   function copyShareUrl() {
-    const goalUrl = `${API_BASE_URL}/message_preview/${goal.id}`;
+    const goalUrl = `${PUBLIC_URL}/goals/${goal.id}`;
     navigator.clipboard.writeText(goalUrl);
 
     setButtonText(clickedButtonText);
