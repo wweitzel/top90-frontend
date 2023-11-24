@@ -23,7 +23,7 @@ function Fixture() {
       getFixture(fixtureId).then((data) => {
         setGetFixtureResponse(data);
       });
-      getGoals(undefined, {fixtureId: Number(fixtureId)}).then((data) => {
+      getGoals({skip: 0, limit: 20}, {fixtureId: Number(fixtureId)}).then((data) => {
         setGetGoalsResponse(data);
       });
     }
