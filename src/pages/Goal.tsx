@@ -4,7 +4,7 @@ import {getGoal, GetGoalResponse} from '../lib/api/goals';
 
 import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {Header} from '../components/Header';
+import Header from '../components/Header';
 import {getPreferredTheme} from '../lib/utils';
 
 function Goal() {

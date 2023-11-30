@@ -1,17 +1,16 @@
+import {useEffect, useState} from 'react';
+import ReactPaginate from 'react-paginate';
+import FixturesList from '../components/FixturesList';
+import Header from '../components/Header';
 import Input from '../components/Input';
 import Select from '../components/Select';
+import ThemeSelect from '../components/ThemeSelect';
 import Video from '../components/Video';
 import {Pagination} from '../lib/api/core';
+import {getFixtures, GetFixturesResponse} from '../lib/api/fixtures';
 import {getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
 import {getLeagues, GetLeaguesResponse} from '../lib/api/leagues';
 import {getTeams, GetTeamsResponse} from '../lib/api/teams';
-
-import {useEffect, useState} from 'react';
-import ReactPaginate from 'react-paginate';
-import {FixturesList} from '../components/FixturesList';
-import {Header} from '../components/Header';
-import ThemeSelect from '../components/ThemeSelect';
-import {getFixtures, GetFixturesResponse} from '../lib/api/fixtures';
 import {getPreferredTheme, setTheme} from '../lib/utils';
 
 const defaultPagination: Pagination = {skip: 0, limit: 5};
@@ -19,13 +18,11 @@ const defaultPagination: Pagination = {skip: 0, limit: 5};
 function Goals() {
   const [pagination, setPagination] = useState(defaultPagination);
   const [currentPage, setCurrentPage] = useState(0);
-
   const [selectedLeagueId, setSelectedLeagueId] = useState(0);
   const [selectedTeamId, setSelectedTeamId] = useState<number>();
   const [selectedSeason, setSelectedSeason] = useState<number>();
   const [searchInput, setSearchInput] = useState('');
   const [selectedTheme, setSelectedTheme] = useState(getPreferredTheme());
-
   const [getGoalsResponse, setGetGoalsResponse] = useState<GetGoalsResponse>();
   const [getTeamsResponse, setGetTeamsResponse] = useState<GetTeamsResponse>();
   const [getFixturesResponse, setGetFixturesResponse] = useState<GetFixturesResponse>();
@@ -158,42 +155,39 @@ function Goals() {
         <Header selectedTheme={selectedTheme} onClick={reset}></Header>
 
         <ul className="nav nav-tabs" role="tablist">
-          <li className="nav-item" role="presentation">
+          <li className="nav-item">
             <button
               className="nav-link active"
               id="home-tab"
               data-bs-toggle="tab"
               data-bs-target="#home"
               type="button"
-              role="tab"
               aria-controls="home"
               aria-selected="true"
             >
               Home
             </button>
           </li>
-          <li className="nav-item" role="presentation">
+          <li className="nav-item">
             <button
               className="nav-link"
               id="fixtures-tab"
               data-bs-toggle="tab"
               data-bs-target="#fixtures"
               type="button"
-              role="tab"
               aria-controls="fixtures"
               aria-selected="false"
             >
               Fixtures
             </button>
           </li>
-          <li className="nav-item" role="presentation">
+          <li className="nav-item">
             <button
               className="nav-link"
               id="settings-tab"
               data-bs-toggle="tab"
               data-bs-target="#settings"
               type="button"
-              role="tab"
               aria-controls="settings"
               aria-selected="false"
             >
@@ -249,7 +243,7 @@ function Goals() {
                 ></Select>
               </div>
 
-              <br></br>
+              <br />
 
               <div className="d-flex">
                 <div className="flex-grow-1" style={{flexBasis: '0'}}>
@@ -263,7 +257,7 @@ function Goals() {
                 </div>
               </div>
 
-              <br></br>
+              <br />
             </div>
 
             {getGoalsResponse?.goals?.map((goal) => (
@@ -272,27 +266,29 @@ function Goals() {
               </div>
             ))}
 
-            <br></br>
-            <br></br>
+            <br />
+            <br />
 
             <div className="fixed-bottom d-flex justify-content-center">
-              <ReactPaginate
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={1}
-                marginPagesDisplayed={1}
-                pageCount={pageCount}
-                forcePage={currentPage}
-                nextLabel=">"
-                nextLinkClassName="page-link"
-                previousLabel="<"
-                previousLinkClassName="page-link"
-                pageClassName="page-item"
-                breakClassName="page-item"
-                pageLinkClassName="page-link"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-              />
+              <div className="pagination-container">
+                <ReactPaginate
+                  onPageChange={handlePageClick}
+                  pageRangeDisplayed={1}
+                  marginPagesDisplayed={1}
+                  pageCount={pageCount}
+                  forcePage={currentPage}
+                  nextLabel=">"
+                  nextLinkClassName="page-link"
+                  previousLabel="<"
+                  previousLinkClassName="page-link"
+                  pageClassName="page-item"
+                  breakClassName="page-item"
+                  pageLinkClassName="page-link"
+                  breakLinkClassName="page-link"
+                  containerClassName="pagination"
+                  activeClassName="active"
+                />
+              </div>
             </div>
           </div>
           <div

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import {FixtureRow} from '../components/FixturesList';
-import {Header} from '../components/Header';
+import FixtureRow from '../components/FixtureRow';
+import Header from '../components/Header';
 import Video from '../components/Video';
 import {getFixture, GetFixtureResponse} from '../lib/api/fixtures';
 import {getGoals, GetGoalsResponse} from '../lib/api/goals';
@@ -41,7 +41,7 @@ function Fixture() {
             <Header selectedTheme={getPreferredTheme()} onClick={navigateHome}></Header>
 
             <div className="mb-4">
-              <FixtureRow fixture={getFixtureResponse.fixture}></FixtureRow>
+              <FixtureRow fixture={getFixtureResponse.fixture} />
             </div>
 
             {getGoalsResponse?.goals?.map((goal) => (
