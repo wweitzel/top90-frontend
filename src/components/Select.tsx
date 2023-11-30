@@ -26,9 +26,11 @@ function Select({
   const currentOption = options?.find((option) => option.value == value);
   const [searchText, setSearchText] = useState('');
 
+  const dropdownId = `dropdown-${Math.random().toString(36).substring(7)}`;
+
   return (
     <div className="form-group text-muted" style={{minWidth: '0px', width: '100%'}}>
-      <label className="form-label" htmlFor="select">
+      <label className="form-label" htmlFor={dropdownId}>
         {label}
       </label>
       <div className="d-flex">
@@ -36,7 +38,7 @@ function Select({
           <button
             type="button"
             className="btn btn-secondary dropdown-toggle w-100 text-left shadow-sm rounded-pill border-none text-start text-muted overflow-hidden"
-            id="dropdown"
+            id={dropdownId}
             data-bs-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -52,7 +54,8 @@ function Select({
           <div
             className="dropdown-menu overflow-auto w-100 pt-0 shadow"
             style={{maxHeight: '300px'}}
-            aria-labelledby="dropdown"
+            aria-labelledby={dropdownId}
+            role="menu"
           >
             {showSearchInput && (
               <div style={{padding: '7px 5px'}}>
@@ -64,6 +67,8 @@ function Select({
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   autoComplete="off"
+                  aria-label="Search"
+                  role="search"
                 />
               </div>
             )}
@@ -71,6 +76,8 @@ function Select({
               <button
                 className={`dropdown-item ${!currentOption ? 'active' : ''}`}
                 onClick={() => onChange(0)}
+                aria-selected={!currentOption}
+                role="option"
               >
                 All
               </button>
@@ -94,6 +101,8 @@ function Select({
                     }`}
                     key={option.value}
                     onClick={() => onChange(option.value)}
+                    aria-selected={currentOption && currentOption.value === option.value}
+                    role="option"
                   >
                     {option.displayName}
                   </button>

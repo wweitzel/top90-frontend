@@ -1,25 +1,21 @@
 import {useEffect, useState} from 'react';
 
-import _logoBlack from '../assets/top90logo-black.avif';
-import _logoWhite from '../assets/top90logo-white.avif';
+import logoBlack from '../assets/top90logo-black.avif';
+import logoWhite from '../assets/top90logo-white.avif';
 
 interface HeaderProps {
   selectedTheme: string;
   onClick?: () => void;
 }
 
-export function Header({selectedTheme, onClick}: HeaderProps) {
-  const [logo, setLogo] = useState(_logoBlack);
+const DARK = 'dark';
 
-  function getLogo(theme: string) {
-    if (theme === 'dark') {
-      return _logoWhite;
-    }
-    return _logoBlack;
-  }
+function Header({selectedTheme, onClick}: HeaderProps) {
+  const [logo, setLogo] = useState(logoBlack);
 
   useEffect(() => {
-    setLogo(getLogo(selectedTheme));
+    const logoToDisplay = selectedTheme === DARK ? logoWhite : logoBlack;
+    setLogo(logoToDisplay);
   }, [selectedTheme]);
 
   return (
@@ -28,3 +24,5 @@ export function Header({selectedTheme, onClick}: HeaderProps) {
     </div>
   );
 }
+
+export default Header;
