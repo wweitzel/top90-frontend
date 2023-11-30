@@ -1,3 +1,4 @@
+import 'bootstrap/js/dist/dropdown';
 import {useState} from 'react';
 
 interface Option {
