@@ -6,6 +6,7 @@ import {getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
 import {getLeagues, GetLeaguesResponse} from '../lib/api/leagues';
 import {getTeams, GetTeamsResponse} from '../lib/api/teams';
 
+import 'bootstrap/js/dist/tab';
 import {useEffect, useState} from 'react';
 import ReactPaginate from 'react-paginate';
 import {FixturesList} from '../components/FixturesList';
