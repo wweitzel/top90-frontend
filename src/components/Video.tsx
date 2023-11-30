@@ -98,7 +98,7 @@ function Video({goal}: {goal: Goal}) {
           </button>
         </div>
         <div style={{fontSize: '14px'}} className="text-muted me-2">
-          {formatDateAgo(new Date(goal.createdAt))}
+          {formatDateAgo(new Date(goal.redditPostCreatedAt))}
         </div>
       </div>
     </div>
