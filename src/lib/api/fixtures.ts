@@ -17,6 +17,7 @@ export interface Fixture {
 export interface GetFixturesFilter {
   leagueId?: number;
   todayOnly?: boolean;
+  searchTeam?: string;
 }
 
 export interface GetFixturesResponse {
@@ -27,25 +28,19 @@ export interface GetFixtureResponse {
   fixture: Fixture;
 }
 
-export const getFixtures = async (
-  getGoalsFilter: GetFixturesFilter
-): Promise<GetFixturesResponse> => {
-  const {leagueId, todayOnly} = getGoalsFilter;
-
-  let url = `${API_BASE_URL}/fixtures?`;
-  if (leagueId) {
-    url += `leagueId=${leagueId}`;
+export async function getFixtures(filter?: GetFixturesFilter) {
+  if (!filter) {
+    filter = {};
   }
 
-  if (todayOnly) {
-    url += `todayOnly=${todayOnly}`;
-  }
+  const json = encodeURIComponent(JSON.stringify(filter));
+  const url = `${API_BASE_URL}/fixtures?json=${json}`;
 
   const response = await axios.get<GetFixturesResponse>(url);
   return response.data;
-};
+}
 
-export const getFixture = async (id: string): Promise<GetFixtureResponse> => {
+export async function getFixture(id: string) {
   const response = await axios.get<GetFixtureResponse>(`${API_BASE_URL}/fixtures/${id}`);
   return response.data;
-};
+}

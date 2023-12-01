@@ -25,6 +25,11 @@ export interface GetGoalsFilter {
   fixtureId?: number;
 }
 
+export interface GetGoalsRequest {
+  pagination: Pagination;
+  filter?: GetGoalsFilter;
+}
+
 export interface GetGoalsResponse {
   goals: Goal[];
   total: number;
@@ -34,33 +39,18 @@ export interface GetGoalResponse {
   goal: Goal;
 }
 
-export const getGoals = async (
-  pagination: Pagination = {skip: 0, limit: 5},
-  getGoalsFilter: GetGoalsFilter = {searchTerm: '', leagueId: 0, season: 0, teamId: 0}
-): Promise<GetGoalsResponse> => {
-  let {searchTerm, leagueId, season, teamId, fixtureId} = getGoalsFilter;
-
-  if (!searchTerm) {
-    searchTerm = '';
-  }
-  if (!leagueId) {
-    leagueId = 0;
-  }
-  if (!season) {
-    season = 0;
-  }
-  if (!teamId) {
-    teamId = 0;
-  }
-  if (!fixtureId) {
-    fixtureId = 0;
+export async function getGoals(pagination?: Pagination, filter?: GetGoalsFilter) {
+  if (!pagination) {
+    pagination = {skip: 0, limit: 10};
   }
 
-  const response = await axios.get<GetGoalsResponse>(
-    `${API_BASE_URL}/goals?skip=${pagination.skip}&limit=${pagination.limit}&search=${searchTerm}&leagueId=${leagueId}&season=${season}&teamId=${teamId}&fixtureId=${fixtureId}`
-  );
+  const request: GetGoalsRequest = {pagination, filter};
+  const json = encodeURIComponent(JSON.stringify(request));
+  const url = `${API_BASE_URL}/goals?json=${json}`;
+
+  const response = await axios.get<GetGoalsResponse>(url);
   return response.data;
-};
+}
 
 export const getGoal = async (id: string): Promise<GetGoalResponse> => {
   const response = await axios.get<GetGoalResponse>(`${API_BASE_URL}/goals/${id}`);

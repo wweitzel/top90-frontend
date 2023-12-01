@@ -19,13 +19,23 @@ export interface Teams {
   away: Team;
 }
 
+export interface GetTeamsFilter {
+  leagueId?: number;
+  season?: number;
+}
+
 export interface GetTeamsResponse {
   teams: Team[];
 }
 
-export const getTeams = async (leagueId = 0, season = 0) => {
-  const response = await axios.get<GetTeamsResponse>(
-    `${API_BASE_URL}/teams?leagueId=${leagueId}&season=${season}`
-  );
+export async function getTeams(filter?: GetTeamsFilter) {
+  if (!filter) {
+    filter = {};
+  }
+
+  const json = encodeURIComponent(JSON.stringify(filter));
+  const url = `${API_BASE_URL}/teams?json=${json}`;
+
+  const response = await axios.get<GetTeamsResponse>(url);
   return response.data;
-};
+}
