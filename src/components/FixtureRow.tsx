@@ -12,6 +12,17 @@ function FixtureRow({fixture}: FixtureRowProps) {
     return null;
   }
 
+  const date = new Date(fixture.date);
+
+  function formattedTime(date: Date) {
+    let hours = date.getHours();
+    hours = hours % 12 || 12;
+    let minutes = date.getMinutes().toString();
+    minutes = minutes.padStart(2, '0');
+    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
+    return `${hours}:${minutes} ${ampm}`;
+  }
+
   return (
     <>
       <button
@@ -41,8 +52,8 @@ function FixtureRow({fixture}: FixtureRowProps) {
             </div>
           </div>
           <div className="d-flex flex-column align-items-start">
-            <div>{new Date(fixture.date).toDateString()}</div>
-            <div>{new Date(fixture.date).toLocaleTimeString()}</div>
+            <div>{date.toDateString()}</div>
+            <div>{formattedTime(date)}</div>
           </div>
         </div>
       </button>
