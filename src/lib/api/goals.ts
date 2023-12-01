@@ -41,7 +41,7 @@ export interface GetGoalResponse {
 
 export async function getGoals(pagination?: Pagination, filter?: GetGoalsFilter) {
   if (!pagination) {
-    pagination = {skip: 0, limit: 10};
+    pagination = {skip: 0, limit: 5};
   }
 
   const request: GetGoalsRequest = {pagination, filter};
