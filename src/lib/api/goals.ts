@@ -52,7 +52,7 @@ export async function getGoals(pagination?: Pagination, filter?: GetGoalsFilter)
   return response.data;
 }
 
-export const getGoal = async (id: string): Promise<GetGoalResponse> => {
+export async function getGoal(id: string) {
   const response = await axios.get<GetGoalResponse>(`${API_BASE_URL}/goals/${id}`);
   return response.data;
-};
+}
