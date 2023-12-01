@@ -19,7 +19,7 @@ const defaultPagination: Pagination = {skip: 0, limit: 5};
 function Goals() {
   const [pagination, setPagination] = useState(defaultPagination);
   const [currentPage, setCurrentPage] = useState(0);
-  const [selectedLeagueId, setSelectedLeagueId] = useState(0);
+  const [selectedLeagueId, setSelectedLeagueId] = useState<number>();
   const [selectedTeamId, setSelectedTeamId] = useState<number>();
   const [selectedSeason, setSelectedSeason] = useState<number>();
   const [searchInput, setSearchInput] = useState('');
@@ -86,14 +86,15 @@ function Goals() {
       searchTerm: searchInput,
       leagueId: parseInt(selectedLeagueId),
       season: selectedSeason,
-      teamId: 0,
     };
     setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
-    getTeams(parseInt(selectedLeagueId), selectedSeason).then((data) => setGetTeamsResponse(data));
+    getTeams({leagueId: parseInt(selectedLeagueId), season: selectedSeason}).then((data) =>
+      setGetTeamsResponse(data)
+    );
 
     setSelectedLeagueId(parseInt(selectedLeagueId));
-    setSelectedTeamId(0);
+    setSelectedTeamId(undefined);
     setPagination(defaultPagination);
     setCurrentPage(0);
   }
@@ -135,9 +136,9 @@ function Goals() {
     getGoals().then((data) => setGetGoalsResponse(data));
     getTeams().then((data) => setGetTeamsResponse(data));
 
-    setSelectedLeagueId(0);
-    setSelectedTeamId(0);
-    setSelectedSeason(0);
+    setSelectedLeagueId(undefined);
+    setSelectedTeamId(undefined);
+    setSelectedSeason(undefined);
     setSearchInput('');
     setCurrentPage(0);
     setPagination(defaultPagination);

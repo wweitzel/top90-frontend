@@ -14,8 +14,8 @@ export interface GetLeaguesResponse {
   leagues: League[];
 }
 
-export const getLeagues = async (): Promise<GetLeaguesResponse> => {
+export async function getLeagues() {
   let url = `${API_BASE_URL}/leagues`;
   const response = await axios.get<GetLeaguesResponse>(url);
   return response.data;
-};
+}
