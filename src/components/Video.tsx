@@ -67,18 +67,15 @@ function Video({goal}: {goal: Goal}) {
     return `${CLOUDFRONT_BASE_URL}${s3Key}`;
   }
 
-  function getThumbnailUrl(goal: Goal) {
-    return cloudfrontEnabled() ? getCloudfrontUrl(goal.thumbnailS3Key) : goal.thumbnailPresignedUrl;
-  }
-
   function getVideoUrl(goal: Goal) {
-    return cloudfrontEnabled() ? getCloudfrontUrl(goal.s3ObjectKey) : goal.presignedUrl;
+    const url = cloudfrontEnabled() ? getCloudfrontUrl(goal.s3ObjectKey) : goal.presignedUrl;
+    return url + '#t=0.1';
   }
 
   return (
     <div key={goal.redditPostTitle}>
       <h6>{goal.redditPostTitle}</h6>
-      <video poster={getThumbnailUrl(goal)} className="shadow-sm w-100" controls muted={true}>
+      <video className="shadow-sm w-100" controls muted={true}>
         <source src={getVideoUrl(goal)} type="video/mp4"></source>
       </video>
       <div className="d-flex justify-content-between align-items-center">
