@@ -1,12 +1,12 @@
 import 'bootstrap/js/dist/dropdown';
 import {useEffect, useState} from 'react';
 import {usePrevious} from '../hooks/usePrevious';
+import {useWindowSize} from '../hooks/useWindowSize';
 
 interface Option {
   displayName: string;
   key: any;
   value: any;
-  image?: string;
 }
 
 interface SelectProps {
@@ -34,6 +34,7 @@ function Select({
   const [searchText, setSearchText] = useState('');
   const prevSearchText = usePrevious(searchText);
   const [hadFirstInteraction, setHadFirstInteraction] = useState(false);
+  const {isMobile} = useWindowSize();
 
   const dropdownId = `dropdown-${Math.random().toString(36).substring(7)}`;
 
@@ -78,7 +79,7 @@ function Select({
           </button>
           <div
             className="dropdown-menu overflow-auto w-100 pt-0 shadow"
-            style={{maxHeight: '300px'}}
+            style={{maxHeight: isMobile ? '250px' : '300px'}}
             aria-labelledby={dropdownId}
             role="menu"
           >
