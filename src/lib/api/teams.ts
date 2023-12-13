@@ -22,6 +22,7 @@ export interface Teams {
 export interface GetTeamsFilter {
   leagueId?: number;
   season?: number;
+  searchTerm?: string;
 }
 
 export interface GetTeamsResponse {

@@ -1,18 +1,23 @@
 import 'bootstrap/js/dist/dropdown';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {usePrevious} from '../hooks/usePrevious';
 
 interface Option {
   displayName: string;
-  value: number | string;
+  key: any;
+  value: any;
+  image?: string;
 }
 
 interface SelectProps {
   label?: string;
   options?: Option[];
-  value?: number | string;
+  value?: any;
   onChange: (value: any) => void;
   showSearchInput?: boolean;
+  onSearchChange?: (value: string) => void;
   showAllOption?: boolean;
+  onFirstInteraction?: () => void;
 }
 
 function Select({
@@ -21,12 +26,31 @@ function Select({
   value,
   onChange,
   showSearchInput = false,
+  onSearchChange = () => {},
   showAllOption = true,
+  onFirstInteraction = () => {},
 }: SelectProps) {
   const currentOption = options?.find((option) => option.value == value);
   const [searchText, setSearchText] = useState('');
+  const prevSearchText = usePrevious(searchText);
+  const [hadFirstInteraction, setHadFirstInteraction] = useState(false);
 
   const dropdownId = `dropdown-${Math.random().toString(36).substring(7)}`;
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (searchText || (prevSearchText && prevSearchText.length > 0)) {
+        onSearchChange(searchText);
+      }
+    }, 250);
+    return () => clearTimeout(id);
+  }, [searchText]);
+
+  useEffect(() => {
+    if (hadFirstInteraction) {
+      onFirstInteraction();
+    }
+  }, [hadFirstInteraction]);
 
   return (
     <div className="form-group text-muted" style={{minWidth: '0px', width: '100%'}}>
@@ -36,6 +60,7 @@ function Select({
       <div className="d-flex">
         <div className="dropdown mr-1 w-100">
           <button
+            onClick={() => setHadFirstInteraction(true)}
             type="button"
             className="btn btn-secondary dropdown-toggle w-100 text-left shadow-sm rounded-pill border-none text-start text-muted overflow-hidden"
             id={dropdownId}
@@ -84,9 +109,6 @@ function Select({
             )}
             {options &&
               options
-                .filter((option) =>
-                  searchText ? new RegExp(`${searchText}*`, 'i').test(option.displayName) : option
-                )
                 .sort((option1, option2) =>
                   option1.displayName < option2.displayName
                     ? -1
@@ -99,7 +121,7 @@ function Select({
                     className={`dropdown-item ${
                       currentOption && currentOption.value == option.value ? 'active' : ''
                     }`}
-                    key={option.value}
+                    key={option.key}
                     onClick={() => onChange(option.value)}
                     aria-selected={currentOption && currentOption.value === option.value}
                     role="option"

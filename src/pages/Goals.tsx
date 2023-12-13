@@ -11,6 +11,7 @@ import {Pagination} from '../lib/api/core';
 import {getFixtures, GetFixturesResponse} from '../lib/api/fixtures';
 import {getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
 import {getLeagues, GetLeaguesResponse} from '../lib/api/leagues';
+import {Player, searchPlayers, SearchPlayersResponse} from '../lib/api/players';
 import {getTeams, GetTeamsResponse} from '../lib/api/teams';
 import {getPreferredTheme, setTheme} from '../lib/utils';
 
@@ -21,13 +22,14 @@ function Goals() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedLeagueId, setSelectedLeagueId] = useState<number>();
   const [selectedTeamId, setSelectedTeamId] = useState<number>();
-  const [selectedSeason, setSelectedSeason] = useState<number>();
+  const [selectedPlayer, setSelectedPlayer] = useState<Player>();
   const [searchInput, setSearchInput] = useState('');
   const [selectedTheme, setSelectedTheme] = useState(getPreferredTheme());
   const [getGoalsResponse, setGetGoalsResponse] = useState<GetGoalsResponse>();
   const [getTeamsResponse, setGetTeamsResponse] = useState<GetTeamsResponse>();
   const [getFixturesResponse, setGetFixturesResponse] = useState<GetFixturesResponse>();
   const [getLeaguesResponse, setGetLeaguesResponse] = useState<GetLeaguesResponse>();
+  const [searchPlayesResponse, setSearchPlayersResponse] = useState<SearchPlayersResponse>();
 
   const pageCount = Math.ceil(
     (getGoalsResponse ? getGoalsResponse.total : 0) / (pagination.limit || defaultPagination.limit)
@@ -43,9 +45,6 @@ function Goals() {
     getGoals().then((data) => {
       setGetGoalsResponse(data);
     });
-    getTeams().then((data) => {
-      setGetTeamsResponse(data);
-    });
   }, []);
 
   function handlePageClick(selectedItem: {selected: number}) {
@@ -54,7 +53,6 @@ function Goals() {
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: selectedLeagueId,
-      season: selectedSeason,
       teamId: selectedTeamId,
     };
     setGetGoalsResponse(undefined);
@@ -70,8 +68,8 @@ function Goals() {
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: selectedLeagueId,
-      season: selectedSeason,
       teamId: selectedTeamId,
+      playerId: selectedPlayer?.id,
     };
     setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
@@ -85,16 +83,13 @@ function Goals() {
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: parseInt(selectedLeagueId),
-      season: selectedSeason,
+      teamId: selectedTeamId,
+      playerId: selectedPlayer?.id,
     };
     setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
-    getTeams({leagueId: parseInt(selectedLeagueId), season: selectedSeason}).then((data) =>
-      setGetTeamsResponse(data)
-    );
 
     setSelectedLeagueId(parseInt(selectedLeagueId));
-    setSelectedTeamId(undefined);
     setPagination(defaultPagination);
     setCurrentPage(0);
   }
@@ -104,8 +99,8 @@ function Goals() {
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: selectedLeagueId,
-      season: selectedSeason,
       teamId: parseInt(selectedTeamId),
+      playerId: selectedPlayer?.id,
     };
     setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
@@ -115,30 +110,39 @@ function Goals() {
     setCurrentPage(0);
   }
 
-  function handleSelectedSeasonChange(value: string) {
-    const selectedSeason = value;
+  function handleSelectedPlayerChange(player: Player) {
     const getGoalsFilter: GetGoalsFilter = {
       searchTerm: searchInput,
       leagueId: selectedLeagueId,
-      season: parseInt(selectedSeason),
       teamId: selectedTeamId,
+      playerId: player.id,
     };
+
     setGetGoalsResponse(undefined);
     getGoals(defaultPagination, getGoalsFilter).then((data) => setGetGoalsResponse(data));
-
-    setSelectedSeason(parseInt(selectedSeason));
+    setSelectedPlayer(player);
     setPagination(defaultPagination);
     setCurrentPage(0);
+  }
+
+  function handleTeamSearchInputChange(value: string) {
+    getTeams({searchTerm: value}).then((data) => {
+      setGetTeamsResponse(data);
+    });
+  }
+
+  function handlePlayerSearchInputChange(value: string) {
+    searchPlayers(value).then((data) => {
+      setSearchPlayersResponse(data);
+    });
   }
 
   function reset() {
     setGetGoalsResponse(undefined);
     getGoals().then((data) => setGetGoalsResponse(data));
-    getTeams().then((data) => setGetTeamsResponse(data));
 
     setSelectedLeagueId(undefined);
     setSelectedTeamId(undefined);
-    setSelectedSeason(undefined);
     setSearchInput('');
     setCurrentPage(0);
     setPagination(defaultPagination);
@@ -210,11 +214,11 @@ function Goals() {
                 <Select
                   label={'League'}
                   options={[
-                    {value: 1, displayName: 'World Cup'},
-                    {value: 2, displayName: 'Champions League'},
-                    {value: 3, displayName: 'Europa League'},
-                    {value: 39, displayName: 'Premier League'},
-                    {value: 253, displayName: 'Major League Soccer'},
+                    {key: 1, value: 1, displayName: 'World Cup'},
+                    {key: 2, value: 2, displayName: 'Champions League'},
+                    {key: 3, value: 3, displayName: 'Europa League'},
+                    {key: 39, value: 39, displayName: 'Premier League'},
+                    {key: 253, value: 253, displayName: 'Major League Soccer'},
                   ]}
                   value={selectedLeagueId}
                   onChange={handleSelectedLeagueChange}
@@ -225,23 +229,35 @@ function Goals() {
                     getTeamsResponse &&
                     getTeamsResponse.teams &&
                     getTeamsResponse.teams.map((team) => ({
+                      key: team.id,
                       value: team.id,
                       displayName: team.name,
                     }))
                   }
                   value={selectedTeamId}
                   onChange={handleSelectedTeamChange}
+                  onSearchChange={handleTeamSearchInputChange}
+                  onFirstInteraction={() => getTeams().then((data) => setGetTeamsResponse(data))}
                   showSearchInput
                 ></Select>
                 <Select
-                  label={'Season'}
-                  options={[
-                    {value: '2023', displayName: '2023'},
-                    {value: '2022', displayName: '2022'},
-                    {value: '2021', displayName: '2021'},
-                  ]}
-                  value={selectedSeason}
-                  onChange={handleSelectedSeasonChange}
+                  label={'Player'}
+                  options={
+                    searchPlayesResponse &&
+                    searchPlayesResponse.players &&
+                    searchPlayesResponse.players.map((player) => ({
+                      key: player.id,
+                      value: player,
+                      displayName: player.name,
+                    }))
+                  }
+                  value={selectedPlayer}
+                  onChange={handleSelectedPlayerChange}
+                  onSearchChange={handlePlayerSearchInputChange}
+                  onFirstInteraction={() =>
+                    searchPlayers('').then((data) => setSearchPlayersResponse(data))
+                  }
+                  showSearchInput
                 ></Select>
               </div>
 
