@@ -55,10 +55,6 @@ function Video({goal}: {goal: Goal}) {
     }
   }
 
-  function navigateToRedditPost(postId: string) {
-    window.open(`${REDDIT_COMMENTS_BASE_URL}${postId}`, '_blank');
-  }
-
   function getPostId(fullName: string) {
     return fullName.substring(3, fullName.length);
   }
@@ -90,12 +86,13 @@ function Video({goal}: {goal: Goal}) {
           >
             {buttonText}
           </button>
-          <button
-            onClick={() => navigateToRedditPost(getPostId(goal.redditFullname))}
+          <a
+            href={`${REDDIT_COMMENTS_BASE_URL}${getPostId(goal.redditFullname)}`}
+            target="_blank"
             className="btn btn-outline-secondary btn-sm border-0"
           >
             Comments
-          </button>
+          </a>
         </div>
         <div style={{fontSize: '14px'}} className="text-muted me-2">
           {formatDateAgo(new Date(goal.redditPostCreatedAt))}

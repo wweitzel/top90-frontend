@@ -1,4 +1,3 @@
-import {useNavigate} from 'react-router-dom';
 import {Fixture} from '../lib/api/fixtures';
 
 interface FixtureRowProps {
@@ -6,8 +5,6 @@ interface FixtureRowProps {
 }
 
 function FixtureRow({fixture}: FixtureRowProps) {
-  const navigate = useNavigate();
-
   if (!fixture) {
     return null;
   }
@@ -25,10 +22,10 @@ function FixtureRow({fixture}: FixtureRowProps) {
 
   return (
     <>
-      <button
+      <a
         className="btn btn-secondary d-flex align-items-center border w-100 shadow-sm text-muted mb-2"
         key={fixture.id}
-        onClick={() => navigate(`/fixtures/${fixture.id}`)}
+        href={`/fixtures/${fixture.id}`}
       >
         <div className="d-flex justify-content-between h-100 w-100">
           <div className="d-flex flex-column">
@@ -56,7 +53,7 @@ function FixtureRow({fixture}: FixtureRowProps) {
             <div>{formattedTime(date)}</div>
           </div>
         </div>
-      </button>
+      </a>
     </>
   );
 }
