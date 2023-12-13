@@ -143,6 +143,7 @@ function Goals() {
 
     setSelectedLeagueId(undefined);
     setSelectedTeamId(undefined);
+    setSelectedPlayer(undefined);
     setSearchInput('');
     setCurrentPage(0);
     setPagination(defaultPagination);
