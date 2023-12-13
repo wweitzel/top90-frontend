@@ -23,6 +23,7 @@ export interface GetGoalsFilter {
   season?: number;
   teamId?: number;
   fixtureId?: number;
+  playerId?: number;
 }
 
 export interface GetGoalsRequest {

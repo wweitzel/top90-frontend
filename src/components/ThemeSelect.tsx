@@ -12,8 +12,8 @@ function ThemeSelect({onChange}: ThemeSelectProps) {
     <Select
       label="Theme"
       options={[
-        {value: 'dark', displayName: 'Dark'},
-        {value: 'light', displayName: 'Light'},
+        {key: 'dark', value: 'dark', displayName: 'Dark'},
+        {key: 'light', value: 'light', displayName: 'Light'},
       ]}
       value={preferredTheme}
       onChange={onChange}
