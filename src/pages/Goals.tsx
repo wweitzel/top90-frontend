@@ -54,6 +54,7 @@ function Goals() {
       searchTerm: searchInput,
       leagueId: selectedLeagueId,
       teamId: selectedTeamId,
+      playerId: selectedPlayer?.id,
     };
     setGetGoalsResponse(undefined);
     getGoals({...pagination, skip: newOffset}, getGoalsFilter).then((data) =>
