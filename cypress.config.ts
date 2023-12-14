@@ -10,5 +10,6 @@ export default defineConfig({
     baseUrl: 'http://localhost:5173',
     supportFile: 'e2e/e2e.ts',
     specPattern: 'e2e/*.cy.{ts,tsx}',
+    screenshotOnRunFailure: false,
   },
 });
