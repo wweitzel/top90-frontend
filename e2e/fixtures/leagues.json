@@ -1,0 +1,156 @@
+{
+  "leagues": [
+    {
+      "id": 78,
+      "name": "Bundesliga",
+      "type": "League",
+      "logo": "https://media.api-sports.io/football/leagues/78.png",
+      "createdAt": "2022-10-07T03:22:21.853241Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 45,
+      "name": "FA Cup",
+      "type": "Cup",
+      "logo": "https://media-4.api-sports.io/football/leagues/45.png",
+      "createdAt": "2023-12-06T23:30:47.77497Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 10,
+      "name": "Friendlies",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/10.png",
+      "createdAt": "2022-11-06T04:06:20.232371Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 140,
+      "name": "La Liga",
+      "type": "League",
+      "logo": "https://media.api-sports.io/football/leagues/140.png",
+      "createdAt": "2022-10-07T03:22:21.210759Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 48,
+      "name": "League Cup",
+      "type": "Cup",
+      "logo": "https://media-4.api-sports.io/football/leagues/48.png",
+      "createdAt": "2023-12-06T23:30:48.476787Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 61,
+      "name": "Ligue 1",
+      "type": "League",
+      "logo": "https://media.api-sports.io/football/leagues/61.png",
+      "createdAt": "2022-10-07T03:22:22.291061Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 253,
+      "name": "Major League Soccer",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/253.png",
+      "createdAt": "2023-09-04T03:04:03.345334Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 39,
+      "name": "Premier League",
+      "type": "League",
+      "logo": "https://media.api-sports.io/football/leagues/39.png",
+      "createdAt": "2022-10-07T03:22:20.24166Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 135,
+      "name": "Serie A",
+      "type": "League",
+      "logo": "https://media.api-sports.io/football/leagues/135.png",
+      "createdAt": "2022-10-07T03:22:20.73785Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 2,
+      "name": "UEFA Champions League",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/2.png",
+      "createdAt": "2022-10-07T03:22:22.985097Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 3,
+      "name": "UEFA Europa League",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/3.png",
+      "createdAt": "2022-10-07T03:22:23.42805Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 1,
+      "name": "World Cup",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/1.png",
+      "createdAt": "2022-10-07T03:22:23.901111Z",
+      "currentSeason": 2022
+    },
+    {
+      "id": 29,
+      "name": "World Cup - Qualification Africa",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/29.png",
+      "createdAt": "2022-11-06T02:53:46.442972Z",
+      "currentSeason": 2023
+    },
+    {
+      "id": 30,
+      "name": "World Cup - Qualification Asia",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/30.png",
+      "createdAt": "2022-11-06T02:53:46.949013Z",
+      "currentSeason": 2026
+    },
+    {
+      "id": 31,
+      "name": "World Cup - Qualification CONCACAF",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/31.png",
+      "createdAt": "2022-11-06T02:53:44.389636Z",
+      "currentSeason": 2022
+    },
+    {
+      "id": 32,
+      "name": "World Cup - Qualification Europe",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/32.png",
+      "createdAt": "2022-11-06T02:53:44.901505Z",
+      "currentSeason": 2020
+    },
+    {
+      "id": 37,
+      "name": "World Cup - Qualification Intercontinental Play-offs",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/37.png",
+      "createdAt": "2022-11-06T02:53:43.911091Z",
+      "currentSeason": 2022
+    },
+    {
+      "id": 33,
+      "name": "World Cup - Qualification Oceania",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/33.png",
+      "createdAt": "2022-11-06T02:53:45.415948Z",
+      "currentSeason": 2022
+    },
+    {
+      "id": 34,
+      "name": "World Cup - Qualification South America",
+      "type": "Cup",
+      "logo": "https://media.api-sports.io/football/leagues/34.png",
+      "createdAt": "2022-11-06T02:53:45.927833Z",
+      "currentSeason": 2026
+    }
+  ]
+}

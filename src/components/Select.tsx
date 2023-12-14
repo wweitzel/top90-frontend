@@ -36,7 +36,7 @@ function Select({
   const [hadFirstInteraction, setHadFirstInteraction] = useState(false);
   const {isMobile} = useWindowSize();
 
-  const dropdownId = `dropdown-${Math.random().toString(36).substring(7)}`;
+  const dropdownId = `${label}-dropdown`;
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -93,7 +93,7 @@ function Select({
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   autoComplete="off"
-                  aria-label="Search"
+                  aria-label={`${label} search`}
                   role="search"
                 />
               </div>

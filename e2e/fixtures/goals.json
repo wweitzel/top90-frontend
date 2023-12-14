@@ -1,0 +1,70 @@
+{
+  "goals": [
+    {
+      "id": "a6edb899d55b41cbb538660a2f9efda7",
+      "redditFullname": "t3_18fejfe",
+      "redditLinkUrl": "https://streamin.one/v/d4354676",
+      "redditPostTitle": "Barcelona 2 - [4] Girona - Stuani 90",
+      "redditPostCreatedAt": "2023-12-10T21:57:07Z",
+      "createdAt": "2023-12-10T21:58:28.655731Z",
+      "fixtureId": 1038102,
+      "s3ObjectKey": "2023-12-10/a5aef8d2522247a19b23419bcf9da627.mp4",
+      "presignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/a5aef8d2522247a19b23419bcf9da627.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=1c99305bfb6655a595ad870005279358a1fda5ca8ce3d5743fa361330954f465",
+      "thumbnailS3Key": "2023-12-10/38db3e882d594fffbb0a81c4952ba45f.jpg",
+      "thumbnailPresignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/38db3e882d594fffbb0a81c4952ba45f.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=4c95d053a06ecf78a02506fb78536196d92c09efaac731be27effb2b9fcdb65f"
+    },
+    {
+      "id": "66a64044528a43b1a757f4e8b7d24015",
+      "redditFullname": "t3_18fe7gm",
+      "redditLinkUrl": "https://streamin.one/v/99d03b0e",
+      "redditPostTitle": "Barcelona 1 - [3] Girona - Valery 80",
+      "redditPostCreatedAt": "2023-12-10T21:42:20Z",
+      "createdAt": "2023-12-10T21:48:18.900455Z",
+      "fixtureId": 1038102,
+      "s3ObjectKey": "2023-12-10/8142053dd94b4b91b98c474658a2a43f.mp4",
+      "presignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/8142053dd94b4b91b98c474658a2a43f.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=7152af3863c18c8bbe395fc13ad11a790dd95aa35f12378ee240f6654406e876",
+      "thumbnailS3Key": "2023-12-10/6c345764c95b45bbac9be9757b001aa9.jpg",
+      "thumbnailPresignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/6c345764c95b45bbac9be9757b001aa9.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=7d4691d4e383a39465947e2789706538bdcc0018e19edb9cde62f9814f97ae3b"
+    },
+    {
+      "id": "42f980c50de04e83b00bb30fe2f67b96",
+      "redditFullname": "t3_18fe27h",
+      "redditLinkUrl": "https://streamin.one/v/94940bda",
+      "redditPostTitle": "Romelu Lukaku (Roma) straight red card against Fiorentina 87'",
+      "redditPostCreatedAt": "2023-12-10T21:35:59Z",
+      "createdAt": "2023-12-10T21:49:05.942557Z",
+      "fixtureId": 1052401,
+      "s3ObjectKey": "2023-12-10/b4f19f161b644c12a9c8e69b8a4bacff.mp4",
+      "presignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/b4f19f161b644c12a9c8e69b8a4bacff.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=6d55e04318e58820479f416e27f9f382b3c3405aa62dba8a910d6e1415f4aef3",
+      "thumbnailS3Key": "2023-12-10/994d73fd62314056ac93aa1b83872540.jpg",
+      "thumbnailPresignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/994d73fd62314056ac93aa1b83872540.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=2e70561027a82186486c0343af1701bfee338b20689a7241fce6c6690c7c0106"
+    },
+    {
+      "id": "399ede83427d4ba6945b147d87fa4b95",
+      "redditFullname": "t3_18fdvmq",
+      "redditLinkUrl": "https://streamin.one/v/855a7353",
+      "redditPostTitle": "Jonathan Clauss (Marseille) straight red card against Lorient 80'",
+      "redditPostCreatedAt": "2023-12-10T21:27:55Z",
+      "createdAt": "2023-12-10T21:34:45.650708Z",
+      "fixtureId": 1045010,
+      "s3ObjectKey": "2023-12-10/9c6946ac302548329dfc0fdf8a67a044.mp4",
+      "presignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/9c6946ac302548329dfc0fdf8a67a044.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=c6f5e2522d5eae69453bdc5e9e33229a073c4161b9a1472efc125858e9e03a29",
+      "thumbnailS3Key": "2023-12-10/9e6b93a2989442feb001776dac1a6df5.jpg",
+      "thumbnailPresignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/9e6b93a2989442feb001776dac1a6df5.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=f4f14c649796a081fd0ab9df9b3cb10811486bcdcdfd72bc6e9a3eca90ef1d9e"
+    },
+    {
+      "id": "cba0d458fedf4b75adf036ebf2465a3c",
+      "redditFullname": "t3_18fdlh1",
+      "redditLinkUrl": "https://streamin.one/v/e425e3c2",
+      "redditPostTitle": "Roma 1-[1] Fiorentina - Lucas Martinez Quarta 66'",
+      "redditPostCreatedAt": "2023-12-10T21:15:04Z",
+      "createdAt": "2023-12-10T21:16:15.085583Z",
+      "fixtureId": 1052401,
+      "s3ObjectKey": "2023-12-10/8122e2ec09c84acca8dca229a049189b.mp4",
+      "presignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/8122e2ec09c84acca8dca229a049189b.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=d5c85519417d4cd5429f37fd300f460538345a7d0ad0b8d0f72a2cd694991f91",
+      "thumbnailS3Key": "2023-12-10/6b2f8441d62f4c48ade9c7c10e191f35.jpg",
+      "thumbnailPresignedUrl": "https://reddit-soccer-goals.s3.amazonaws.com/2023-12-10/6b2f8441d62f4c48ade9c7c10e191f35.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAROYRWTDOHOZIUNNZ%2F20231211%2Fus-east-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20231211T041814Z\u0026X-Amz-Expires=600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=e6ec552d7ce4da66c8cb06ee90cd4ef6eb214573bf941c360d815bb71b450dac"
+    }
+  ],
+  "total": 7566
+}

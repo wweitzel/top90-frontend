@@ -281,7 +281,7 @@ function Goals() {
             </div>
 
             {getGoalsResponse?.goals?.map((goal) => (
-              <div key={goal.id} className="mb-4">
+              <div key={goal.id} data-cy="goal-container" className="mb-4">
                 <Video goal={goal}></Video>
               </div>
             ))}
