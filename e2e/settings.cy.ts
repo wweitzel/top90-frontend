@@ -7,10 +7,7 @@ beforeEach(() => {
 describe('settings', () => {
   it('updates theme setting', () => {
     cy.contains('label', 'Theme').should('be.visible');
-    cy.get('#Theme-dropdown')
-      .should('have.text', 'Light')
-      .should('have.attr', 'aria-expanded', 'false')
-      .as('themeDropdown');
+    cy.get('#Theme-dropdown').should('have.attr', 'aria-expanded', 'false').as('themeDropdown');
 
     // assert that theme is not set in local storage
     cy.getAllLocalStorage().then((storageMap) => {

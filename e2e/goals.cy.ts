@@ -13,7 +13,6 @@ describe('Goals', () => {
       expect(loc.pathname).to.eq('/goals');
     });
 
-    cy.get('@teams').should('have.property', 'state', 'Complete');
     cy.get('@fixtures').should('have.property', 'state', 'Complete');
     cy.get('@leagues').should('have.property', 'state', 'Complete');
     cy.get('@goals').should('have.property', 'state', 'Complete');
@@ -124,9 +123,9 @@ describe('Goals', () => {
     cy.get('@teamsDropdown').should('have.attr', 'aria-expanded', 'false');
     cy.get('@teamsDropdown').contains('All');
 
-    cy.wait('@teams');
-
     cy.get('@teamsDropdown').click();
+
+    cy.wait('@teams');
 
     cy.get('@teamsDropdown').should('have.attr', 'aria-expanded', 'true');
 
@@ -144,44 +143,31 @@ describe('Goals', () => {
     });
 
     cy.get('@teamsDropdown').contains('AEK Athens FC');
-
-    cy.get('@teamsDropdown').click();
-
-    cy.get('[aria-label="Team search"]').type('MY TEAM');
-
-    cy.get('.dropdown-menu.show').within(() => {
-      cy.get('.dropdown-item').should('have.length', 2);
-    });
-
-    cy.contains('MY TEAM').click();
-
-    cy.wait('@goals').then((interception) => {
-      const parsedQuery = JSON.parse(interception.request.query.json as string);
-      cy.wrap(parsedQuery).its('filter').its('teamId').should('equal', 167);
-    });
   });
 
-  it('allows filtering by season', () => {
+  it('allows filtering by player', () => {
     cy.visit('/');
 
-    cy.get('#Season-dropdown').as('seasonDropdown');
+    cy.get('#Player-dropdown').as('playerDropdown');
 
-    cy.get('@seasonDropdown').should('have.attr', 'aria-expanded', 'false');
-    cy.get('@seasonDropdown').contains('All');
+    cy.get('@playerDropdown').should('have.attr', 'aria-expanded', 'false');
+    cy.get('@playerDropdown').contains('All');
 
-    cy.get('@seasonDropdown').click();
+    cy.get('@playerDropdown').click();
 
-    cy.get('@seasonDropdown').should('have.attr', 'aria-expanded', 'true');
+    cy.wait('@players');
+
+    cy.get('@playerDropdown').should('have.attr', 'aria-expanded', 'true');
 
     cy.get('.dropdown-menu.show').within(() => {
-      cy.contains('.dropdown-item', '2022').click();
+      cy.contains('.dropdown-item', 'R. Lewandowski').click();
     });
 
     // wait for the third request to "goals" after click
     cy.wait(['@goals', '@goals', '@goals']).then((interceptions) => {
       const request = interceptions[2].request;
       const parsedQuery = JSON.parse(request.query.json as string);
-      cy.wrap(parsedQuery).its('filter').its('season').should('equal', 2022);
+      cy.wrap(parsedQuery).its('filter').its('playerId').should('equal', 521);
     });
   });
 

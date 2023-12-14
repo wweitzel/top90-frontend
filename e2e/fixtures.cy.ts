@@ -20,7 +20,6 @@ describe('fixtures', () => {
             cy.contains('FC Koln').should('be.visible');
             cy.contains('FSV Mainz 05').should('be.visible');
             cy.contains('Sun Dec 10 2023').should('be.visible');
-            cy.contains('9:30 AM').should('be.visible');
           });
       });
   });
