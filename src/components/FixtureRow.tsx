@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {Fixture} from '../lib/api/fixtures';
 
 interface FixtureRowProps {
@@ -22,10 +23,10 @@ function FixtureRow({fixture}: FixtureRowProps) {
 
   return (
     <>
-      <a
+      <Link
         className="btn btn-secondary d-flex align-items-center border w-100 shadow-sm text-muted mb-2"
         key={fixture.id}
-        href={`/fixtures/${fixture.id}`}
+        to={`/fixtures/${fixture.id}`}
       >
         <div className="d-flex justify-content-between h-100 w-100">
           <div className="d-flex flex-column">
@@ -53,7 +54,7 @@ function FixtureRow({fixture}: FixtureRowProps) {
             <div>{formattedTime(date)}</div>
           </div>
         </div>
-      </a>
+      </Link>
     </>
   );
 }
