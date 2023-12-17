@@ -26,7 +26,7 @@ function FixturesList({fixtures, leagues}: FixturesListProps) {
       {filteredLeagues.map((league) => (
         <div key={league.id} className="w-100" data-cy="fixture-group">
           <div className="d-flex mb-3 mt-4 align-items-center">
-            <img src={league.logo} alt="League Logo" className="me-2" height={25}></img>
+            <img src={league.logo} alt="League Logo" className="me-2" height={25} width={25}></img>
             <div>{league.name}</div>
           </div>
           <>
