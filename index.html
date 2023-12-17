@@ -29,13 +29,13 @@
       if (storedTheme) {
         document.documentElement.setAttribute('data-bs-theme', storedTheme);
       } else {
-        let preferredTheme = 'light'
+        let preferredTheme = 'light';
 
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          preferredTheme = 'dark'
+          preferredTheme = 'dark';
         }
 
-        document.documentElement.setAttribute('data-bs-theme', preferredTheme)
+        document.documentElement.setAttribute('data-bs-theme', preferredTheme);
       }
     </script>
   </head>
