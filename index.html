@@ -22,6 +22,12 @@
       Learn how to configure a non-root public URL by running `bun run build`.
     -->
     <title>top90.io</title>
+    <script>
+      let storedTheme = localStorage.getItem('top90-theme');
+      if (storedTheme) {
+        document.documentElement.setAttribute('data-bs-theme', storedTheme);
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
