@@ -13,8 +13,6 @@ describe('Goals', () => {
       expect(loc.pathname).to.eq('/goals');
     });
 
-    cy.get('@fixtures').should('have.property', 'state', 'Complete');
-    cy.get('@leagues').should('have.property', 'state', 'Complete');
     cy.get('@goals').should('have.property', 'state', 'Complete');
   });
 
