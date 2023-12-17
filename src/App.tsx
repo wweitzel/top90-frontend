@@ -3,9 +3,7 @@ import Fixture from './pages/Fixture';
 import Goal from './pages/Goal';
 import Goals from './pages/Goals';
 
-import {useEffect} from 'react';
 import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
-import {getPreferredTheme, setTheme} from './lib/utils';
 
 const router = createBrowserRouter([
   {
@@ -31,11 +29,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  useEffect(() => {
-    const preferredTheme = getPreferredTheme();
-    setTheme(preferredTheme);
-  }, []);
-
   return <RouterProvider router={router} />;
 }
 
