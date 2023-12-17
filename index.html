@@ -23,6 +23,8 @@
     -->
     <title>top90.io</title>
     <script>
+      // We need to load the stored theme in before the body loads in order to
+      // avoid flashing from light to dark theme.
       let storedTheme = localStorage.getItem('top90-theme');
       if (storedTheme) {
         document.documentElement.setAttribute('data-bs-theme', storedTheme);
