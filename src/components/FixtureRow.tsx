@@ -36,8 +36,6 @@ function FixtureRow({fixture}: FixtureRowProps) {
                 src={fixture.teams.home.logo}
                 alt="Home team logo"
                 style={{maxWidth: '20px'}}
-                width={20}
-                height={20}
               ></img>
               <div>{fixture.teams.home.name}</div>
             </div>
@@ -47,8 +45,6 @@ function FixtureRow({fixture}: FixtureRowProps) {
                 src={fixture.teams.away.logo}
                 alt="Away team logo"
                 style={{maxWidth: '20px'}}
-                width={20}
-                height={20}
               ></img>
               <div>{fixture.teams.away.name}</div>
             </div>
