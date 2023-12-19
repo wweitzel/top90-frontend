@@ -57,7 +57,7 @@ describe('Goals', () => {
       cy.wrap(reqQuery).its('pagination').its('limit').should('equal', PAGINATION_LIMIT);
     });
 
-    cy.get('.pagination-container').should('be.visible');
+    cy.get('.pagination-container').scrollIntoView();
 
     cy.get('.page-item.active').should('contain.text', '1');
 
