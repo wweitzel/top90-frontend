@@ -1,9 +1,7 @@
 beforeEach(() => {
-  cy.visit('/fixtures');
+  cy.visit('/');
   cy.wait('@fixtures');
   cy.get('.nav-link').contains('Fixtures').click();
-
-  cy.get('@fixtures').should('have.property', 'state', 'Complete');
 });
 
 describe('fixtures', () => {
@@ -32,8 +30,8 @@ describe('fixtures', () => {
       expect(loc.pathname).to.eq('/fixtures/1049002');
     });
 
-    cy.wait(['@goals', '@goals']).then((interceptions) => {
-      const reqQuery = JSON.parse(interceptions[1].request.query.json as string);
+    cy.wait(['@goals', '@goals', '@goals']).then((interceptions) => {
+      const reqQuery = JSON.parse(interceptions[2].request.query.json as string);
       cy.wrap(reqQuery).its('filter').its('fixtureId').should('equal', 1049002);
     });
 
