@@ -34,15 +34,25 @@ body {
   max-width: 800px;
 }
 
-.fade-in {
-  animation: fadeIn 0.5s;
+/* These classes are for CSSTransition */
+.fade-enter {
+  opacity: 0;
+  transform: translate(0, 25px);
+  z-index: 1;
 }
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  transition: opacity 50ms ease-in, transform 100ms ease;
+}
+.fade-exit {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transform: translate(0, 30px);
+
+  transition: opacity 50ms ease-out, transform 100ms ease;
 }

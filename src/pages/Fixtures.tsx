@@ -17,7 +17,7 @@ function Fixtures() {
   }, []);
 
   return (
-    <div className="fade-in" id="fixtures" role="tabpanel" aria-labelledby="fixtures-tab">
+    <div id="fixtures" role="tabpanel" aria-labelledby="fixtures-tab">
       <div className="mb-4">
         <FixturesList
           fixtures={getFixturesResponse?.fixtures}
