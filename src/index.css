@@ -44,7 +44,9 @@ body {
   opacity: 1;
   transform: translate(0, 0);
 
-  transition: opacity 50ms ease-in, transform 100ms ease;
+  transition:
+    opacity 50ms ease-in,
+    transform 100ms ease;
 }
 .fade-exit {
   opacity: 1;
@@ -54,5 +56,7 @@ body {
   opacity: 0;
   transform: translate(0, 30px);
 
-  transition: opacity 50ms ease-out, transform 100ms ease;
+  transition:
+    opacity 50ms ease-out,
+    transform 100ms ease;
 }
