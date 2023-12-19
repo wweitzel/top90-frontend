@@ -1,6 +1,7 @@
 import 'bootstrap/js/dist/tab';
 import {useEffect, useState} from 'react';
 import ReactPaginate from 'react-paginate';
+import {useOutletContext} from 'react-router-dom';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Video from '../components/Video';
@@ -11,7 +12,7 @@ import {getTeams, GetTeamsResponse} from '../lib/api/teams';
 
 const defaultPagination: Pagination = {skip: 0, limit: 5};
 
-function Goals({setResetFn}: {setResetFn: React.Dispatch<Function>}) {
+function Goals() {
   const [pagination, setPagination] = useState(defaultPagination);
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedLeagueId, setSelectedLeagueId] = useState<number>();
@@ -21,6 +22,7 @@ function Goals({setResetFn}: {setResetFn: React.Dispatch<Function>}) {
   const [getGoalsResponse, setGetGoalsResponse] = useState<GetGoalsResponse>();
   const [getTeamsResponse, setGetTeamsResponse] = useState<GetTeamsResponse>();
   const [searchPlayersResponse, setSearchPlayersResponse] = useState<SearchPlayersResponse>();
+  const [_, setResetFn] = useOutletContext<[Function, React.Dispatch<Function>]>();
 
   const pageCount = Math.ceil(
     (getGoalsResponse ? getGoalsResponse.total : 0) / (pagination.limit || defaultPagination.limit)
@@ -137,7 +139,7 @@ function Goals({setResetFn}: {setResetFn: React.Dispatch<Function>}) {
   }
 
   return (
-    <div id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div className="fade-in" id="home" role="tabpanel" aria-labelledby="home-tab">
       <div className="mt-3">
         <div className="d-flex">
           <Select
