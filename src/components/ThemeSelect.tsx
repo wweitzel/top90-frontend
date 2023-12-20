@@ -1,4 +1,3 @@
-import {Theme} from '../hooks/useTheme';
 import Select from './Select';
 
 interface ThemeSelectProps {

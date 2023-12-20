@@ -139,7 +139,7 @@ function Goals() {
   }
 
   return (
-    <div className="fade-in" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div id="home" role="tabpanel" aria-labelledby="home-tab">
       <div className="mt-3">
         <div className="d-flex">
           <Select
@@ -219,25 +219,27 @@ function Goals() {
       <br />
 
       <div className="fixed-bottom d-flex justify-content-center">
-        <div className="pagination-container">
-          <ReactPaginate
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={1}
-            marginPagesDisplayed={1}
-            pageCount={pageCount}
-            forcePage={currentPage}
-            nextLabel=">"
-            nextLinkClassName="page-link"
-            previousLabel="<"
-            previousLinkClassName="page-link"
-            pageClassName="page-item"
-            breakClassName="page-item"
-            pageLinkClassName="page-link"
-            breakLinkClassName="page-link"
-            containerClassName="pagination"
-            activeClassName="active"
-          />
-        </div>
+        {getGoalsResponse?.goals && getGoalsResponse?.goals.length > 0 && (
+          <div className="pagination-container">
+            <ReactPaginate
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={1}
+              marginPagesDisplayed={1}
+              pageCount={pageCount}
+              forcePage={currentPage}
+              nextLabel=">"
+              nextLinkClassName="page-link"
+              previousLabel="<"
+              previousLinkClassName="page-link"
+              pageClassName="page-item"
+              breakClassName="page-item"
+              pageLinkClassName="page-link"
+              breakLinkClassName="page-link"
+              containerClassName="pagination"
+              activeClassName="active"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

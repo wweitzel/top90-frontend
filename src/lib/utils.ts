@@ -1,5 +1,3 @@
-import {Theme} from '../hooks/useTheme';
-
 export function getPreferredTheme(): Theme {
   let storedTheme = localStorage.getItem('top90-theme');
   if (storedTheme) {

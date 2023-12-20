@@ -1,8 +1,6 @@
 import {createContext, useContext, useState} from 'react';
 import {getPreferredTheme, setDocumentTheme} from '../lib/utils';
 
-export type Theme = 'dark' | 'light';
-
 interface ThemeContext {
   theme: Theme;
   setTheme: (theme: Theme) => void;
