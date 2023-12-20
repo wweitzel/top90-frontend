@@ -1,5 +1,5 @@
 beforeEach(() => {
-  cy.visit('/');
+  cy.visit('/settings');
 
   cy.get('.nav-link').contains('Settings').click();
 });

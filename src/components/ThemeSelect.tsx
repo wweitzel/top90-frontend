@@ -1,13 +1,11 @@
-import {getPreferredTheme} from '../lib/utils';
 import Select from './Select';
 
 interface ThemeSelectProps {
+  theme: Theme;
   onChange: (value: string) => void;
 }
 
-function ThemeSelect({onChange}: ThemeSelectProps) {
-  const preferredTheme = getPreferredTheme();
-
+function ThemeSelect({theme, onChange}: ThemeSelectProps) {
   return (
     <Select
       label="Theme"
@@ -15,7 +13,7 @@ function ThemeSelect({onChange}: ThemeSelectProps) {
         {key: 'dark', value: 'dark', displayName: 'Dark'},
         {key: 'light', value: 'light', displayName: 'Light'},
       ]}
-      value={preferredTheme}
+      value={theme}
       onChange={onChange}
       showAllOption={false}
     />
