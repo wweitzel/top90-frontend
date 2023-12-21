@@ -38,7 +38,9 @@ function Video({goal}: {goal: Goal}) {
   function formatDateAgo(date: Date): string {
     const now = new Date();
 
-    return formatDistance(date, now, {addSuffix: true}).replace('about ', '');
+    return formatDistance(date, now, {addSuffix: true})
+      .replace('about ', '')
+      .replace('less than a minute ago', 'just now');
   }
 
   function getPostId(fullName: string) {
