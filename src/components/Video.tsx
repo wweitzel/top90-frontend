@@ -1,3 +1,4 @@
+import {formatDistance} from 'date-fns';
 import {useEffect, useState} from 'react';
 import {API_BASE_URL} from '../lib/api/core';
 import {Goal} from '../lib/api/goals';
@@ -36,23 +37,8 @@ function Video({goal}: {goal: Goal}) {
 
   function formatDateAgo(date: Date): string {
     const now = new Date();
-    const timeDifference = now.getTime() - date.getTime();
-    const dayDifference = timeDifference / (1000 * 3600 * 24);
-    const hourDifference = timeDifference / (1000 * 3600);
-    const minuteDifference = timeDifference / (1000 * 60);
 
-    if (dayDifference >= 1) {
-      const numDays = Math.trunc(dayDifference);
-      return numDays === 1 ? '1 day ago' : `${numDays} days ago`;
-    } else if (hourDifference >= 1) {
-      const numHours = Math.trunc(hourDifference);
-      return numHours === 1 ? '1 hour ago' : `${numHours} hours ago`;
-    } else if (minuteDifference >= 1) {
-      const numMinutes = Math.trunc(minuteDifference);
-      return numMinutes === 1 ? '1 minute ago' : `${numMinutes} minutes ago`;
-    } else {
-      return 'Just now';
-    }
+    return formatDistance(date, now, {addSuffix: true}).replace('about ', '');
   }
 
   function getPostId(fullName: string) {
