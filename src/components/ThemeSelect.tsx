@@ -1,3 +1,4 @@
+import {Theme} from '../lib/theme';
 import Select from './Select';
 
 interface ThemeSelectProps {

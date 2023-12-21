@@ -1,5 +1,5 @@
 import {createContext, useContext, useState} from 'react';
-import {getPreferredTheme, setDocumentTheme} from '../lib/utils';
+import {getPreferredTheme, setDocumentTheme, Theme} from '../lib/theme';
 
 interface ThemeContext {
   theme: Theme;
@@ -10,7 +10,7 @@ const currentTheme = getPreferredTheme();
 
 const ThemeContext = createContext<ThemeContext>({theme: currentTheme, setTheme: () => null});
 
-export const ThemeProvider = ({children}: {children: React.ReactNode}) => {
+export function ThemeProvider({children}: {children: React.ReactNode}) {
   const [theme, setTheme] = useState(currentTheme);
 
   function setGlobalTheme(theme: Theme) {
@@ -23,8 +23,8 @@ export const ThemeProvider = ({children}: {children: React.ReactNode}) => {
       {children}
     </ThemeContext.Provider>
   );
-};
+}
 
-export const useTheme = () => {
+export function useTheme() {
   return useContext(ThemeContext);
-};
+}

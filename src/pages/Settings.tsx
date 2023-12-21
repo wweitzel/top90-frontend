@@ -1,5 +1,6 @@
 import ThemeSelect from '../components/ThemeSelect';
 import {useTheme} from '../hooks/useTheme';
+import {Theme} from '../lib/theme';
 
 function Settings() {
   const {theme, setTheme} = useTheme();
