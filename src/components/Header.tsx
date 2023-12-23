@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-import {NavLink, Outlet, useLocation, useMatch} from 'react-router-dom';
+import {NavLink, Outlet, useMatch} from 'react-router-dom';
 import logoBlack from '../assets/top90logo-black.avif';
 import logoWhite from '../assets/top90logo-white.avif';
 import {useTheme} from '../hooks/useTheme';
@@ -11,19 +11,12 @@ function getLogo(theme: string) {
   return theme === DARK ? logoWhite : logoBlack;
 }
 
-function shouldShowNav(pathName: string) {
-  const goalDrilldownRegex = /goals\/\w+/g;
-
-  return !goalDrilldownRegex.test(pathName);
-}
-
 function Header() {
   // Child components can attach a reset function to this state via the outlet context
   // so that the header can reset some state that they control.
   const [resetFn, setResetFn] = useState<() => void>();
   const {theme} = useTheme();
   const [logo, setLogo] = useState(getLogo(theme));
-  const {pathname} = useLocation();
 
   useEffect(() => {
     const logoToDisplay = getLogo(theme);
@@ -33,6 +26,7 @@ function Header() {
   const homeActive = Boolean(useMatch('/goals'));
   const fixturesActive = Boolean(useMatch('/fixtures'));
   const settingsActive = Boolean(useMatch('/settings'));
+  const goalsDrilldownActive = Boolean(useMatch('/goals/:goalId'));
 
   return (
     <div className="container d-flex justify-content-center">
@@ -41,7 +35,7 @@ function Header() {
           <img height={250} src={logo} onClick={resetFn} alt="logo" role="button" />
         </div>
 
-        {shouldShowNav(pathname) && (
+        {!goalsDrilldownActive && (
           <ul className="nav nav-tabs" role="tablist">
             <li className="nav-item">
               <NavLink
