@@ -23,6 +23,11 @@ function Header() {
     setLogo(logoToDisplay);
   }, [theme]);
 
+  const homeActive = Boolean(useMatch('/goals'));
+  const fixturesActive = Boolean(useMatch('/fixtures'));
+  const settingsActive = Boolean(useMatch('/settings'));
+  const goalsDrilldownActive = Boolean(useMatch('/goals/:goalId'));
+
   return (
     <div className="container d-flex justify-content-center">
       <div className="top90-app-container">
@@ -30,50 +35,52 @@ function Header() {
           <img height={250} src={logo} onClick={resetFn} alt="logo" role="button" />
         </div>
 
-        <ul className="nav nav-tabs" role="tablist">
-          <li className="nav-item">
-            <NavLink
-              to="/goals"
-              className={({isActive}) => {
-                return `nav-link ${isActive ? 'active' : ''}`;
-              }}
-              id="home-tab"
-              type="button"
-              aria-controls="home"
-              aria-selected={Boolean(useMatch('/goals'))}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              to="/fixtures"
-              className={({isActive}) => {
-                return `nav-link ${isActive ? 'active' : ''}`;
-              }}
-              id="fixtures-tab"
-              type="button"
-              aria-controls="fixtures"
-              aria-selected={Boolean(useMatch('/fixtures'))}
-            >
-              Fixtures
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              to="/settings"
-              className={({isActive}) => {
-                return `nav-link ${isActive ? 'active' : ''}`;
-              }}
-              id="settings-tab"
-              type="button"
-              aria-controls="settings"
-              aria-selected={Boolean(useMatch('/settings'))}
-            >
-              Settings
-            </NavLink>
-          </li>
-        </ul>
+        {!goalsDrilldownActive && (
+          <ul className="nav nav-tabs" role="tablist">
+            <li className="nav-item">
+              <NavLink
+                to="/goals"
+                className={({isActive}) => {
+                  return `nav-link ${isActive ? 'active' : ''}`;
+                }}
+                id="home-tab"
+                type="button"
+                aria-controls="home"
+                aria-selected={homeActive}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/fixtures"
+                className={({isActive}) => {
+                  return `nav-link ${isActive ? 'active' : ''}`;
+                }}
+                id="fixtures-tab"
+                type="button"
+                aria-controls="fixtures"
+                aria-selected={fixturesActive}
+              >
+                Fixtures
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/settings"
+                className={({isActive}) => {
+                  return `nav-link ${isActive ? 'active' : ''}`;
+                }}
+                id="settings-tab"
+                type="button"
+                aria-controls="settings"
+                aria-selected={settingsActive}
+              >
+                Settings
+              </NavLink>
+            </li>
+          </ul>
+        )}
 
         <div className="tab-content">
           <Outlet context={[resetFn, setResetFn]} />
