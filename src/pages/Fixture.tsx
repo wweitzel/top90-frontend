@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {NavLink, useParams} from 'react-router-dom';
 import FixtureRow from '../components/FixtureRow';
 import Video from '../components/Video';
@@ -7,6 +8,7 @@ import {getGoals, GetGoalsResponse} from '../lib/api/goals';
 
 function Fixture() {
   const {fixtureId} = useParams();
+  const {t} = useTranslation();
 
   const [getFixtureResponse, setGetFixtureResponse] = useState<GetFixtureResponse>();
   const [getGoalsResponse, setGetGoalsResponse] = useState<GetGoalsResponse>();
@@ -46,7 +48,7 @@ function Fixture() {
 
       <div className="d-flex justify-content-center mt-4 mb-5">
         <NavLink to="/" className="btn btn-outline-secondary">
-          Back to homepage
+          {t('Back to homepage')}
         </NavLink>
       </div>
     </>

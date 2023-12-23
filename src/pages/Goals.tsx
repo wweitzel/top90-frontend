@@ -1,5 +1,6 @@
 import 'bootstrap/js/dist/tab';
 import {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import ReactPaginate from 'react-paginate';
 import {useOutletContext} from 'react-router-dom';
 import Input from '../components/Input';
@@ -23,6 +24,8 @@ function Goals() {
   const [getTeamsResponse, setGetTeamsResponse] = useState<GetTeamsResponse>();
   const [searchPlayersResponse, setSearchPlayersResponse] = useState<SearchPlayersResponse>();
   const [_, setResetFn] = useOutletContext<[Function, React.Dispatch<Function>]>();
+
+  const {t} = useTranslation();
 
   const pageCount = Math.ceil(
     (getGoalsResponse ? getGoalsResponse.total : 0) / (pagination.limit || defaultPagination.limit)
@@ -143,19 +146,19 @@ function Goals() {
       <div className="mt-3">
         <div className="d-flex">
           <Select
-            label={'League'}
+            label={t('League')}
             options={[
-              {key: 1, value: 1, displayName: 'World Cup'},
-              {key: 2, value: 2, displayName: 'Champions League'},
-              {key: 3, value: 3, displayName: 'Europa League'},
-              {key: 39, value: 39, displayName: 'Premier League'},
-              {key: 253, value: 253, displayName: 'Major League Soccer'},
+              {key: 1, value: 1, displayName: t('World Cup')},
+              {key: 2, value: 2, displayName: t('Champions League')},
+              {key: 3, value: 3, displayName: t('Europa League')},
+              {key: 39, value: 39, displayName: t('Premier League')},
+              {key: 253, value: 253, displayName: t('Major League Soccer')},
             ]}
             value={selectedLeagueId}
             onChange={handleSelectedLeagueChange}
           ></Select>
           <Select
-            label={'Team'}
+            label={t('Team')}
             options={
               getTeamsResponse &&
               getTeamsResponse.teams &&
@@ -172,7 +175,7 @@ function Goals() {
             showSearchInput
           ></Select>
           <Select
-            label={'Player'}
+            label={t('Player')}
             options={
               searchPlayersResponse &&
               searchPlayersResponse.players &&
@@ -197,8 +200,8 @@ function Goals() {
         <div className="d-flex">
           <div className="flex-grow-1" style={{flexBasis: '0'}}>
             <Input
-              label={'Keyword Search'}
-              placeholder={'Search anything'}
+              label={t('Keyword Search')}
+              placeholder={t('Search anything')}
               value={searchInput}
               onInput={setSearchInput}
               onEnterKeyDown={handleSubmit}
