@@ -3,17 +3,12 @@ import '../index.css';
 import {getGoal, GetGoalResponse} from '../lib/api/goals';
 
 import {useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {NavLink, useParams} from 'react-router-dom';
 
 function Goal() {
   const {goalId} = useParams();
-  const navigate = useNavigate();
 
   const [getGoalResponse, setGetGoalResponse] = useState<GetGoalResponse>();
-
-  function navigateHome() {
-    navigate('/');
-  }
 
   useEffect(() => {
     if (goalId) {
@@ -31,10 +26,10 @@ function Goal() {
         </div>
       </div>
 
-      <div className="d-flex justify-content-center mt-5">
-        <button onClick={navigateHome} className="btn btn-outline-secondary">
+      <div className="d-flex justify-content-center mt-5 mb-5">
+        <NavLink to="/" className="btn btn-outline-secondary">
           Back to homepage
-        </button>
+        </NavLink>
       </div>
     </div>
   );
