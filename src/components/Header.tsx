@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 
+import {useTranslation} from 'react-i18next';
 import {NavLink, Outlet, useMatch} from 'react-router-dom';
 import logoBlack from '../assets/top90logo-black.avif';
 import logoWhite from '../assets/top90logo-white.avif';
@@ -17,6 +18,9 @@ function Header() {
   const [resetFn, setResetFn] = useState<() => void>();
   const {theme} = useTheme();
   const [logo, setLogo] = useState(getLogo(theme));
+  const {t} = useTranslation();
+
+  const settingsLabel = t('Settings');
 
   useEffect(() => {
     const logoToDisplay = getLogo(theme);
@@ -32,7 +36,7 @@ function Header() {
     <div className="container d-flex justify-content-center">
       <div className="top90-app-container">
         <div className="d-flex justify-content-center">
-          <img height={250} src={logo} onClick={resetFn} alt="logo" role="button" />
+          <img height={250} src={logo} onClick={resetFn} alt={t('top90 logo')} role="button" />
         </div>
 
         {!goalsDrilldownActive && (
@@ -76,7 +80,7 @@ function Header() {
                 aria-controls="settings"
                 aria-selected={settingsActive}
               >
-                Settings
+                {settingsLabel}
               </NavLink>
             </li>
           </ul>

@@ -1,3 +1,6 @@
+import {format} from 'date-fns';
+import * as locales from 'date-fns/locale';
+import {useTranslation} from 'react-i18next';
 import {Link} from 'react-router-dom';
 import {Fixture} from '../lib/api/fixtures';
 
@@ -10,16 +13,11 @@ function FixtureRow({fixture}: FixtureRowProps) {
     return null;
   }
 
-  const date = new Date(fixture.date);
+  const {t} = useTranslation();
 
-  function formattedTime(date: Date) {
-    let hours = date.getHours();
-    hours = hours % 12 || 12;
-    let minutes = date.getMinutes().toString();
-    minutes = minutes.padStart(2, '0');
-    const ampm = date.getHours() >= 12 ? 'PM' : 'AM';
-    return `${hours}:${minutes} ${ampm}`;
-  }
+  const localesMap: {[key: string]: locales.Locale} = locales;
+
+  const date = new Date(fixture.date);
 
   return (
     <>
@@ -34,7 +32,7 @@ function FixtureRow({fixture}: FixtureRowProps) {
               <img
                 className="me-2"
                 src={fixture.teams.home.logo}
-                alt="Home team logo"
+                alt={t('Home team logo')}
                 style={{maxWidth: '20px'}}
                 width={20}
                 height={20}
@@ -45,7 +43,7 @@ function FixtureRow({fixture}: FixtureRowProps) {
               <img
                 className="me-2"
                 src={fixture.teams.away.logo}
-                alt="Away team logo"
+                alt={t('Away team logo')}
                 style={{maxWidth: '20px'}}
                 width={20}
                 height={20}
@@ -54,8 +52,10 @@ function FixtureRow({fixture}: FixtureRowProps) {
             </div>
           </div>
           <div className="d-flex flex-column align-items-start">
-            <div>{date.toDateString()}</div>
-            <div>{formattedTime(date)}</div>
+            {/* Sat Dec 23 2023 */}
+            <div>{format(date, 'EEE MMM d yyyy', {locale: localesMap[navigator.language]})}</div>
+            {/* 8:15 AM */}
+            <div>{format(date, 'p', {locale: localesMap[navigator.language]})}</div>
           </div>
         </div>
       </Link>

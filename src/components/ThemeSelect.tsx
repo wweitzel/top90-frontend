@@ -1,3 +1,4 @@
+import {useTranslation} from 'react-i18next';
 import {Theme} from '../lib/theme';
 import Select from './Select';
 
@@ -7,12 +8,14 @@ interface ThemeSelectProps {
 }
 
 function ThemeSelect({theme, onChange}: ThemeSelectProps) {
+  const {t} = useTranslation();
+
   return (
     <Select
-      label="Theme"
+      label={t('Theme')}
       options={[
-        {key: 'dark', value: 'dark', displayName: 'Dark'},
-        {key: 'light', value: 'light', displayName: 'Light'},
+        {key: 'dark', value: 'dark', displayName: t('Dark')},
+        {key: 'light', value: 'light', displayName: t('Light')},
       ]}
       value={theme}
       onChange={onChange}

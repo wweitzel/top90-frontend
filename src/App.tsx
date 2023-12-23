@@ -7,7 +7,13 @@ import Goal from './pages/Goal';
 import Goals from './pages/Goals';
 import Settings from './pages/Settings';
 
+import i18n from 'i18next';
+import {initReactI18next} from 'react-i18next';
+import translations from './i18n';
+
 import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
+
+i18n.use(initReactI18next).init({resources: translations, lng: navigator.language});
 
 const router = createBrowserRouter([
   {

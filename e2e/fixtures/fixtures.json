@@ -1,268 +1,268 @@
 {
   "fixtures": [
     {
+      "createdAt": "2023-09-01T02:30:11.074033Z",
+      "date": "2023-12-10T16:30:00Z",
       "id": 1049002,
-      "referee": "",
-      "date": "2023-12-10T16:30:00Z",
-      "timestamp": 1702225800,
-      "teams": {
-        "home": {
-          "id": 192,
-          "name": "FC Koln",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/192.png",
-          "createdAt": ""
-        },
-        "away": {
-          "id": 164,
-          "name": "FSV Mainz 05",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/164.png",
-          "createdAt": ""
-        }
-      },
       "leagueId": 78,
+      "referee": "",
       "season": 2023,
-      "createdAt": "2023-09-01T02:30:11.074033Z"
+      "teams": {
+        "away": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 164,
+          "logo": "https://media.api-sports.io/football/teams/164.png",
+          "name": "FSV Mainz 05",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 192,
+          "logo": "https://media.api-sports.io/football/teams/192.png",
+          "name": "FC Koln",
+          "national": false
+        }
+      },
+      "timestamp": 1702225800
     },
     {
-      "id": 1035332,
-      "referee": "",
+      "createdAt": "2023-09-01T02:34:00.542584Z",
       "date": "2023-12-10T16:30:00Z",
-      "timestamp": 1702225800,
-      "teams": {
-        "home": {
-          "id": 47,
-          "name": "Tottenham",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/47.png",
-          "createdAt": ""
-        },
-        "away": {
-          "id": 34,
-          "name": "Newcastle",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/34.png",
-          "createdAt": ""
-        }
-      },
+      "id": 1035332,
       "leagueId": 39,
+      "referee": "",
       "season": 2023,
-      "createdAt": "2023-09-01T02:34:00.542584Z"
+      "teams": {
+        "away": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 34,
+          "logo": "https://media.api-sports.io/football/teams/34.png",
+          "name": "Newcastle",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 47,
+          "logo": "https://media.api-sports.io/football/teams/47.png",
+          "name": "Tottenham",
+          "national": false
+        }
+      },
+      "timestamp": 1702225800
     },
     {
-      "id": 1052402,
-      "referee": "",
+      "createdAt": "2023-09-01T02:35:02.615783Z",
       "date": "2023-12-10T17:00:00Z",
-      "timestamp": 1702227600,
+      "id": 1052402,
+      "leagueId": 135,
+      "referee": "",
+      "season": 2023,
       "teams": {
-        "home": {
-          "id": 514,
-          "name": "Salernitana",
+        "away": {
           "aliases": null,
           "code": "",
           "country": "",
+          "createdAt": "",
           "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/514.png",
-          "createdAt": ""
-        },
-        "away": {
           "id": 500,
-          "name": "Bologna",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
           "logo": "https://media.api-sports.io/football/teams/500.png",
-          "createdAt": ""
+          "name": "Bologna",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 514,
+          "logo": "https://media.api-sports.io/football/teams/514.png",
+          "name": "Salernitana",
+          "national": false
         }
       },
-      "leagueId": 135,
-      "season": 2023,
-      "createdAt": "2023-09-01T02:35:02.615783Z"
+      "timestamp": 1702227600
     },
     {
-      "id": 1038104,
-      "referee": "",
+      "createdAt": "2023-09-01T02:32:04.005269Z",
       "date": "2023-12-10T17:30:00Z",
-      "timestamp": 1702229400,
+      "id": 1038104,
+      "leagueId": 140,
+      "referee": "",
+      "season": 2023,
       "teams": {
-        "home": {
-          "id": 724,
-          "name": "Cadiz",
+        "away": {
           "aliases": null,
           "code": "",
           "country": "",
+          "createdAt": "",
           "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/724.png",
-          "createdAt": ""
-        },
-        "away": {
           "id": 727,
-          "name": "Osasuna",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
           "logo": "https://media.api-sports.io/football/teams/727.png",
-          "createdAt": ""
+          "name": "Osasuna",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 724,
+          "logo": "https://media.api-sports.io/football/teams/724.png",
+          "name": "Cadiz",
+          "national": false
         }
       },
-      "leagueId": 140,
-      "season": 2023,
-      "createdAt": "2023-09-01T02:32:04.005269Z"
+      "timestamp": 1702229400
     },
     {
+      "createdAt": "2023-09-01T02:35:02.45986Z",
+      "date": "2023-12-10T19:45:00Z",
       "id": 1052401,
-      "referee": "",
-      "date": "2023-12-10T19:45:00Z",
-      "timestamp": 1702237500,
-      "teams": {
-        "home": {
-          "id": 497,
-          "name": "AS Roma",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/497.png",
-          "createdAt": ""
-        },
-        "away": {
-          "id": 502,
-          "name": "Fiorentina",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/502.png",
-          "createdAt": ""
-        }
-      },
       "leagueId": 135,
+      "referee": "",
       "season": 2023,
-      "createdAt": "2023-09-01T02:35:02.45986Z"
+      "teams": {
+        "away": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 502,
+          "logo": "https://media.api-sports.io/football/teams/502.png",
+          "name": "Fiorentina",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 497,
+          "logo": "https://media.api-sports.io/football/teams/497.png",
+          "name": "AS Roma",
+          "national": false
+        }
+      },
+      "timestamp": 1702237500
     },
     {
-      "id": 1045010,
-      "referee": "",
+      "createdAt": "2023-09-01T02:33:03.82978Z",
       "date": "2023-12-10T19:45:00Z",
-      "timestamp": 1702237500,
-      "teams": {
-        "home": {
-          "id": 97,
-          "name": "Lorient",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/97.png",
-          "createdAt": ""
-        },
-        "away": {
-          "id": 81,
-          "name": "Marseille",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/81.png",
-          "createdAt": ""
-        }
-      },
+      "id": 1045010,
       "leagueId": 61,
+      "referee": "",
       "season": 2023,
-      "createdAt": "2023-09-01T02:33:03.82978Z"
+      "teams": {
+        "away": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 81,
+          "logo": "https://media.api-sports.io/football/teams/81.png",
+          "name": "Marseille",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 97,
+          "logo": "https://media.api-sports.io/football/teams/97.png",
+          "name": "Lorient",
+          "national": false
+        }
+      },
+      "timestamp": 1702237500
     },
     {
-      "id": 1038102,
-      "referee": "",
+      "createdAt": "2023-09-01T02:32:03.67276Z",
       "date": "2023-12-10T20:00:00Z",
-      "timestamp": 1702238400,
+      "id": 1038102,
+      "leagueId": 140,
+      "referee": "",
+      "season": 2023,
       "teams": {
-        "home": {
-          "id": 529,
-          "name": "Barcelona",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/529.png",
-          "createdAt": ""
-        },
         "away": {
-          "id": 547,
-          "name": "Girona",
           "aliases": null,
           "code": "",
           "country": "",
+          "createdAt": "",
           "founded": 0,
-          "national": false,
+          "id": 547,
           "logo": "https://media.api-sports.io/football/teams/547.png",
-          "createdAt": ""
+          "name": "Girona",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 529,
+          "logo": "https://media.api-sports.io/football/teams/529.png",
+          "name": "Barcelona",
+          "national": false
         }
       },
-      "leagueId": 140,
-      "season": 2023,
-      "createdAt": "2023-09-01T02:32:03.67276Z"
+      "timestamp": 1702238400
     },
     {
-      "id": 1143449,
-      "referee": "",
+      "createdAt": "2023-11-20T00:00:08.182076Z",
       "date": "2023-12-10T22:00:00Z",
-      "timestamp": 1702245600,
+      "id": 1143449,
+      "leagueId": 10,
+      "referee": "",
+      "season": 2023,
       "teams": {
-        "home": {
-          "id": 8,
-          "name": "Colombia",
-          "aliases": null,
-          "code": "",
-          "country": "",
-          "founded": 0,
-          "national": false,
-          "logo": "https://media.api-sports.io/football/teams/8.png",
-          "createdAt": ""
-        },
         "away": {
-          "id": 2379,
-          "name": "Venezuela",
           "aliases": null,
           "code": "",
           "country": "",
+          "createdAt": "",
           "founded": 0,
-          "national": false,
+          "id": 2379,
           "logo": "https://media.api-sports.io/football/teams/2379.png",
-          "createdAt": ""
+          "name": "Venezuela",
+          "national": false
+        },
+        "home": {
+          "aliases": null,
+          "code": "",
+          "country": "",
+          "createdAt": "",
+          "founded": 0,
+          "id": 8,
+          "logo": "https://media.api-sports.io/football/teams/8.png",
+          "name": "Colombia",
+          "national": false
         }
       },
-      "leagueId": 10,
-      "season": 2023,
-      "createdAt": "2023-11-20T00:00:08.182076Z"
+      "timestamp": 1702245600
     }
   ]
 }
