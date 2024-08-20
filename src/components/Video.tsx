@@ -10,9 +10,14 @@ const CLOUDFRONT_BASE_URL = 'https://s3-redditsoccergoals.top90.io/';
 const REDDIT_COMMENTS_BASE_URL = 'https://www.reddit.com/r/soccer/comments/';
 
 function Video({goal}: {goal: Goal}) {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [buttonText, setButtonText] = useState(DEFAULT_BUTTON_TEXT);
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
   const [disableButton, setDisableButton] = useState(false);
+
+  useEffect(() => {
+    setLoggedIn(!!localStorage.getItem('top90-auth-token'));
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -81,6 +86,15 @@ function Video({goal}: {goal: Goal}) {
           >
             Comments
           </a>
+          {loggedIn && (
+            <button
+              onClick={() => {}}
+              disabled={disableButton}
+              className="btn btn-outline-danger btn-sm border-0"
+            >
+              Delete
+            </button>
+          )}
         </div>
         <div style={{fontSize: '14px'}} className="text-muted me-2">
           {formatDateAgo(new Date(goal.redditPostCreatedAt))}
