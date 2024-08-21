@@ -23,10 +23,10 @@ function Header() {
     setLogo(logoToDisplay);
   }, [theme]);
 
-  const homeActive = Boolean(useMatch('/goals'));
   const fixturesActive = Boolean(useMatch('/fixtures'));
   const settingsActive = Boolean(useMatch('/settings'));
   const goalsDrilldownActive = Boolean(useMatch('/goals/:goalId'));
+  const homeActive = Boolean(useMatch('/goals')) || (!fixturesActive && !settingsActive && !goalsDrilldownActive);
 
   return (
     <div className="container d-flex justify-content-center">
@@ -40,8 +40,8 @@ function Header() {
             <li className="nav-item">
               <NavLink
                 to="/goals"
-                className={({isActive}) => {
-                  return `nav-link ${isActive ? 'active' : ''}`;
+                className={() => {
+                  return `nav-link ${homeActive ? 'active' : ''}`;
                 }}
                 id="home-tab"
                 type="button"
