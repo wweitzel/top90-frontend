@@ -9,7 +9,12 @@ const CLICKED_BUTTON_TEXT = 'Link Copied';
 const CLOUDFRONT_BASE_URL = 'https://s3-redditsoccergoals.top90.io/';
 const REDDIT_COMMENTS_BASE_URL = 'https://www.reddit.com/r/soccer/comments/';
 
-function Video({goal}: {goal: Goal}) {
+interface Props {
+  goal: Goal;
+  onDelete?: () => void;
+}
+
+function Video({goal, onDelete}: Props) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [buttonText, setButtonText] = useState(DEFAULT_BUTTON_TEXT);
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
@@ -88,7 +93,9 @@ function Video({goal}: {goal: Goal}) {
           </a>
           {loggedIn && (
             <button
-              onClick={() => {}}
+              onClick={() => {
+                onDelete && onDelete();
+              }}
               disabled={disableButton}
               className="btn btn-outline-danger btn-sm border-0"
             >

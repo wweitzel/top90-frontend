@@ -14,22 +14,13 @@ function Settings() {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    document.addEventListener('keydown', onKeyDown);
     document.addEventListener('dblclick', onDoubleClick);
     setLoggedIn(!!localStorage.getItem('top90-auth-token'));
 
     return function cleanup() {
-      document.removeEventListener('keydown', onKeyDown);
       document.removeEventListener('dblclick', onDoubleClick);
     };
   }, []);
-
-  function onKeyDown(event: KeyboardEvent) {
-    if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.key === 'Enter') {
-      event.preventDefault();
-      setShowLogin((show) => !show);
-    }
-  }
 
   function onDoubleClick() {
     setShowLogin((show) => !show);
