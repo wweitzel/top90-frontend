@@ -40,6 +40,10 @@ export interface GetGoalResponse {
   goal: Goal;
 }
 
+export interface DeleteGoalResponse {
+  rowsAffected: number;
+}
+
 export async function getGoals(pagination?: Pagination, filter?: GetGoalsFilter) {
   if (!pagination) {
     pagination = {skip: 0, limit: 5};
@@ -55,5 +59,13 @@ export async function getGoals(pagination?: Pagination, filter?: GetGoalsFilter)
 
 export async function getGoal(id: string) {
   const response = await axios.get<GetGoalResponse>(`${API_BASE_URL}/goals/${id}`);
+  return response.data;
+}
+
+export async function deleteGoal(id: string) {
+  const token = localStorage.getItem('top90-auth-token');
+  const response = await axios.delete<DeleteGoalResponse>(`${API_BASE_URL}/goals/${id}`, {
+    headers: {Authorization: `Bearer ${token}`},
+  });
   return response.data;
 }
