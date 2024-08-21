@@ -26,7 +26,8 @@ function Header() {
   const fixturesActive = Boolean(useMatch('/fixtures'));
   const settingsActive = Boolean(useMatch('/settings'));
   const goalsDrilldownActive = Boolean(useMatch('/goals/:goalId'));
-  const homeActive = Boolean(useMatch('/goals')) || (!fixturesActive && !settingsActive && !goalsDrilldownActive);
+  const homeActive =
+    Boolean(useMatch('/goals')) || (!fixturesActive && !settingsActive && !goalsDrilldownActive);
 
   return (
     <div className="container d-flex justify-content-center">

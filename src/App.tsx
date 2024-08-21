@@ -7,7 +7,7 @@ import Goal from './pages/Goal';
 import Goals from './pages/Goals';
 import Settings from './pages/Settings';
 
-import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
