@@ -1,8 +1,8 @@
-import {jwtDecode} from 'jwt-decode';
+import Cookies from 'js-cookie';
 import {useEffect, useState} from 'react';
 import ThemeSelect from '../components/ThemeSelect';
 import {useTheme} from '../hooks/useTheme';
-import {login, Token} from '../lib/api/login';
+import {login, logout} from '../lib/api/auth';
 import {Theme} from '../lib/theme';
 
 function Settings() {
@@ -15,7 +15,7 @@ function Settings() {
 
   useEffect(() => {
     document.addEventListener('dblclick', onDoubleClick);
-    setLoggedIn(!!localStorage.getItem('top90-auth-token'));
+    setLoggedIn(!!Cookies.get('top90-logged-in'));
 
     return function cleanup() {
       document.removeEventListener('dblclick', onDoubleClick);
@@ -28,15 +28,8 @@ function Settings() {
 
   function onLogin() {
     login(username, password)
-      .then((data) => {
-        const token = jwtDecode<Token>(data.token);
-        if (token.admin) {
-          localStorage.setItem('top90-auth-token', data.token);
-          setLoggedIn(true);
-        } else {
-          localStorage.removeItem('top90-auth-token');
-          setLoggedIn(false);
-        }
+      .then(() => {
+        setLoggedIn(true);
       })
       .catch((error) => {
         const message = error?.response?.data?.message;
@@ -45,8 +38,14 @@ function Settings() {
   }
 
   function onLogout() {
-    localStorage.removeItem('top90-auth-token');
-    setLoggedIn(false);
+    logout()
+      .then(() => {
+        setLoggedIn(false);
+      })
+      .catch((error) => {
+        const message = error?.response?.data?.message;
+        alert(message || error);
+      });
   }
 
   return (
