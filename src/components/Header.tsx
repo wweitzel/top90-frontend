@@ -40,7 +40,7 @@ function Header() {
           <ul className="nav nav-tabs" role="tablist">
             <li className="nav-item">
               <NavLink
-                to="/goals"
+                to="/"
                 className={() => {
                   return `nav-link ${homeActive ? 'active' : ''}`;
                 }}
