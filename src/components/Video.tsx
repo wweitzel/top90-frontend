@@ -1,4 +1,5 @@
 import {formatDistance} from 'date-fns';
+import Cookies from 'js-cookie';
 import {useEffect, useState} from 'react';
 import {API_BASE_URL} from '../lib/api/core';
 import {Goal} from '../lib/api/goals';
@@ -21,7 +22,7 @@ function Video({goal, onDelete}: Props) {
   const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
-    setLoggedIn(!!localStorage.getItem('top90-auth-token'));
+    setLoggedIn(!!Cookies.get('top90-logged-in'));
   }, []);
 
   useEffect(() => {

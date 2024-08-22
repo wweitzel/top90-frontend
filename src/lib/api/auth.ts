@@ -21,6 +21,13 @@ export async function login(username: string, password: string) {
   const json = encodeURIComponent(JSON.stringify(request));
   const url = `${API_BASE_URL}/login?json=${json}`;
 
-  const response = await axios.get<LoginResponse>(url);
+  const response = await axios.post<LoginResponse>(url, null, {withCredentials: true});
+  return response.data;
+}
+
+export async function logout() {
+  const url = `${API_BASE_URL}/logout`;
+
+  const response = await axios.post<LoginResponse>(url, null, {withCredentials: true});
   return response.data;
 }

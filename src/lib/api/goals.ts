@@ -1,6 +1,7 @@
 import {API_BASE_URL, Pagination} from './core';
 
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export interface Goal {
   id: string;
@@ -63,9 +64,9 @@ export async function getGoal(id: string) {
 }
 
 export async function deleteGoal(id: string) {
-  const token = localStorage.getItem('top90-auth-token');
+  const token = Cookies.get('top90-auth-token');
   const response = await axios.delete<DeleteGoalResponse>(`${API_BASE_URL}/goals/${id}`, {
-    headers: {Authorization: `Bearer ${token}`},
+    withCredentials: true,
   });
   return response.data;
 }
