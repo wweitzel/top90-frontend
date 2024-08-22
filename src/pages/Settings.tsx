@@ -54,7 +54,6 @@ function Settings() {
       <div className="mt-3">
         <ThemeSelect theme={theme} onChange={(value) => setTheme(value as Theme)}></ThemeSelect>
       </div>
-      <div>THIS IS A TEST</div>
       {showLogin && (
         <div className="mt-3">
           <label className="form-label text-muted">Admin</label>
