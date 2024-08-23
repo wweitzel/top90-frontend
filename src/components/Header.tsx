@@ -41,8 +41,8 @@ function Header() {
             <li className="nav-item">
               <NavLink
                 to="/"
-                className={() => {
-                  return `nav-link ${homeActive ? 'active' : ''}`;
+                className={({isActive}) => {
+                  return `nav-link ${isActive ? 'active' : ''}`;
                 }}
                 id="home-tab"
                 type="button"
