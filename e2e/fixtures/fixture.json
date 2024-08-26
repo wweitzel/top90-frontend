@@ -1,0 +1,35 @@
+{
+  "fixture": {
+    "id": 1208518,
+    "referee": "",
+    "date": "2024-08-26T12:30:00-07:00",
+    "timestamp": 0,
+    "teams": {
+      "home": {
+        "id": 533,
+        "name": "Villarreal",
+        "aliases": null,
+        "code": "",
+        "country": "",
+        "founded": 0,
+        "national": false,
+        "logo": "https://media.api-sports.io/football/teams/533.png",
+        "createdAt": ""
+      },
+      "away": {
+        "id": 538,
+        "name": "Celta Vigo",
+        "aliases": null,
+        "code": "",
+        "country": "",
+        "founded": 0,
+        "national": false,
+        "logo": "https://media.api-sports.io/football/teams/538.png",
+        "createdAt": ""
+      }
+    },
+    "leagueId": 140,
+    "season": 2024,
+    "createdAt": "2024-08-18T15:28:13.30605Z"
+  }
+}
