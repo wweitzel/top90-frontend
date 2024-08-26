@@ -1,3 +1,4 @@
+import {useTranslation} from 'react-i18next';
 import {Fixture} from '../lib/api/fixtures';
 import {League} from '../lib/api/leagues';
 import FixtureRow from './FixtureRow';
@@ -19,6 +20,8 @@ function FixturesList({fixtures, leagues}: FixturesListProps) {
     return null;
   }
 
+  const {t} = useTranslation();
+
   const filteredLeagues = leaguesForFixtures(fixtures, leagues);
 
   return (
@@ -26,8 +29,14 @@ function FixturesList({fixtures, leagues}: FixturesListProps) {
       {filteredLeagues.map((league) => (
         <div key={league.id} className="w-100" data-cy="fixture-group">
           <div className="d-flex mb-3 mt-4 align-items-center">
-            <img src={league.logo} alt="League Logo" className="me-2" height={25} width={25}></img>
-            <div>{league.name}</div>
+            <img
+              src={league.logo}
+              alt={t('League Logo')}
+              className="me-2"
+              height={25}
+              width={25}
+            ></img>
+            <div>{t(league.name)}</div>
           </div>
           <>
             {fixtures.map(

@@ -1,5 +1,6 @@
 import 'bootstrap/js/dist/dropdown';
 import {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {usePrevious} from '../hooks/usePrevious';
 import {useWindowSize} from '../hooks/useWindowSize';
 
@@ -38,6 +39,8 @@ function Select({
 
   const dropdownId = `${label}-dropdown`;
 
+  const {t} = useTranslation();
+
   useEffect(() => {
     const id = setTimeout(() => {
       if (searchText || (prevSearchText && prevSearchText.length > 0)) {
@@ -74,7 +77,7 @@ function Select({
               className="d-inline-block"
               style={{maxWidth: '90%', overflowX: 'clip', textOverflow: 'ellipsis'}}
             >
-              {currentOption?.displayName || 'All'}
+              {currentOption?.displayName || t('All')}
             </span>
           </button>
           <div
@@ -88,12 +91,12 @@ function Select({
                 <input
                   type="text"
                   className="form-control"
-                  id={`${label}-search`}
-                  placeholder="Search"
+                  id={`${label}-${t('search')}`}
+                  placeholder={t('Search')}
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   autoComplete="off"
-                  aria-label={`${label} search`}
+                  aria-label={`${label} ${t('search')}`}
                   role="search"
                 />
               </div>
@@ -105,7 +108,7 @@ function Select({
                 aria-selected={!currentOption}
                 role="option"
               >
-                All
+                {t('All')}
               </button>
             )}
             {options &&

@@ -1,12 +1,12 @@
-import {formatDistance} from 'date-fns';
+import {formatDistanceToNow} from 'date-fns';
+import * as locales from 'date-fns/locale';
 import Cookies from 'js-cookie';
 import {useEffect, useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {API_BASE_URL} from '../lib/api/core';
 import {Goal} from '../lib/api/goals';
 import {cloudfrontEnabled} from '../lib/utils';
 
-const DEFAULT_BUTTON_TEXT = 'Copy Link';
-const CLICKED_BUTTON_TEXT = 'Link Copied';
 const CLOUDFRONT_BASE_URL = 'https://s3-redditsoccergoals.top90.io/';
 const REDDIT_COMMENTS_BASE_URL = 'https://www.reddit.com/r/soccer/comments/';
 
@@ -17,9 +17,15 @@ interface Props {
 
 function Video({goal, onDelete}: Props) {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [buttonText, setButtonText] = useState(DEFAULT_BUTTON_TEXT);
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
   const [disableButton, setDisableButton] = useState(false);
+
+  const {t} = useTranslation();
+
+  const DEFAULT_BUTTON_TEXT = t('Copy Link');
+  const CLICKED_BUTTON_TEXT = t('Link Copied');
+
+  const [buttonText, setButtonText] = useState(DEFAULT_BUTTON_TEXT);
 
   useEffect(() => {
     setLoggedIn(!!Cookies.get('top90-logged-in'));
@@ -47,9 +53,9 @@ function Video({goal, onDelete}: Props) {
   }
 
   function formatDateAgo(date: Date): string {
-    const now = new Date();
+    const localesMap: {[key: string]: locales.Locale} = locales;
 
-    return formatDistance(date, now, {addSuffix: true})
+    return formatDistanceToNow(date, {addSuffix: true, locale: localesMap[navigator.language]})
       .replace('about ', '')
       .replace('less than a minute ago', 'just now');
   }
@@ -90,7 +96,7 @@ function Video({goal, onDelete}: Props) {
             target="_blank"
             className="btn btn-outline-secondary btn-sm border-0"
           >
-            Comments
+            {t('Comments')}
           </a>
           {loggedIn && (
             <button

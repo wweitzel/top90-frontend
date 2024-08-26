@@ -1,3 +1,4 @@
+import {useTranslation} from 'react-i18next';
 import Video from '../components/Video';
 import '../index.css';
 import {getGoal, GetGoalResponse} from '../lib/api/goals';
@@ -7,6 +8,7 @@ import {NavLink, useParams} from 'react-router-dom';
 
 function Goal() {
   const {goalId} = useParams();
+  const {t} = useTranslation();
 
   const [getGoalResponse, setGetGoalResponse] = useState<GetGoalResponse>();
 
@@ -28,7 +30,7 @@ function Goal() {
 
       <div className="d-flex justify-content-center mt-5 mb-5">
         <NavLink to="/" className="btn btn-outline-secondary">
-          Back to homepage
+          {t('Back to homepage')}
         </NavLink>
       </div>
     </div>
