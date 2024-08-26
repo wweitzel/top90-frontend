@@ -10,5 +10,8 @@ beforeEach(() => {
   cy.intercept('GET', `${Cypress.env('API_BASE_URL')}/fixtures*`, {fixture: 'fixtures'}).as(
     'fixtures'
   );
+  cy.intercept('GET', `${Cypress.env('API_BASE_URL')}/fixtures/*`, {fixture: 'fixture'}).as(
+    'fixture'
+  );
   cy.intercept('GET', `${Cypress.env('API_BASE_URL')}/goals*`, {fixture: 'goals'}).as('goals');
 });
