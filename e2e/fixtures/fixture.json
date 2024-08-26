@@ -1,35 +1,35 @@
 {
   "fixture": {
-    "id": 1208518,
-    "referee": "",
+    "createdAt": "2024-08-18T15:28:13.30605Z",
     "date": "2024-08-26T12:30:00-07:00",
-    "timestamp": 0,
+    "id": 1208518,
+    "leagueId": 140,
+    "referee": "",
+    "season": 2024,
     "teams": {
-      "home": {
-        "id": 533,
-        "name": "Villarreal",
-        "aliases": null,
-        "code": "",
-        "country": "",
-        "founded": 0,
-        "national": false,
-        "logo": "https://media.api-sports.io/football/teams/533.png",
-        "createdAt": ""
-      },
       "away": {
-        "id": 538,
-        "name": "Celta Vigo",
         "aliases": null,
         "code": "",
         "country": "",
+        "createdAt": "",
         "founded": 0,
-        "national": false,
+        "id": 538,
         "logo": "https://media.api-sports.io/football/teams/538.png",
-        "createdAt": ""
+        "name": "Celta Vigo",
+        "national": false
+      },
+      "home": {
+        "aliases": null,
+        "code": "",
+        "country": "",
+        "createdAt": "",
+        "founded": 0,
+        "id": 533,
+        "logo": "https://media.api-sports.io/football/teams/533.png",
+        "name": "Villarreal",
+        "national": false
       }
     },
-    "leagueId": 140,
-    "season": 2024,
-    "createdAt": "2024-08-18T15:28:13.30605Z"
+    "timestamp": 0
   }
 }
