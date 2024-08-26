@@ -1,5 +1,6 @@
 import {formatDistanceToNow} from 'date-fns';
 import * as locales from 'date-fns/locale';
+import Cookies from 'js-cookie';
 import {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {API_BASE_URL} from '../lib/api/core';
@@ -9,7 +10,13 @@ import {cloudfrontEnabled} from '../lib/utils';
 const CLOUDFRONT_BASE_URL = 'https://s3-redditsoccergoals.top90.io/';
 const REDDIT_COMMENTS_BASE_URL = 'https://www.reddit.com/r/soccer/comments/';
 
-function Video({goal}: {goal: Goal}) {
+interface Props {
+  goal: Goal;
+  onDelete?: () => void;
+}
+
+function Video({goal, onDelete}: Props) {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
   const [disableButton, setDisableButton] = useState(false);
 
@@ -19,6 +26,10 @@ function Video({goal}: {goal: Goal}) {
   const CLICKED_BUTTON_TEXT = t('Link Copied');
 
   const [buttonText, setButtonText] = useState(DEFAULT_BUTTON_TEXT);
+
+  useEffect(() => {
+    setLoggedIn(!!Cookies.get('top90-logged-in'));
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -87,6 +98,17 @@ function Video({goal}: {goal: Goal}) {
           >
             {t('Comments')}
           </a>
+          {loggedIn && (
+            <button
+              onClick={() => {
+                onDelete && onDelete();
+              }}
+              disabled={disableButton}
+              className="btn btn-outline-danger btn-sm border-0"
+            >
+              Delete
+            </button>
+          )}
         </div>
         <div style={{fontSize: '14px'}} className="text-muted me-2">
           {formatDateAgo(new Date(goal.redditPostCreatedAt))}

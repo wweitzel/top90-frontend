@@ -7,7 +7,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import Video from '../components/Video';
 import {Pagination} from '../lib/api/core';
-import {getGoals, GetGoalsFilter, GetGoalsResponse} from '../lib/api/goals';
+import {deleteGoal, getGoals, GetGoalsFilter, GetGoalsResponse, Goal} from '../lib/api/goals';
 import {Player, searchPlayers, SearchPlayersResponse} from '../lib/api/players';
 import {getTeams, GetTeamsResponse} from '../lib/api/teams';
 
@@ -141,6 +141,24 @@ function Goals() {
     });
   }
 
+  function handleDeleteGoal(goal: Goal) {
+    deleteGoal(goal.id)
+      .then((data) => {
+        alert('Deleted ' + data.rowsAffected + ' goal(s)');
+        if (getGoalsResponse) {
+          const updatedGoals = getGoalsResponse.goals.filter((g) => g.id !== goal.id);
+          setGetGoalsResponse({
+            ...getGoalsResponse,
+            goals: updatedGoals,
+          });
+        }
+      })
+      .catch((error) => {
+        const message = error?.response?.data?.message;
+        alert(message || error);
+      });
+  }
+
   return (
     <div id="home" role="tabpanel" aria-labelledby="home-tab">
       <div className="mt-3">
@@ -214,7 +232,7 @@ function Goals() {
 
       {getGoalsResponse?.goals?.map((goal) => (
         <div key={goal.id} data-cy="goal-container" className="mb-4">
-          <Video goal={goal}></Video>
+          <Video goal={goal} onDelete={() => handleDeleteGoal(goal)}></Video>
         </div>
       ))}
 

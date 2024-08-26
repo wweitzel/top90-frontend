@@ -1,4 +1,4 @@
-interface InputProps {
+interface Props {
   label: string;
   placeholder: string;
   value?: number | string;
@@ -6,7 +6,7 @@ interface InputProps {
   onEnterKeyDown: () => void;
 }
 
-function Input({label, placeholder, value, onInput, onEnterKeyDown}: InputProps) {
+function Input({label, placeholder, value, onInput, onEnterKeyDown}: Props) {
   return (
     <div className="w-100">
       <label className="form-label text-muted">{label}</label>

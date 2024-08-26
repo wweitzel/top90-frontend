@@ -3,9 +3,6 @@ describe('tabs', () => {
     cy.visit('/');
 
     cy.get('.nav-link.active').contains('Home');
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/goals');
-    });
     cy.get('[aria-labelledby="home-tab"]').should('be.visible');
     cy.get('[aria-labelledby="fixtures-tab"]').should('not.exist');
     cy.get('[aria-labelledby="settings-tab"]').should('not.exist');

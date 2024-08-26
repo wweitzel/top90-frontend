@@ -11,7 +11,7 @@ import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import translations from './i18n';
 
-import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
 i18n.use(initReactI18next).init({resources: translations, lng: navigator.language});
 
@@ -21,11 +21,6 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Navigate to="/goals" />,
-        errorElement: <Error />,
-      },
-      {
-        path: '/goals',
         element: <Goals />,
         errorElement: <Error />,
       },

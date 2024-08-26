@@ -32,7 +32,7 @@ describe('fixtures', () => {
       expect(loc.pathname).to.eq('/fixtures/1049002');
     });
 
-    cy.wait(['@goals', '@goals']).then((interceptions) => {
+    cy.wait(['@goals', '@goals', '@fixture']).then((interceptions) => {
       const reqQuery = JSON.parse(interceptions[1].request.query.json as string);
       cy.wrap(reqQuery).its('filter').its('fixtureId').should('equal', 1049002);
     });
