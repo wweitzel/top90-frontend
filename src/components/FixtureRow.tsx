@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {Fixture} from '../lib/api/fixtures';
+import {top90Url} from '../lib/api/logo';
 
 interface FixtureRowProps {
   fixture?: Fixture;
@@ -33,7 +34,7 @@ function FixtureRow({fixture}: FixtureRowProps) {
             <div className="d-flex align-items-center">
               <img
                 className="me-2"
-                src={fixture.teams.home.logo}
+                src={top90Url(fixture.teams.home.logo)}
                 alt="Home team logo"
                 style={{maxWidth: '20px'}}
                 width={20}
@@ -44,7 +45,7 @@ function FixtureRow({fixture}: FixtureRowProps) {
             <div className="d-flex align-items-center">
               <img
                 className="me-2"
-                src={fixture.teams.away.logo}
+                src={top90Url(fixture.teams.away.logo)}
                 alt="Away team logo"
                 style={{maxWidth: '20px'}}
                 width={20}
