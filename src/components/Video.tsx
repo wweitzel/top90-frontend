@@ -1,6 +1,7 @@
 import {formatDistance} from 'date-fns';
 import Cookies from 'js-cookie';
 import {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import {API_BASE_URL} from '../lib/api/core';
 import {Goal} from '../lib/api/goals';
 import {cloudfrontEnabled} from '../lib/utils';
@@ -92,6 +93,13 @@ function Video({goal, onDelete}: Props) {
           >
             Comments
           </a>
+          <Link
+            key={goal.fixtureId}
+            to={`/fixtures/${goal.fixtureId}`}
+            className="btn btn-outline-secondary btn-sm border-0"
+          >
+            Fixture
+          </Link>
           {loggedIn && (
             <button
               onClick={() => {
