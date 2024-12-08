@@ -113,8 +113,8 @@ function Select({
                   option1.displayName < option2.displayName
                     ? -1
                     : option1.displayName > option2.displayName
-                    ? 1
-                    : 0
+                      ? 1
+                      : 0
                 )
                 .map((option) => (
                   <button
