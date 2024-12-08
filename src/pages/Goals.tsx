@@ -1,4 +1,3 @@
-import 'bootstrap/js/dist/tab';
 import {useEffect, useState} from 'react';
 import ReactPaginate from 'react-paginate';
 import {useOutletContext} from 'react-router-dom';
