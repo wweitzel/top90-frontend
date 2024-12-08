@@ -1,4 +1,3 @@
-import 'bootstrap/js/dist/dropdown';
 import {useEffect, useState} from 'react';
 import {usePrevious} from '../hooks/usePrevious';
 import {useWindowSize} from '../hooks/useWindowSize';

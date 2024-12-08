@@ -5,7 +5,6 @@ import Fixture from './pages/Fixture';
 import Fixtures from './pages/Fixtures';
 import Goal from './pages/Goal';
 import Goals from './pages/Goals';
-import Settings from './pages/Settings';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
@@ -21,11 +20,6 @@ const router = createBrowserRouter([
       {
         path: '/fixtures',
         element: <Fixtures />,
-        errorElement: <Error />,
-      },
-      {
-        path: '/settings',
-        element: <Settings />,
         errorElement: <Error />,
       },
       {
