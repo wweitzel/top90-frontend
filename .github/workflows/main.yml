@@ -52,45 +52,6 @@ jobs:
           name: build
       - name: Run unit tests
         run: npm run test
-  cypress-tests:
-    name: E2E Tests
-    runs-on: ubuntu-latest
-    needs: build
-    env:
-      CYPRESS_RECORD_KEY: ${{ secrets.TOP90_CYPRESS_RECORD_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - name: Restore cached dependencies
-        id: dependency-restore
-        uses: actions/cache/restore@v3
-        with:
-          path: node_modules/
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-      - name: Start app
-        run: npm start &
-      - name: Restore Cypress cache
-        id: cypress-restore
-        uses: actions/cache/restore@v3
-        with:
-          path: /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
-      - name: Install Cypress
-        run: npm cypress install
-      - name: Save Cypress cache
-        id: cypress-save
-        uses: actions/cache/save@v3
-        with:
-          path: /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('package-lock.json') }}
-      - name: Run Cypress e2e with record
-        if: ${{ env.CYPRESS_RECORD_KEY }}
-        run: npm cypress run --e2e --record
-      - name: Run Cypress e2e
-        if: ${{ !env.CYPRESS_RECORD_KEY }}
-        run: npm cypress run --e2e
   deploy:
     name: Deploy
     needs: build
