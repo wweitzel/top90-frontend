@@ -74,7 +74,13 @@ function Video({goal, onDelete}: Props) {
   return (
     <div key={goal.redditPostTitle}>
       <h6>{goal.redditPostTitle}</h6>
-      <video poster={getThumbnailUrl(goal)} className="shadow-sm w-100" controls muted={true}>
+      <video
+        poster={getThumbnailUrl(goal)}
+        className="shadow-sm w-100"
+        controls
+        playsInline
+        muted={true}
+      >
         <source src={getVideoUrl(goal)} type="video/mp4"></source>
       </video>
       <div className="d-flex justify-content-between align-items-center">
