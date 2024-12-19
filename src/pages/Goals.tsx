@@ -166,7 +166,8 @@ function Goals() {
               {key: 2, value: 2, displayName: 'Champions League'},
               {key: 3, value: 3, displayName: 'Europa League'},
               {key: 39, value: 39, displayName: 'Premier League'},
-              {key: 253, value: 253, displayName: 'Major League Soccer'},
+              {key: 45, value: 45, displayName: 'FA Cup'},
+              {key: 48, value: 48, displayName: 'League Cup'},
             ]}
             value={selectedLeagueId}
             onChange={handleSelectedLeagueChange}
