@@ -97,7 +97,11 @@ function Header() {
             onClick={resetFn}
             alt="logo"
             role="button"
-            onContextMenu={(e) => e.preventDefault()}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              return false;
+            }}
           />
         </div>
 
