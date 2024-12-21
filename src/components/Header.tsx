@@ -36,19 +36,6 @@ function Header() {
     duration: 2000,
   });
 
-  function onContextMenu(e: MouseEvent) {
-    e.preventDefault();
-    return false;
-  }
-
-  useEffect(() => {
-    document.addEventListener('contextmenu', onContextMenu);
-
-    return function cleanup() {
-      document.removeEventListener('contextmenu', onContextMenu);
-    };
-  }, []);
-
   useEffect(() => {
     if (!loginModal) {
       let aboutModal = new bootstrap.Modal(document.getElementById('loginModal') as any, {
@@ -110,6 +97,7 @@ function Header() {
             onClick={resetFn}
             alt="logo"
             role="button"
+            onContextMenu={(e) => e.preventDefault()}
           />
         </div>
 
