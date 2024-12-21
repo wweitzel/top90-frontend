@@ -97,10 +97,8 @@ function Header() {
             onClick={resetFn}
             alt="logo"
             role="button"
-            onContextMenu={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              return false;
+            style={{
+              WebkitTouchCallout: 'none',
             }}
           />
         </div>
