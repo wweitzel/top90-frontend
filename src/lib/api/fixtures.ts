@@ -17,7 +17,7 @@ export interface Fixture {
 export interface GetFixturesFilter {
   leagueId?: number;
   todayOnly?: boolean;
-  searchTeam?: string;
+  teamId?: number;
 }
 
 export interface GetFixturesResponse {
