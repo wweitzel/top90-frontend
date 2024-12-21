@@ -36,6 +36,18 @@ function Header() {
     duration: 2000,
   });
 
+  function onContextMenu(e: MouseEvent) {
+    e.preventDefault();
+  }
+
+  useEffect(() => {
+    document.addEventListener('contextmenu', onContextMenu);
+
+    return function cleanup() {
+      document.removeEventListener('contextmenu', onContextMenu);
+    };
+  }, []);
+
   useEffect(() => {
     if (!loginModal) {
       let aboutModal = new bootstrap.Modal(document.getElementById('loginModal') as any, {
