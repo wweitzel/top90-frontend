@@ -38,6 +38,7 @@ function Header() {
 
   function onContextMenu(e: MouseEvent) {
     e.preventDefault();
+    return false;
   }
 
   useEffect(() => {
