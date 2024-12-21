@@ -4,8 +4,13 @@ import {BrightnessHigh, QuestionCircle} from 'react-bootstrap-icons';
 import {NavLink, Outlet, useMatch} from 'react-router-dom';
 import logoBlack from '../assets/top90logo-black.avif';
 import logoWhite from '../assets/top90logo-white.avif';
+import {useLongPress} from '../hooks/useLongPress';
 import {useTheme} from '../hooks/useTheme';
 import About from './About';
+import Login from './Login';
+import Modal from './Modal';
+
+declare const bootstrap: any;
 
 const DARK = 'dark';
 
@@ -19,6 +24,26 @@ function Header() {
   const [resetFn, setResetFn] = useState<() => void>();
   const {theme, setTheme} = useTheme();
   const [logo, setLogo] = useState(getLogo(theme));
+
+  const [loginModal, setLoginModal] = useState<any>();
+
+  const handleLongPress = () => {
+    loginModal.toggle();
+  };
+
+  const {isPressed, handlers} = useLongPress({
+    onLongPress: handleLongPress,
+    duration: 2000,
+  });
+
+  useEffect(() => {
+    if (!loginModal) {
+      let aboutModal = new bootstrap.Modal(document.getElementById('loginModal') as any, {
+        keyboard: false,
+      });
+      setLoginModal(aboutModal);
+    }
+  }, []);
 
   useEffect(() => {
     const logoToDisplay = getLogo(theme);
@@ -57,34 +82,15 @@ function Header() {
             >
               <QuestionCircle />
             </button>
-            <div
-              className="modal fade"
-              id="aboutModal"
-              tabIndex={-1}
-              aria-labelledby="aboutModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="aboutModalLabel">
-                      About
-                    </h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <About />
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Modal id="aboutModal" title="About">
+              <About />
+            </Modal>
+            <Modal id="loginModal" title="Login">
+              <Login />
+            </Modal>
           </div>
           <img
+            {...handlers}
             className="align-self-center"
             height={250}
             src={logo}
